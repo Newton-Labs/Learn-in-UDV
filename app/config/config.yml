@@ -4,7 +4,6 @@ imports:
     - { resource: admin.yml }
     - { resource: fos_user.yml }
     - { resource: doctrine_extensions.yml }
-    - { resource: lexik_translations.yml }
     - { resource: vich_uploader.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -50,7 +49,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ["FOSCommentBundle"]
+    bundles:        []
     #node: /app/.heroku/node/bin
     #node: %kernel.root_dir%/../.heroku/node/bin
     node: ~
@@ -103,16 +102,6 @@ braincrafted_bootstrap:
     jquery_path: %kernel.root_dir%/../web/js/jquery-2.1.1.min.js
 
 
-genemu_form:
-    select2: ~
-
-fos_comment:
-    db_driver: orm
-    class:
-        model:
-            comment: ForumBundle\Entity\Comentario
-            thread: ForumBundle\Entity\Thread
-            vote: ForumBundle\Entity\Vote
 
 stof_doctrine_extensions:
     default_locale: es

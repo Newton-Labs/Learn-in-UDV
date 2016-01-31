@@ -27,13 +27,8 @@ class AppKernel extends Kernel
            
             new FOS\UserBundle\FOSUserBundle(),                         //user bunndle
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(), //admin bundle
-            new FOS\RestBundle\FOSRestBundle(),
-            new FOS\CommentBundle\FOSCommentBundle(),                   //forum bundle
-            new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Vich\UploaderBundle\VichUploaderBundle(),               //upload engine
-            new Genemu\Bundle\FormBundle\GenemuFormBundle(),            //Add select2
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
-            new Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),//translation bundle
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//soft delete bundle
             //new Mremi\ContactBundle\MremiContactBundle(),//contact bundle
              new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
@@ -43,7 +38,7 @@ class AppKernel extends Kernel
             new ContactBundle\ContactBundle(),
             new ReportBundle\ReportBundle(),
             
-            new blackknight467\StarRatingBundle\StarRatingBundle(),
+           
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
