@@ -1,6 +1,6 @@
 {
-    "name": "pablo/plataforma_virtual",
-    "description":"Project oriented to be a learning platform for Universidad del Valle de Guatemala ",
+    "name": "pablo/learn-in-udv",
+    "description":"Project oriented to be a learning platform for Universidad Da Vinic de Guatemala ",
     "license": "proprietary",
     "type": "project",
     "autoload": {

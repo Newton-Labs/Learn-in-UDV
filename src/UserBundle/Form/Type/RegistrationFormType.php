@@ -27,13 +27,12 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])
-            ->add('terminos','checkbox',['label' => false,
+            ->add('terminos', 'checkbox', ['label' => false,
                 'required' => true,
-                'mapped' => false
+                'mapped' => false,
                 ])
 
             ;
-
     }
 
     /**

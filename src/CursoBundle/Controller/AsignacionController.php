@@ -10,6 +10,7 @@ use CursoBundle\Entity\Curso;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use CursoBundle\Form\Type\BuscarType;
 use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * AsignacionController.

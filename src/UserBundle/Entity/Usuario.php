@@ -33,7 +33,6 @@ class Usuario extends BaseUser
      **/
     private $cursos;
 
-
     /**
      * Constructor.
      */

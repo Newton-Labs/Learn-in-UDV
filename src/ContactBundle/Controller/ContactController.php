@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use ContactBundle\Entity\Contact;
 use FOS\UserBundle\Model\UserInterface;
 use ContactBundle\Form\Type\ContactType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @author  fcpauldiaz <fcpauldiaz@gmail.com>
