@@ -50,7 +50,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ["FOSCommentBundle",TutoriaBundle]
+    bundles:        ["FOSCommentBundle"]
     #node: /app/.heroku/node/bin
     #node: %kernel.root_dir%/../.heroku/node/bin
     node: ~
