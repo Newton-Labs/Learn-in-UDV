@@ -41,7 +41,6 @@ class Usuario extends BaseUser
     {
         parent::__construct();// construye los metodos y atributos de Base
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tutorias = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id.
