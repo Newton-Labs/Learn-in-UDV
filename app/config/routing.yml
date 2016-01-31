@@ -1,0 +1,56 @@
+report:
+    resource: "@ReportBundle/Resources/config/routing.php"
+    prefix:   /
+
+contact:
+    resource: "@ContactBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+tutoria:
+    resource: "@TutoriaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+reporte:
+    resource: "@ReportBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+forum:
+    resource: "@ForumBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@CursoBundle/Controller/"
+    type:     annotation
+
+default:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+
+document:
+    resource: "@DocumentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    #resource: "@CursoBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /adminEntity
+
+lexik_translation_edition:
+    resource: "@LexikTranslationBundle/Resources/config/routing.yml"
+    prefix:   /traducciones
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }

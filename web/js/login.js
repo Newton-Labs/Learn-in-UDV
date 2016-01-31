@@ -1,0 +1,1 @@
+$(document).ready(function(){$("#olvidado").click(function(o){o.preventDefault(),$("div#form-olvidado").toggle("500")}),$("#acceso").click(function(o){o.preventDefault(),$("div#form-olvidado").toggle("500")})});

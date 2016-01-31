@@ -1,0 +1,48 @@
+{% extends 'default/base.html.twig' %}
+
+{% block stylesheets %}
+<!-- Bootstrap Core CSS -->
+{#<link href=" {{ asset('bootstrap/css/bootstrap_page.css') }} " rel="stylesheet">#}
+<link href=" {{ asset('bootstrap/css/seach-box.css') }} " rel="stylesheet">
+<script src="{{ asset('js/alerts.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+	 {% include 'menu.html.twig' %}
+
+	 <!-- Start Latest News Section -->
+        <div class="section-modal" id="news-modal" tabindex="-1" role="dialog" aria-hidden="false">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title text-center">
+                            <h3>{% block body_title %}{% endblock %}</h3>
+                            
+                        </div>
+                        {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
+                        {% block body_content %}
+        				{% endblock body_content %}
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+        
+                    </div>
+                </div>
+            </div>
+        </div5>
+        <!-- End Latest News Section -->
+       
+
+        {% block js %}
+        {% endblock js %}
+
+{% endblock body %}

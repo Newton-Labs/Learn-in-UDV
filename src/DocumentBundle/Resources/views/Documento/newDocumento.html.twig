@@ -1,0 +1,96 @@
+{% extends '::base_page.html.twig' %}
+
+{% block body_content -%}
+    <h1>Subir Documentos</h1>
+
+    	
+
+    	{{ form_start(form,{'attr': {'class':'form-group formcolor'}}) }}
+    		{% if not form.vars.valid %}
+			<div class="alert alert-danger" role="alert">
+			    {{ form_errors(form) }}
+			</div>
+			{% endif %}
+		    {{ form_row(form.tipoDocumento) }}
+		    {{ form_row(form.curso) }}
+
+        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="El número del documento según el programa del curso"></i>
+		    {{ form_row(form.numeroDocumento) }}
+        {{ form_row(form.documentFile) }}
+		    <br>
+        {% if duplicado is not null %}
+          <a class="btn btn-danger btn-lg" target="_blank" href="{{ vich_uploader_asset(duplicado, 'documentFile') }}">Ver el documento duplicado</a>
+          <br>
+        {% endif %}
+        <br>
+          
+
+           <a type = "button" data-toggle="modal" id="submitBtn" data-target="#modalDocumento" class="btn btn-lg buttonbk" style="font-size:20px">Guardar</a>
+           <br>
+           <br>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('asignacion') }}" class="btn btn-warning">
+            ¿No aparece el curso que estabas buscando? 
+        </a>
+    </li>
+</ul>
+
+<div class="modal fade" id="modalDocumento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2>Confirmar Envío</h2>
+      </div>
+      <div class="modal-body">
+                
+
+                <!-- We display the details entered by the user here -->
+                <table class="table">
+                    <tr>
+                        <th>Tipo Documento</th>
+                        <td id="tipo"></td>
+                    </tr>
+                    <tr>
+                        <th>Curso</th>
+                        <td id="curso"></td>
+
+                    </tr>
+                    <tr>
+                        <th>Número Documento</th>
+                        <td id="numero"></td>
+                        
+                    </tr>
+                     <tr>
+                        <th>Nombre del Documento</th>
+                        <td id="nombre"></td>
+                        
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+    <div class="modal-footer">
+    <strong><p align="left">Esta plataforma no promueve el plagio.</p></strong>
+    <strong><p align="left">Al enviar este archivo acepto todos los Términos y Condiciones.</p></strong>
+           {{ form_row(form.submit, {'attr':{'class':'btn btn-block buttonbk '}})}}
+           {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+<script src="{{ asset('js/reloadDataForm.js') }}"></script>
+ <script src="{{ asset('js/upload.js') }}"></script>
+ <script>
+$(":file").filestyle({buttonBefore: true,buttonName: "btn-primary",
+  placeholder: "Aquí aparecerá el nombre del archivo seleccionado",
+  buttonText: "Seleccionar documento"});
+ </script>
+{% endblock %}

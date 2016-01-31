@@ -1,0 +1,5 @@
+form:
+    label:
+         delete: Eliminar?
+
+error: funciona2
