@@ -1,14 +1,15 @@
-Learn-In Platform
+Learn-In Platform (Universidad Da Vinci version)
 ==================
 [![Build Status](https://travis-ci.org/fcpauldiaz/plataforma_virtual.svg)](https://travis-ci.org/fcpauldiaz/plataforma_virtual)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=learn-in)](http://learn-in.herokuapp.com)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fcpauldiaz/plataforma_virtual/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-[![Symfony](http://img.shields.io/badge/Symfony2-2.7.6-blue.svg)](http://syfmony.com)
+[![Symfony](http://img.shields.io/badge/Symfony2-2.7.9-blue.svg)](http://syfmony.com)
+[![Symfony](http://img.shields.io/badge/PHP-7.0.1-red.svg)](http://syfmony.com)
 ![PHP](http://img.shields.io/badge/Buildpack-PHP-lightgrey.svg)
 [![NodeJS](http://img.shields.io/badge/Buildpack-NodeJS-lightgrey.svg)](http://nodejs.com)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/a036cef0-9f40-4f2c-8903-efe518dd4dc4/big.png)](https://insight.sensiolabs.com/projects/a036cef0-9f40-4f2c-8903-efe518dd4dc4)
 
-A Symfony project created on June 16, 2015, 3:20 am.
+A Symfony modified  on January 31, 2016, 10:50 am.
 
 Welcome to the Symfony Standard Edition - a fully-functional Symfony2
 application that you can use as the skeleton for your new applications.
@@ -16,23 +17,21 @@ application that you can use as the skeleton for your new applications.
 For details on how to download and get started with Symfony, see the
 [Installation][1] chapter of the Symfony Documentation.
 
-This project contains a custom [UserBundle][2] based on [FOSUserBundle][3].
+This project is another Learn-In version modified to supply a [blackboard](http://lac.blackboard.com/sites/international/globalmaster/) minor version
 
 Features Custom Registration, Password Resetting, Custom Email Activation,
 Custom Profile, Custom Profile Edition, Standard Login. Powered By
-Bootstrap.
+Bootstrap and developed by Newton Labs.
 
 ###Bundles Integrated
 
-Administrate Entities [EasyAdminBundle][6].
+This project contains a custom [UserBundle][2] based on [FOSUserBundle][3].
 
-Enable tree comments as forum [FOSCommentBundle][7].
+Administrate Entities [EasyAdminBundle][6].
 
 Upload PDF and Word documents [VichUploaderBundle][8].
 
 Bootstrap 3.3 [Bootstrap][9].
-
-Translation administration [LexikTranslationBundle][10].
 
 Urlize specific fields to create unique slug. [Doctrine-Extensions][11].
 
@@ -42,7 +41,6 @@ Unit Tests and Functional tests [PHPUnit][13].
 
 Populate database with fake data [AliceBundle][14].
 
-Integrate Select2 as entity search [Genemu][15].
 
 [jQuery][16].
 
@@ -68,6 +66,9 @@ Gaufrette help [documentation][22]
 8. Create database: php app/console doctrine:database:create
 9. Create tables:  php app/console doctrine:schema:update --force
 10. Run server: php app/console server:run
+
+
+Live version: [Learn-In-UDV](http://learn-in-udv.herokuapp.com)
 
  ###Contributions
  
