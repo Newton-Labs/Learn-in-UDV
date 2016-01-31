@@ -40,8 +40,6 @@ class AppKernel extends Kernel
             new CursoBundle\CursoBundle(),
             new UserBundle\UserBundle(),
             new DocumentBundle\DocumentBundle(),
-            new ForumBundle\ForumBundle(),
-            new TutoriaBundle\TutoriaBundle(),
             new ContactBundle\ContactBundle(),
             new ReportBundle\ReportBundle(),
             
