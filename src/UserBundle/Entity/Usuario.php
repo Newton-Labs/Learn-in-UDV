@@ -33,10 +33,6 @@ class Usuario extends BaseUser
      **/
     private $cursos;
 
-    /**
-     * @ORM\OneToMany(targetEntity="TutoriaBundle\Entity\Tutoria", mappedBy="usuario")
-     **/
-    private $tutorias;
 
     /**
      * Constructor.
@@ -132,39 +128,6 @@ class Usuario extends BaseUser
     public function __toString()
     {
         return $this->nombreCompleto;
-    }
-
-    /**
-     * Add tutorias.
-     *
-     * @param \TutoriaBundle\Entity\Tutoria $tutorias
-     *
-     * @return Usuario
-     */
-    public function addTutoria(\TutoriaBundle\Entity\Tutoria $tutorias)
-    {
-        $this->tutorias[] = $tutorias;
-        $tutorias->setUsuario($this);
-
-        return $this;
-    }
-    /**
-     * Remove tutorias.
-     *
-     * @param \TutoriaBundle\Entity\Tutoria $tutorias
-     */
-    public function removeTutoria(\TutoriaBundle\Entity\Tutoria $tutorias)
-    {
-        $this->tutorias->removeElement($tutorias);
-    }
-    /**
-     * Get tutorias.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTutorias()
-    {
-        return $this->tutorias;
     }
 
     public function hasRole($role)

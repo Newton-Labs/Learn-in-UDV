@@ -52,12 +52,6 @@ class Curso
     private $documentos;
 
     /**
-     * @ORM\OneToMany(targetEntity="TutoriaBundle\Entity\Tutoria", mappedBy="curso")
-     * @ORM\JoinTable(name="tutorias_curso")
-     **/
-    private $tutorias;
-
-    /**
      * Sirve para hacer soft delete de la entidad.
      *
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
@@ -202,37 +196,6 @@ class Curso
         return $this->documentos;
     }
 
-    /**
-     * Add tutorias.
-     *
-     * @param \TutoriaBundle\Entity\Tutoria $tutorias
-     *
-     * @return Usuario
-     */
-    public function addTutoria(\TutoriaBundle\Entity\Tutoria $tutorias)
-    {
-        $this->tutorias[] = $tutorias;
-
-        return $this;
-    }
-    /**
-     * Remove tutorias.
-     *
-     * @param \TutoriaBundle\Entity\Tutoria $tutorias
-     */
-    public function removeTutoria(\TutoriaBundle\Entity\Tutoria $tutorias)
-    {
-        $this->tutorias->removeElement($tutorias);
-    }
-    /**
-     * Get tutorias.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTutorias()
-    {
-        return $this->tutorias;
-    }
 
     public function getCurso()
     {
