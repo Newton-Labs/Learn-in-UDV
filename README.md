@@ -1,6 +1,6 @@
 Learn-In Platform (Universidad Da Vinci version)
 ==================
-[![Build Status](https://travis-ci.org/fcpauldiaz/plataforma_virtual.svg)](https://travis-ci.org/fcpauldiaz/plataforma_virtual)
+[![Build Status](https://travis-ci.org/Newton-Labs/Learn-in-UDV.svg?branch=master)](https://travis-ci.org/Newton-Labs/Learn-in-UDV)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=learn-in)](http://learn-in.herokuapp.com)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fcpauldiaz/plataforma_virtual/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Symfony](http://img.shields.io/badge/Symfony2-2.7.9-blue.svg)](http://syfmony.com)
