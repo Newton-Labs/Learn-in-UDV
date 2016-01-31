@@ -2,12 +2,11 @@ Learn-In Platform (Universidad Da Vinci version)
 ==================
 [![Build Status](https://travis-ci.org/Newton-Labs/Learn-in-UDV.svg?branch=master)](https://travis-ci.org/Newton-Labs/Learn-in-UDV)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=learn-in)](http://learn-in.herokuapp.com)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fcpauldiaz/plataforma_virtual/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Symfony](http://img.shields.io/badge/Symfony2-2.7.9-blue.svg)](http://syfmony.com)
 [![Symfony](http://img.shields.io/badge/PHP-7.0.1-red.svg)](http://syfmony.com)
 ![PHP](http://img.shields.io/badge/Buildpack-PHP-lightgrey.svg)
 [![NodeJS](http://img.shields.io/badge/Buildpack-NodeJS-lightgrey.svg)](http://nodejs.com)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/a036cef0-9f40-4f2c-8903-efe518dd4dc4/big.png)](https://insight.sensiolabs.com/projects/a036cef0-9f40-4f2c-8903-efe518dd4dc4)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/926fb08c-8a06-4eb0-b60e-63a3876362a2/big.png)](https://insight.sensiolabs.com/projects/926fb08c-8a06-4eb0-b60e-63a3876362a2)
 
 A Symfony modified  on January 31, 2016, 10:50 am.
 
