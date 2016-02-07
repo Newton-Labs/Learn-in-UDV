@@ -19,5 +19,6 @@ easy_admin:
             class: CursoBundle\Entity\Facultad
         Carrera:
             class: CursoBundle\Entity\Carrera
+        Periodo:
             class: CursoBundle\Entity\Periodo
 
