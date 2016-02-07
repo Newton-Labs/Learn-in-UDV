@@ -48,7 +48,7 @@
                         {# termina ruta perfil #}
 
                          <div class="menu-item green">
-                            <a href="{{path('list_cursos_foro')}}" data-toggle="modal">
+                            <a href="" data-toggle="modal">
                                 <i class="fa fa-comments-o"></i>
                                 <p>Foros</p>
                             </a>
@@ -115,7 +115,7 @@
                        
                         {# ruta para subir documentos #}
                         <div class="menu-item color">
-                            {% if app.user %}
+                            {% if app.user and is_granted('ROLE_CATEDRATICO') %}
                                 <a href="{{ path('documento_new')}}" data-toggle="modal">
                                     <i class="fa fa-cloud-upload"></i>
                                     <p>Subir Documentos</p>
@@ -145,7 +145,7 @@
                             </a>
                         </div>
                         
-                        {% include 'modal/modal_tutoria.html.twig' %}
+                        p
                     </div>
                 </div>
             </div>

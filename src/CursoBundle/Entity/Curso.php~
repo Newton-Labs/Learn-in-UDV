@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="curso")
  * @ORM\Entity()
  * @UniqueEntity(fields={"nombreCurso","sede","periodo","carreras"},
- *     message="El curso que está tratando de crear ya ha sido utilizado, cambie de período, nombre, year o carrera"
+ *     message="El curso que está tratando de crear ya ha sido utilizado, cambie de período, nombre, año o carrera"
  * )
  */
 class Curso
@@ -50,9 +50,9 @@ class Curso
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="year", type="date")
+     * @ORM\Column(name="año", type="date")
      */
-    private $year;
+    private $año;
 
     /**
      *  Usuarios que asociados al curso.
@@ -317,30 +317,6 @@ class Curso
         return $this;
     }
 
-
-    /**
-     * Set year
-     *
-     * @param \DateTime $year
-     * @return Curso
-     */
-    public function setyear($year)
-    {
-        $this->year = $year;
-
-        return $this;
-    }
-
-    /**
-     * Get year
-     *
-     * @return \DateTime 
-     */
-    public function getyear()
-    {
-        return $this->year;
-    }
-
     /**
      * Get carreras
      *
@@ -369,5 +345,4 @@ class Curso
             $this->carreras
         );
     }
-
 }

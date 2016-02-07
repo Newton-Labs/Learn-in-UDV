@@ -3,53 +3,26 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title  %}Learn-In!{% endblock %}</title>
-    
+         
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/minimalMenu.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/animate.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/lobster.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/select2.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/select2-bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
       
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    
-      <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
        
-       
-        {% if app.environment == 'dev' %}
-        {% stylesheets  
-        'css/style.css'
         
-        filter='cssrewrite'
        
-        output='css/compiled/app2.css'
-        debug=false
-        %}<link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+        
+        <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
 
-        {% stylesheets 
-        'bootstrap/css/bootstrap.css'
-        'css/font-awesome.min.css'
-        'css/animate.css'  
-        'css/lobster.css'
-        'css/minimalMenu.css'
-        'css/select2.css'
-        'css/comments.css'
-        'css/select2-bootstrap.css'
-        
-        
-        filter='cssrewrite'
-       
-        output='css/compiled/app.css'
-        debug=false
-        %}<link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-       
-        {% else %}
     
-        {% include 'default/stylesh.html.twig' %}
-            
-        {% endif %}
-        
-        
-       
-        
-         <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
+        <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
       
         
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -71,25 +44,29 @@
 
           
 
-            
+            <script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>  
+            <script src="{{ asset('js/select2.min.js')}}"></script>
+            <script src="{{ asset('js/jquery.appear.js') }}"></script>
+            <script src="{{ asset('js/contact_me.js') }}"></script>
+            <script src="{{ asset('js/modernizr.custom.js') }}"></script>
+            <script src="{{ asset('js/script.js') }}"></script>
+            <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
            
-
-                <!-- Template js -->
-                {% javascripts 
-                'bootstrap/js/bootstrap.js'
-                'js/select2/select2.js'
-                'js/jquery.appear.js'
-                'js/contact_me.js'
-                'js/modernizr.custom.js'
-                'js/script.js'
-
-                
-                output='js/compile/javascripts.js'
-                
-                %}<script src="{{ asset_url }}"></script>
-                {% endjavascripts %}
-                 <script type="text/javascript">
-                     $('select').select2();
+               
+            <script src="{{ asset('js/minimalMenu.js')}}"></script> 
+               
+               
+                <script type="text/javascript">
+                    $('select').select2({
+                    theme: "bootstrap"
+                });
+                </script>
+                        <script>
+                    $('table').dataTable( {
+                            "language": {
+                                "url": "{{ asset('json/Spanish.json')}}"
+                            }
+                        } );
                 </script>
                 <script>
                      $('.navbar-toggler').on('click', function(event) {

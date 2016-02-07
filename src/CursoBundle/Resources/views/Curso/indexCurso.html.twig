@@ -20,11 +20,15 @@
             <tr>
                 <td><a href="{{ path('curso_show', { 'slug': entity.slug }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.nombreCurso }}</td>
-                <td>{{ entity.codigoCurso }}</td>
+                {% for carrera in entity.carreras %}
+                    <td> {{carrera}} </td>
+                {% endfor %}
+
                 {% if entity.deletedAt != null %}
                     <td>Eliminado {{entity.deletedAt | date('d-m-Y H:i:s') }}</td>
                 {% else %}
                     <td>Activo</td>
+                    P
                
                 <td>
                 <ul>

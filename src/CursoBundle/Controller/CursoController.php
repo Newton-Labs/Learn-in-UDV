@@ -10,12 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use CursoBundle\Entity\Curso;
 use CursoBundle\Form\Type\CursoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Curso controller.
  *
  * @author fcpauldiaz fcpauldiaz@me.com
- * @Route("admin/curso")
+ * @Route("curso")
  */
 class CursoController extends Controller
 {
@@ -45,9 +47,15 @@ class CursoController extends Controller
      */
     public function createAction(Request $request)
     {
+         $usuario = $this->get('security.token_storage')->getToken()->getUser();
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
         $entity = new Curso();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        $entity->addUsuario($usuario);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -59,6 +67,7 @@ class CursoController extends Controller
                     'curso_show', [
                         'id' => $entity->getId(),
                         'slug' => $entity->getSlug(),
+                        'id2' => $usuario->getId()
                     ]
                 )
             );

@@ -9,7 +9,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 //sirve para validar los campos del formulario
 
 /**
- * @ORM\Table(name="Usuarios")
+ * @ORM\Table(name="usuario")
  * @ORM\Entity
  */
 class Usuario extends BaseUser
@@ -111,7 +111,7 @@ class Usuario extends BaseUser
      * @return Usuario
      */
     public function addCurso(\CursoBundle\Entity\Curso $cursos)
-    {
+    {   
         $this->cursos[] = $cursos;
 
         return $this;
@@ -155,7 +155,7 @@ class Usuario extends BaseUser
     }
     public function __toString()
     {
-        return $this->nombreCompleto;
+        return $this->nombre.' '.$this->apellidos;
     }
 
     public function hasRole($role)

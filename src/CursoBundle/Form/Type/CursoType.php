@@ -16,7 +16,41 @@ class CursoType extends AbstractType
     {
         $builder
             ->add('nombreCurso')
-            ->add('codigoCurso')
+            ->add('sede','choice',[
+                'choices' => [
+                    'Zona 4' => 'Zona 4',
+                    ],
+                'attr' => [
+                    'class' => 'select2'
+                    ],
+                'placeholder' => 'Seleccionar Sede'
+
+                ])
+            ->add('carreras','entity',[
+                'empty_value' => 'Seleccionar carrera',
+                'class' => 'CursoBundle:Carrera',
+                'property' => 'toStringCarreraYFacultad',
+                'label' => 'Buscador de Carrera',
+                'attr' => [
+                    'class' => 'select2',
+                    ],
+                ])
+            ->add('periodo','entity',[
+                'empty_value' => 'Seleccionar un Período',
+                'class' => 'CursoBundle:Periodo',
+                'attr' => [
+                        'class' => 'select2'
+                    ]
+
+
+            ])
+            ->add('year',null, [
+                'label' => 'Fecha',
+                'attr' => [
+                    'readonly' => true
+                    ]
+
+                ])
         ;
     }
 

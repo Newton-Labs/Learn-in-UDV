@@ -1,0 +1,15 @@
+{% extends '::base_page.html.twig' %}
+
+{% block body_content -%}
+    <h1>Facultad creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('facultad') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
