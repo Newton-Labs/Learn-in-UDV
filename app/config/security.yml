@@ -26,13 +26,12 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER }
-        - { path: ^/admin, role: ROLE_ADMIN}
-        - { path: ^/traducciones/, role: ROLE_ADMIN }
         - { path: ^/adminEntity, role: ROLE_ADMIN }
 
 
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_CATEDRATICO: ROLE_USER
+        ROLE_ADMIN:       ROLE_CATEDRATICO
         ROLE_SUPER_ADMIN: ROLE_ADMIN
        

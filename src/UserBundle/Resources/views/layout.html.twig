@@ -1,4 +1,15 @@
 {% extends 'default/base.html.twig' %}
+
+    {% block manual_style %}
+        <style>
+        .btn span.glyphicon {               
+            opacity: 0;             
+        }
+        .btn.active span.glyphicon {                
+            opacity: 1;             
+        }
+    </style>
+{% endblock %}
     
     {% block body %}
         
@@ -130,7 +141,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div>Universidad del Valle de Guatemal<a href="#" target="_blank"></a></div>
+                            <div>UDV<a href="#" target="_blank"></a></div>
                         </div>
                     </div>
                 </div>

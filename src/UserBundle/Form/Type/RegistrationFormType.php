@@ -5,18 +5,26 @@ namespace UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // agregar campos personalizados
-        $builder->add('nombreCompleto', null, ['label' => false,
+        $builder
+            ->add('nombre', null, ['label' => false,
             'attr' => [
-            'placeholder' => 'Nombre/s y Apellidos',
-            ],
+            'placeholder' => 'Nombre/s',
+                 ],
 
             ])
+            ->add('apellidos',null,['label' => false,
+                'attr' => [
+                    'placeholder' => 'Apellidos'
+                    ]
+                ])
             ->add('username', null, ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('email', 'email', ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('plainPassword', 'repeated', [
@@ -27,12 +35,13 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])
-            ->add('terminos', 'checkbox', ['label' => false,
-                'required' => true,
-                'mapped' => false,
-                ])
+           
 
             ;
+            $builder->addEventListener(
+            FormEvents::POST_SUBMIT,
+            [ $this, 'onPostData' ]
+        );
     }
 
     /**
@@ -52,5 +61,14 @@ class RegistrationFormType extends AbstractType
     public function getName()
     {
         return 'user_registration';
+    }
+
+    public function onPostData(FormEvent $event)
+    {
+        $usuario = $event->getData();
+        if (preg_match('/[a-z\'0-9]+([._-][a-z\'0-9]+)*@([udv]+[.]+[edu]+[.]+[gt]+)/',$usuario->getEmail())){
+            $usuario->addRole('ROLE_CATEDRATICO');
+        }
+       
     }
 }

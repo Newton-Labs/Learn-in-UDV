@@ -24,17 +24,23 @@ class Usuario extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="nombreCompleto", type="string", length=50)
+     * @ORM\Column(name="nombre", type="string", length=50)
      */
-    private $nombreCompleto;
+    private $nombre;
+
+    /**
+     * Apellidos del usuario
+     * @var string
+     * @ORM\Column(name="apellidos",type="string",length=50)
+     */
+    private $apellidos;
+
     /**
      * @ORM\ManyToMany(targetEntity="CursoBundle\Entity\Curso", inversedBy="usuarios")
      * @ORM\JoinTable(name="cursos_usuario")
      **/
     private $cursos;
 
-
-   
     /**
      * Constructor.
      */
@@ -53,27 +59,28 @@ class Usuario extends BaseUser
         return $this->id;
     }
     /**
-     * Set nombreCompleto.
+     * Set nombre.
      *
-     * @param string $nombreCompleto
+     * @param string $nombre
      *
      * @return Usuario
      */
-    public function setNombreCompleto($nombreCompleto)
+    public function setNombre($nombre)
     {
-        $this->nombreCompleto = $nombreCompleto;
+        $this->nombre = $nombre;
 
         return $this;
     }
     /**
-     * Get nombreCompleto.
+     * Get nombre.
      *
      * @return string
      */
-    public function getNombreCompleto()
+    public function getNombre()
     {
         return $this->nombreCompleto;
     }
+
 
     /**
      * Add cursos.
@@ -129,7 +136,6 @@ class Usuario extends BaseUser
     {
         return $this->nombreCompleto;
     }
-   
 
     public function hasRole($role)
     {
@@ -139,8 +145,4 @@ class Usuario extends BaseUser
 
         return false;
     }
-
-  
-
-  
 }
