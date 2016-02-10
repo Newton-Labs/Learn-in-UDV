@@ -17,7 +17,6 @@ use CursoBundle\Form\Type\FacultadType;
  */
 class FacultadController extends Controller
 {
-
     /**
      * Lists all Facultad entities.
      *
@@ -58,7 +57,7 @@ class FacultadController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -91,11 +90,11 @@ class FacultadController extends Controller
     public function newFacultadAction()
     {
         $entity = new Facultad();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,7 +118,7 @@ class FacultadController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -145,19 +144,19 @@ class FacultadController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Facultad entity.
-    *
-    * @param Facultad $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Facultad entity.
+     *
+     * @param Facultad $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Facultad $entity)
     {
         $form = $this->createForm(new FacultadType(), $entity, array(
@@ -197,8 +196,8 @@ class FacultadController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

@@ -47,7 +47,7 @@ class CursoController extends Controller
      */
     public function createAction(Request $request)
     {
-         $usuario = $this->get('security.token_storage')->getToken()->getUser();
+        $usuario = $this->get('security.token_storage')->getToken()->getUser();
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
@@ -67,7 +67,6 @@ class CursoController extends Controller
                     'curso_show', [
                         'id' => $entity->getId(),
                         'slug' => $entity->getSlug(),
-                        'id2' => $usuario->getId()
                     ]
                 )
             );

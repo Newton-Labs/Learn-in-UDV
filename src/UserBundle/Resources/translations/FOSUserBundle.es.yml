@@ -98,3 +98,6 @@ form:
 Bad credentials.: Contraseña o usuario incorrecto
 User account is disabled.: La cuenta no está confirmada, en caso de que no le llegó un correo comunicarse con dia13203@uvg.edu.gt
 SQLSTATE[HY000] [2002] Connection refused: Base de datos no disponible
+SQLSTATE[HY000] [2002] Operation timed out: No se pudo accesar a la base de datos, revise su conexión a internet
+
+

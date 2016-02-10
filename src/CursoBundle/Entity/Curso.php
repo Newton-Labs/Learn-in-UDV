@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="curso")
  * @ORM\Entity()
- * @UniqueEntity(fields={"nombreCurso","sede","periodo","carreras"},
- *     message="El curso que está tratando de crear ya ha sido utilizado, cambie de período, nombre, year o carrera"
+ * @UniqueEntity(fields={"nombreCurso","sede","periodo","carreras","year"},
+ *     message="El curso que está tratando de crear ya ha sido utilizado, cambie de período, nombre o carrera"
  * )
  */
 class Curso
@@ -34,23 +34,25 @@ class Curso
     private $nombreCurso;
 
     /**
-     * Sede de la UDV
+     * Sede de la UDV.
+     *
      * @var string
      * @ORM\Column(name="sede",type="string", length=255)
      */
     private $sede;
 
     /**
-     * Período en que se imparte el curso
+     * Período en que se imparte el curso.
+     *
      * @var string
      * @ORM\ManyToOne(targetEntity="Periodo")
      */
     private $periodo;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="year", type="date")
+     * @ORM\Column(name="year", type="string", length=20)
      */
     private $year;
 
@@ -61,9 +63,9 @@ class Curso
      **/
     private $usuarios;
 
-
     /**
      * Carrera asociada al curso.
+     *
      * @ORM\ManyToOne(targetEntity="Carrera")
      */
     private $carreras;
@@ -93,13 +95,21 @@ class Curso
      */
     private $slug;
 
-     /**
-     * Constructor
+    /**
+     * Curso creado por.
+     *
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\Usuario",mappedBy="usuarioCreador")
+     */
+    private $cursoCreadoPor;
+
+    /**
+     * Constructor.
      */
     public function __construct()
     {
         $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documentos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->year = date_format(new \DateTime(), 'Y');
     }
 
     /**
@@ -133,7 +143,6 @@ class Curso
     {
         return $this->nombreCurso;
     }
- 
 
     /**
      * Add usuarios.
@@ -144,7 +153,6 @@ class Curso
      */
     public function addUsuario(\UserBundle\Entity\Usuario $usuarios)
     {
-
         $this->usuarios[] = $usuarios;
         $usuarios->addCurso($this);
 
@@ -169,7 +177,7 @@ class Curso
     {
         return $this->usuarios;
     }
-    
+
     /**
      * Add documentos.
      *
@@ -256,9 +264,10 @@ class Curso
     }
 
     /**
-     * Set sede
+     * Set sede.
      *
      * @param string $sede
+     *
      * @return Curso
      */
     public function setSede($sede)
@@ -269,21 +278,20 @@ class Curso
     }
 
     /**
-     * Get sede
+     * Get sede.
      *
-     * @return string 
+     * @return string
      */
     public function getSede()
     {
         return $this->sede;
     }
 
-
-
     /**
-     * Set periodo
+     * Set periodo.
      *
      * @param string $periodo
+     *
      * @return Curso
      */
     public function setPeriodo($periodo)
@@ -294,20 +302,20 @@ class Curso
     }
 
     /**
-     * Get periodo
+     * Get periodo.
      *
-     * @return string 
+     * @return string
      */
     public function getPeriodo()
     {
         return $this->periodo;
     }
 
-
     /**
-     * Set carreras
+     * Set carreras.
      *
      * @param \CursoBundle\Entity\Carrera $carreras
+     *
      * @return Curso
      */
     public function setCarreras(\CursoBundle\Entity\Carrera $carreras = null)
@@ -317,11 +325,11 @@ class Curso
         return $this;
     }
 
-
     /**
-     * Set year
+     * Set year.
      *
      * @param \DateTime $year
+     *
      * @return Curso
      */
     public function setyear($year)
@@ -332,9 +340,9 @@ class Curso
     }
 
     /**
-     * Get year
+     * Get year.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getyear()
     {
@@ -342,9 +350,9 @@ class Curso
     }
 
     /**
-     * Get carreras
+     * Get carreras.
      *
-     * @return \CursoBundle\Entity\Carrera 
+     * @return \CursoBundle\Entity\Carrera
      */
     public function getCarreras()
     {
@@ -353,7 +361,7 @@ class Curso
 
     public function __toString()
     {
-        return $this->nombreCurso;
+        return (string) $this->nombreCurso;
     }
 
     /**
@@ -370,4 +378,37 @@ class Curso
         );
     }
 
+    /**
+     * Add cursoCreadoPor.
+     *
+     * @param \UserBundle\Entity\Usuario $cursoCreadoPor
+     *
+     * @return Curso
+     */
+    public function addCursoCreadoPor(\UserBundle\Entity\Usuario $cursoCreadoPor)
+    {
+        $this->cursoCreadoPor[] = $cursoCreadoPor;
+
+        return $this;
+    }
+
+    /**
+     * Remove cursoCreadoPor.
+     *
+     * @param \UserBundle\Entity\Usuario $cursoCreadoPor
+     */
+    public function removeCursoCreadoPor(\UserBundle\Entity\Usuario $cursoCreadoPor)
+    {
+        $this->cursoCreadoPor->removeElement($cursoCreadoPor);
+    }
+
+    /**
+     * Get cursoCreadoPor.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCursoCreadoPor()
+    {
+        return $this->cursoCreadoPor;
+    }
 }

@@ -20,10 +20,10 @@ class RegistrationFormType extends AbstractType
                  ],
 
             ])
-            ->add('apellidos',null,['label' => false,
+            ->add('apellidos', null, ['label' => false,
                 'attr' => [
-                    'placeholder' => 'Apellidos'
-                    ]
+                    'placeholder' => 'Apellidos',
+                    ],
                 ])
             ->add('username', null, ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('email', 'email', ['label' => false, 'translation_domain' => 'FOSUserBundle'])
@@ -35,12 +35,11 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])
-           
 
             ;
-            $builder->addEventListener(
+        $builder->addEventListener(
             FormEvents::POST_SUBMIT,
-            [ $this, 'onPostData' ]
+            [$this, 'onPostData']
         );
     }
 
@@ -66,9 +65,8 @@ class RegistrationFormType extends AbstractType
     public function onPostData(FormEvent $event)
     {
         $usuario = $event->getData();
-        if (preg_match('/[a-z\'0-9]+([._-][a-z\'0-9]+)*@([udv]+[.]+[edu]+[.]+[gt]+)/',$usuario->getEmail())){
+        if (preg_match('/[a-z\'0-9]+([._-][a-z\'0-9]+)*@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail())) {
             $usuario->addRole('ROLE_CATEDRATICO');
         }
-       
     }
 }

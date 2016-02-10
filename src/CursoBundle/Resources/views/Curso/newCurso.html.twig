@@ -8,10 +8,21 @@
 	{{ form_row(form.sede)}}
 	{{ form_row(form.carreras)}}
 	{{ form_row(form.periodo)}}
+    
+   {% form_theme form _self %}
 
-	
-	{{ form_row(form.year, { 'style': 'inline' })}}
-	
+    {% block _appbundle_curso_year %}
+        <div class="form-inline">
+            
+             {{ form_row(form.year) }}
+         </div>
+       
+    {% endblock %}
+
+    <br>
+    <br>
+    
+    {{form_row(form.submit)}}
 
 
     {{ form_end(form)}}

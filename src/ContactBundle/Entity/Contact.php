@@ -4,18 +4,18 @@ namespace ContactBundle\Entity;
 
 class Contact
 {
-    private $nombreCompleto;
+    private $nombre;
     private $correo;
     private $asunto;
     private $mensaje;
 
-    public function getNombreCompleto()
+    public function getNombre()
     {
-        return $this->nombreCompleto;
+        return $this->nombre;
     }
-    public function setNombreCompleto($nombreCompleto)
+    public function setNombre($nombre)
     {
-        $this->nombreCompleto = $nombreCompleto;
+        $this->nombre = $nombre;
     }
 
     public function getCorreo()

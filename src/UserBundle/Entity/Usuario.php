@@ -29,7 +29,8 @@ class Usuario extends BaseUser
     private $nombre;
 
     /**
-     * Apellidos del usuario
+     * Apellidos del usuario.
+     *
      * @var string
      * @ORM\Column(name="apellidos",type="string",length=50)
      */
@@ -40,6 +41,11 @@ class Usuario extends BaseUser
      * @ORM\JoinTable(name="cursos_usuario")
      **/
     private $cursos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CursoBundle\Entity\Curso", inversedBy="cursoCreadoPor")
+     */
+    private $usuarioCreador;
 
     /**
      * Constructor.
@@ -82,9 +88,10 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set apellidos
+     * Set apellidos.
      *
      * @param string $apellidos
+     *
      * @return Usuario
      */
     public function setApellidos($apellidos)
@@ -95,9 +102,9 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get apellidos
+     * Get apellidos.
      *
-     * @return string 
+     * @return string
      */
     public function getApellidos()
     {
@@ -111,7 +118,7 @@ class Usuario extends BaseUser
      * @return Usuario
      */
     public function addCurso(\CursoBundle\Entity\Curso $cursos)
-    {   
+    {
         $this->cursos[] = $cursos;
 
         return $this;
@@ -167,4 +174,27 @@ class Usuario extends BaseUser
         return false;
     }
 
+    /**
+     * Set usuarioCreador.
+     *
+     * @param \CursoBundle\Entity\Curso $usuarioCreador
+     *
+     * @return Usuario
+     */
+    public function setUsuarioCreador(\CursoBundle\Entity\Curso $usuarioCreador = null)
+    {
+        $this->usuarioCreador = $usuarioCreador;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioCreador.
+     *
+     * @return \CursoBundle\Entity\Curso
+     */
+    public function getUsuarioCreador()
+    {
+        return $this->usuarioCreador;
+    }
 }

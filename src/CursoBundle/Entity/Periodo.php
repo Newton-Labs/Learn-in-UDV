@@ -5,7 +5,7 @@ namespace CursoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Periodo
+ * Periodo.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Periodo
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,11 +28,10 @@ class Periodo
      */
     private $nombrePeriodo;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -40,9 +39,10 @@ class Periodo
     }
 
     /**
-     * Set nombrePeriodo
+     * Set nombrePeriodo.
      *
      * @param string $nombrePeriodo
+     *
      * @return Periodo
      */
     public function setNombrePeriodo($nombrePeriodo)
@@ -53,9 +53,9 @@ class Periodo
     }
 
     /**
-     * Get nombrePeriodo
+     * Get nombrePeriodo.
      *
-     * @return string 
+     * @return string
      */
     public function getNombrePeriodo()
     {
@@ -63,8 +63,9 @@ class Periodo
     }
 
     /**
-     * [__toString description]
-     * @return string 
+     * [__toString description].
+     *
+     * @return string
      */
     public function __toString()
     {

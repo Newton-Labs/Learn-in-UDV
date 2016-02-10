@@ -10,24 +10,24 @@ class PeriodoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombrePeriodo',null,[
-                    'label' => 'Nombre Período'
+            ->add('nombrePeriodo', null, [
+                    'label' => 'Nombre Período',
                 ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CursoBundle\Entity\Periodo'
+            'data_class' => 'CursoBundle\Entity\Periodo',
         ));
     }
 

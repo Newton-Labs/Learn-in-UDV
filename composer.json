@@ -42,7 +42,7 @@
         "friendsofsymfony/user-bundle": "^1.3",
         "vich/uploader-bundle": "dev-master",
         "jquery/jquery": "1.11.*",
-        "braincrafted/bootstrap-bundle": "dev-master",
+        "braincrafted/bootstrap-bundle": "^2.1.2",
         "twbs/bootstrap": "3.*",
         "oyejorge/less.php": "~1.5",
         "gedmo/doctrine-extensions": "^2.4",

@@ -5,7 +5,7 @@ namespace CursoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Facultad
+ * Facultad.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Facultad
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,17 +29,17 @@ class Facultad
     private $nombreFacultad;
 
     /**
-     * Carreras asociadas a la facultad
+     * Carreras asociadas a la facultad.
+     *
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Carrera", mappedBy="facultad")
      */
     private $arrayCarreras;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -47,9 +47,10 @@ class Facultad
     }
 
     /**
-     * Set nombreFacultad
+     * Set nombreFacultad.
      *
      * @param string $nombreFacultad
+     *
      * @return Facultad
      */
     public function setNombreFacultad($nombreFacultad)
@@ -60,16 +61,16 @@ class Facultad
     }
 
     /**
-     * Get nombreFacultad
+     * Get nombreFacultad.
      *
-     * @return string 
+     * @return string
      */
     public function getNombreFacultad()
     {
         return $this->nombreFacultad;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -77,9 +78,10 @@ class Facultad
     }
 
     /**
-     * Add arrayCarreras
+     * Add arrayCarreras.
      *
      * @param \CursoBundle\Entity\Carrera $arrayCarreras
+     *
      * @return Facultad
      */
     public function addArrayCarrera(\CursoBundle\Entity\Carrera $arrayCarreras)
@@ -90,7 +92,7 @@ class Facultad
     }
 
     /**
-     * Remove arrayCarreras
+     * Remove arrayCarreras.
      *
      * @param \CursoBundle\Entity\Carrera $arrayCarreras
      */
@@ -100,9 +102,9 @@ class Facultad
     }
 
     /**
-     * Get arrayCarreras
+     * Get arrayCarreras.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArrayCarreras()
     {
@@ -110,7 +112,8 @@ class Facultad
     }
 
     /**
-     * Mostrar el nombre representativo de cada facultad
+     * Mostrar el nombre representativo de cada facultad.
+     *
      * @return string [description]
      */
     public function __toString()

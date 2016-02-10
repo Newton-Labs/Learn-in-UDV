@@ -9,7 +9,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 //sirve para validar los campos del formulario
 
 /**
- * @ORM\Table(name="Usuarios")
+ * @ORM\Table(name="usuario")
  * @ORM\Entity
  */
 class Usuario extends BaseUser
@@ -40,6 +40,12 @@ class Usuario extends BaseUser
      * @ORM\JoinTable(name="cursos_usuario")
      **/
     private $cursos;
+
+    /**
+     * 
+     * @ORM\ManyToOne(targetEntity="CursoBundle\Entity\Curso", inversedBy="cursoCreadoPor")
+     */
+    private $usuarioCreador;
 
     /**
      * Constructor.
@@ -78,10 +84,31 @@ class Usuario extends BaseUser
      */
     public function getNombre()
     {
-        return $this->nombreCompleto;
+        return $this->nombre;
     }
 
+    /**
+     * Set apellidos
+     *
+     * @param string $apellidos
+     * @return Usuario
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
 
+        return $this;
+    }
+
+    /**
+     * Get apellidos
+     *
+     * @return string 
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
     /**
      * Add cursos.
      *
@@ -90,7 +117,7 @@ class Usuario extends BaseUser
      * @return Usuario
      */
     public function addCurso(\CursoBundle\Entity\Curso $cursos)
-    {
+    {   
         $this->cursos[] = $cursos;
 
         return $this;
@@ -134,7 +161,7 @@ class Usuario extends BaseUser
     }
     public function __toString()
     {
-        return $this->nombreCompleto;
+        return $this->nombre.' '.$this->apellidos;
     }
 
     public function hasRole($role)
@@ -145,4 +172,5 @@ class Usuario extends BaseUser
 
         return false;
     }
+
 }

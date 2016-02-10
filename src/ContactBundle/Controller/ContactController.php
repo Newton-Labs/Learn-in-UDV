@@ -29,7 +29,7 @@ class ContactController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $varNombre = $form->get('nombreCompleto')->getData();
+            $varNombre = $form->get('nombre')->getData();
             $varCorreo = $form->get('correo')->getData();
             $varAsunto = $form->get('asunto')->getData();
             $varMensaje = $form->get('mensaje')->getData();
@@ -37,7 +37,7 @@ class ContactController extends Controller
             $message = \Swift_Message::newInstance()
 
               ->setFrom([$varCorreo => $varNombre])
-              ->setTo('dia13203@uvg.edu.gt')
+              ->setTo('soporte@newtonlabs.com.gt')
               ->setSubject($varAsunto)
               ->setBody(
                 $this->renderView(
@@ -94,7 +94,7 @@ class ContactController extends Controller
 
         return [
             'form' => $form->createView(),
-            'nombreUsuario' => $usuario->getNombreCompleto(),
+            'nombreUsuario' => $usuario->getNombre(),
             'correoUsuario' => $usuario->getEmail(),
         ];
     }

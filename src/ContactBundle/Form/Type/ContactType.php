@@ -20,7 +20,7 @@ class ContactType extends AbstractType
     {
         $builder
 
-            ->add('nombreCompleto', 'text',  ['label' => 'mremi_contact.form.first_name',
+            ->add('nombre', 'text',  ['label' => 'mremi_contact.form.first_name',
                 'attr' => ['placeholder' => 'mremi_contact.form.first_name'],
                 ])
             ->add('correo',     'email', ['label' => 'mremi_contact.form.email',
@@ -41,6 +41,7 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults(array(
         'data_class' => 'ContactBundle\Entity\Contact',
+        'translation_domain' => 'MremiContactBundle',
     ));
     }
 

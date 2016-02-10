@@ -95,12 +95,17 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    encryption: "tls"
+    port:       "%mailer_port%"
     spool:     { type: memory }
 
 braincrafted_bootstrap:
     css_preprocessor: lessphp
     jquery_path: %kernel.root_dir%/../web/js/jquery-2.1.1.min.js
-
+    fonts_dir: %kernel.root_dir%/../web/fonts
+    auto_configure:
+        assetic: true
+        twig: true
 
 
 stof_doctrine_extensions:

@@ -5,7 +5,7 @@ namespace CursoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Carrera
+ * Carrera.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Carrera
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,19 +29,18 @@ class Carrera
     private $nombreCarrera;
 
     /**
-     * Bi-direccional de asociación. Cada carrera pertenece a una 
+     * Bi-direccional de asociación. Cada carrera pertenece a una.
      * 
      * @ORM\ManyToOne(targetEntity="Facultad", inversedBy="arrayCarreras")
-     * @var  Weak-Side of entity relationship
-     * 
+     *
+     * @var Weak-Side of entity relationship
      */
     private $facultad;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -49,9 +48,10 @@ class Carrera
     }
 
     /**
-     * Set nombreCarrera
+     * Set nombreCarrera.
      *
      * @param string $nombreCarrera
+     *
      * @return Carrera
      */
     public function setNombreCarrera($nombreCarrera)
@@ -62,9 +62,9 @@ class Carrera
     }
 
     /**
-     * Get nombreCarrera
+     * Get nombreCarrera.
      *
-     * @return string 
+     * @return string
      */
     public function getNombreCarrera()
     {
@@ -72,9 +72,10 @@ class Carrera
     }
 
     /**
-     * Set facultad
+     * Set facultad.
      *
      * @param \CursoBundle\Entity\Facultad $facultad
+     *
      * @return Carrera
      */
     public function setFacultad(\CursoBundle\Entity\Facultad $facultad = null)
@@ -85,15 +86,14 @@ class Carrera
     }
 
     /**
-     * Get facultad
+     * Get facultad.
      *
-     * @return \CursoBundle\Entity\Facultad 
+     * @return \CursoBundle\Entity\Facultad
      */
     public function getFacultad()
     {
         return $this->facultad;
     }
-
 
     public function toStringCarreraYFacultad()
     {
@@ -101,7 +101,7 @@ class Carrera
             '%s - %s',
             $this->getNombreCarrera(),
             $this->getFacultad()
-        ); 
+        );
     }
 
     public function __toString()

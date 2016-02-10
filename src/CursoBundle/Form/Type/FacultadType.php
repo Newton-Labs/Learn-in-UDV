@@ -10,7 +10,7 @@ class FacultadType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,14 +18,14 @@ class FacultadType extends AbstractType
             ->add('nombreFacultad')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CursoBundle\Entity\Facultad'
+            'data_class' => 'CursoBundle\Entity\Facultad',
         ));
     }
 
