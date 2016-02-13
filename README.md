@@ -3,7 +3,7 @@ Learn-In Platform (Universidad Da Vinci version)
 [![Build Status](https://travis-ci.org/Newton-Labs/Learn-in-UDV.svg?branch=master)](https://travis-ci.org/Newton-Labs/Learn-in-UDV)
 [![Heroku](http://heroku-badge.herokuapp.com/?app=learn-in-udv&style=flat)]
 [![Symfony](http://img.shields.io/badge/Symfony2-2.7.9-blue.svg)](http://syfmony.com)
-[![Symfony](http://img.shields.io/badge/PHP-7.0.1-red.svg)](http://syfmony.com)
+[![Symfony](http://img.shields.io/badge/PHP-7.0.2-red.svg)](http://syfmony.com)
 ![PHP](http://img.shields.io/badge/Buildpack-PHP-lightgrey.svg)
 [![NodeJS](http://img.shields.io/badge/Buildpack-NodeJS-lightgrey.svg)](http://nodejs.com)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/926fb08c-8a06-4eb0-b60e-63a3876362a2/big.png)](https://insight.sensiolabs.com/projects/926fb08c-8a06-4eb0-b60e-63a3876362a2)
@@ -53,7 +53,7 @@ Amazon [SDK for AWS3.][19]
 
 Gaufrette help [documentation][22]
 
-###Usage instructions
+##Usage instructions
 
 1. Install [Symfony y Composer][4]
 2. Install [MySQL][5]
