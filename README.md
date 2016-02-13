@@ -1,7 +1,7 @@
 Learn-In Platform (Universidad Da Vinci version)
 ==================
 [![Build Status](https://travis-ci.org/Newton-Labs/Learn-in-UDV.svg?branch=master)](https://travis-ci.org/Newton-Labs/Learn-in-UDV)
-[![Heroku](http://heroku-badge.herokuapp.com/?app=learn-in-udv&style=flat)]
+![Heroku](http://heroku-badge.herokuapp.com/?app=learn-in-udv&style=flat)
 [![Symfony](http://img.shields.io/badge/Symfony2-2.7.9-blue.svg)](http://syfmony.com)
 [![Symfony](http://img.shields.io/badge/PHP-7.0.2-red.svg)](http://syfmony.com)
 ![PHP](http://img.shields.io/badge/Buildpack-PHP-lightgrey.svg)
