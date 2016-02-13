@@ -69,7 +69,7 @@ Gaufrette help [documentation][22]
 
 Live version: [Learn-In-UDV](http://learn-in-udv.herokuapp.com)
 
- ###Contributions
+ ##Contributions
  
  All contributions are welcome, use the issues to report bugs and pull requests to solve bugs.
 
