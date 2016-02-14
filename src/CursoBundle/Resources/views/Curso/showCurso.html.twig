@@ -18,13 +18,11 @@
                 <th>Código Curso</th>
                 <td>{{ entity.slug }}</td>
             </tr>
-            {% for usuario in entity.usuarios %}
             <tr>
-                <th>Creado por</th>
+            <th>Creado por</th>
                 
-                    <td>{{ usuario }}</td>
+                    <td>{{ entity.cursoCreadoPor }}</td>
             </tr>
-            {% endfor %}
             <tr>
                 <th>Año del Curso</th>
                 <td>{{ entity.year }}</td>

@@ -55,7 +55,14 @@ class CursoController extends Controller
         $entity = new Curso();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+
+        //este método sirve para asignar al catedrático
+        //automáticamente al curso
         $entity->addUsuario($usuario);
+        
+        //esta relación sirve para saber que usario
+        //creo el curso.
+        $entity->setCursoCreadoPor($usuario);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

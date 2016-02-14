@@ -25,6 +25,7 @@
 				<th>Año			</th>
 				<th>Facultad	</th>
 				<th>Carrera     </th>
+				<th>Catedrático</th>
 				<th>Acción		</th>
 			</tr>
 			
@@ -44,8 +45,10 @@
 			{% for curso in cursos %}
 			<tr>
 				<td> {{ curso.nombreCurso }} </td>
+				<td> {{ curso.year }} </td>
 				<td> {{ curso.carreras.facultad }} </td>
 				<td> {{ curso.carreras }} </td>
+				<td> {{ curso.cursoCreadoPor}} </td>
 				<td> 
 					<a class= "btn btn-default btn-xs btn-warning"  onclick="this.addEventListener('click', dobleClick, false);" href="{{ path('add_asignacion', {'curso_id':curso.id}) }}">
 						Asignar Curso

@@ -98,7 +98,7 @@ class Curso
     /**
      * Curso creado por.
      *
-     * @ORM\OneToMany(targetEntity="UserBundle\Entity\Usuario",mappedBy="usuarioCreador")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Usuario")
      */
     private $cursoCreadoPor;
 
@@ -374,38 +374,28 @@ class Curso
         return sprintf(
             '%s-%s',
             $this,
-            $this->carreras
+            $this->getCursoCreadoPor()
         );
     }
 
+
     /**
-     * Add cursoCreadoPor.
+     * Set cursoCreadoPor
      *
      * @param \UserBundle\Entity\Usuario $cursoCreadoPor
-     *
      * @return Curso
      */
-    public function addCursoCreadoPor(\UserBundle\Entity\Usuario $cursoCreadoPor)
+    public function setCursoCreadoPor(\UserBundle\Entity\Usuario $cursoCreadoPor = null)
     {
-        $this->cursoCreadoPor[] = $cursoCreadoPor;
+        $this->cursoCreadoPor = $cursoCreadoPor;
 
         return $this;
     }
 
     /**
-     * Remove cursoCreadoPor.
+     * Get cursoCreadoPor
      *
-     * @param \UserBundle\Entity\Usuario $cursoCreadoPor
-     */
-    public function removeCursoCreadoPor(\UserBundle\Entity\Usuario $cursoCreadoPor)
-    {
-        $this->cursoCreadoPor->removeElement($cursoCreadoPor);
-    }
-
-    /**
-     * Get cursoCreadoPor.
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \UserBundle\Entity\Usuario 
      */
     public function getCursoCreadoPor()
     {

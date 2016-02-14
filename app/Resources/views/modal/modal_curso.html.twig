@@ -8,10 +8,11 @@
       </div>
       <div class="modal-body">
       {% if app.user %}
-         {% if is_granted('ROLE_CATEDRATICO') %}
-             <a href="{{ path('asignacion') }}" class="btn btn-warning">
+         {% if app.user.hasRole('ROLE_CATEDRATICO') %}
+             <a href="{{ path('curso_new') }}" class="btn btn-warning">
               <h1 style="color: white ">Crear Nuevo Curso</h1>
             </a>
+
           {% else %}  
           <a href="{{ path('asignacion') }}" class="btn btn-warning">
               <h1 style="color: white ">Asignar Nuevo Curso</h1>

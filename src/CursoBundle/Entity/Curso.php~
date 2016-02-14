@@ -34,14 +34,16 @@ class Curso
     private $nombreCurso;
 
     /**
-     * Sede de la UDV
+     * Sede de la UDV.
+     *
      * @var string
      * @ORM\Column(name="sede",type="string", length=255)
      */
     private $sede;
 
     /**
-     * Período en que se imparte el curso
+     * Período en que se imparte el curso.
+     *
      * @var string
      * @ORM\ManyToOne(targetEntity="Periodo")
      */
@@ -61,9 +63,9 @@ class Curso
      **/
     private $usuarios;
 
-
     /**
      * Carrera asociada al curso.
+     *
      * @ORM\ManyToOne(targetEntity="Carrera")
      */
     private $carreras;
@@ -94,19 +96,20 @@ class Curso
     private $slug;
 
     /**
-     * Curso creado por
-     * @ORM\OneToMany(targetEntity="UserBundle\Entity\Usuario",mappedBy="usuarioCreador")
+     * Curso creado por.
+     *
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Usuario")
      */
     private $cursoCreadoPor;
 
-     /**
-     * Constructor
+    /**
+     * Constructor.
      */
     public function __construct()
     {
         $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documentos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->year = date_format(new \DateTime(),'Y');
+        $this->year = date_format(new \DateTime(), 'Y');
     }
 
     /**
@@ -140,7 +143,6 @@ class Curso
     {
         return $this->nombreCurso;
     }
- 
 
     /**
      * Add usuarios.
@@ -151,7 +153,6 @@ class Curso
      */
     public function addUsuario(\UserBundle\Entity\Usuario $usuarios)
     {
-
         $this->usuarios[] = $usuarios;
         $usuarios->addCurso($this);
 
@@ -176,7 +177,7 @@ class Curso
     {
         return $this->usuarios;
     }
-    
+
     /**
      * Add documentos.
      *
@@ -263,9 +264,10 @@ class Curso
     }
 
     /**
-     * Set sede
+     * Set sede.
      *
      * @param string $sede
+     *
      * @return Curso
      */
     public function setSede($sede)
@@ -276,21 +278,20 @@ class Curso
     }
 
     /**
-     * Get sede
+     * Get sede.
      *
-     * @return string 
+     * @return string
      */
     public function getSede()
     {
         return $this->sede;
     }
 
-
-
     /**
-     * Set periodo
+     * Set periodo.
      *
      * @param string $periodo
+     *
      * @return Curso
      */
     public function setPeriodo($periodo)
@@ -301,20 +302,20 @@ class Curso
     }
 
     /**
-     * Get periodo
+     * Get periodo.
      *
-     * @return string 
+     * @return string
      */
     public function getPeriodo()
     {
         return $this->periodo;
     }
 
-
     /**
-     * Set carreras
+     * Set carreras.
      *
      * @param \CursoBundle\Entity\Carrera $carreras
+     *
      * @return Curso
      */
     public function setCarreras(\CursoBundle\Entity\Carrera $carreras = null)
@@ -324,11 +325,11 @@ class Curso
         return $this;
     }
 
-
     /**
-     * Set year
+     * Set year.
      *
      * @param \DateTime $year
+     *
      * @return Curso
      */
     public function setyear($year)
@@ -339,9 +340,9 @@ class Curso
     }
 
     /**
-     * Get year
+     * Get year.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getyear()
     {
@@ -349,9 +350,9 @@ class Curso
     }
 
     /**
-     * Get carreras
+     * Get carreras.
      *
-     * @return \CursoBundle\Entity\Carrera 
+     * @return \CursoBundle\Entity\Carrera
      */
     public function getCarreras()
     {
@@ -360,7 +361,7 @@ class Curso
 
     public function __toString()
     {
-        return (string)$this->nombreCurso;
+        return (string) $this->nombreCurso;
     }
 
     /**

@@ -43,11 +43,6 @@ class Usuario extends BaseUser
     private $cursos;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CursoBundle\Entity\Curso", inversedBy="cursoCreadoPor")
-     */
-    private $usuarioCreador;
-
-    /**
      * Constructor.
      */
     public function __construct()
@@ -174,27 +169,4 @@ class Usuario extends BaseUser
         return false;
     }
 
-    /**
-     * Set usuarioCreador.
-     *
-     * @param \CursoBundle\Entity\Curso $usuarioCreador
-     *
-     * @return Usuario
-     */
-    public function setUsuarioCreador(\CursoBundle\Entity\Curso $usuarioCreador = null)
-    {
-        $this->usuarioCreador = $usuarioCreador;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioCreador.
-     *
-     * @return \CursoBundle\Entity\Curso
-     */
-    public function getUsuarioCreador()
-    {
-        return $this->usuarioCreador;
-    }
 }

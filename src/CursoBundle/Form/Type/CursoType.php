@@ -36,6 +36,7 @@ class CursoType extends AbstractType
                     ],
                 ])
             ->add('periodo', 'entity', [
+                'label' => 'Período',
                 'empty_value' => 'Seleccionar un Período',
                 'class' => 'CursoBundle:Periodo',
                 'attr' => [

@@ -1,14 +1,14 @@
 {% extends '::base_page.html.twig' %}
 
 {% block body_content -%}
-    <h1>Carrera creation</h1>
+    <h1>Ingresar nueva carrera</h1>
 
     {{ form(form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('carrera') }}">
-            Back to the list
+        <a class="btn btn-default" href="{{ path('carrera') }}">
+            Mostrar todas las carreras
         </a>
     </li>
 </ul>
