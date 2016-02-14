@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity
  * @Vich\Uploadable
- * @ORM\Table(name="Documentos")
+ * @ORM\Table(name="documentos")
  */
 class Documento
 {
@@ -25,10 +25,9 @@ class Documento
     /**
      * [$tipoDocumento boolean para saber si es parcial o hoja de trabajo].
      *
-     * @var bool
-     *           true = parcial
-     *           false = hoja de trabajo
-     * @ORM\Column(name="tipoDocumento",type="boolean")
+     * @var ManyToOne
+     *           
+     * @ORM\ManyToOne(targetEntity="DocumentBundle\Entity\TipoDocumento")
      */
     private $tipoDocumento;
 
@@ -40,7 +39,6 @@ class Documento
      */
     private $numeroDocumento;
 
-  
     /**
      * [$curso relacion one to many a curso].
      *
@@ -87,7 +85,6 @@ class Documento
      */
     private $slug;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Usuario")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
@@ -96,8 +93,6 @@ class Documento
 
     public function __construct()
     {
-       
-       
     }
 
     /**
@@ -109,7 +104,6 @@ class Documento
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      */
-    
     public function setDocumentFile(File $file = null)
     {
         $this->documentFile = $file;
@@ -138,11 +132,36 @@ class Documento
     }
 
     /**
+     * Crear nombre único .
+     */
+    public function createUniqueDocumentName()
+    {
+        //arreglo para que los documentos sean únicos y no se sobreescriban en AMWS
+        $this->setDocumentName(
+            $this->getId().'-'.$this->getDocumentName()
+            )
+        ;
+    }
+
+    /**
      * @return string
      */
     public function getDocumentName()
     {
-        return $this->documentName;
+        $returnNombre = $this->documentName;
+        //return substr($returnNombre,strpos($returnNombre,'-')+1,$returnNombre);
+        return $returnNombre;
+    }
+    /**
+     * modificar get para quitar el id del nombre del documento.
+     *
+     * @return string
+     */
+    public function getDocumentFixedName()
+    {
+        $nombre = $this->documentName;
+
+        return substr($nombre, strrpos($nombre, '_') + 1, strlen($nombre));
     }
 
     /**
@@ -179,43 +198,7 @@ class Documento
         return $this->updatedAt;
     }
 
-    /**
-     * Set tipoDocumento.
-     *
-     * @param bool $tipoDocumento
-     *
-     * @return Documento
-     */
-    public function setTipoDocumento($tipoDocumento)
-    {
-        $this->tipoDocumento = $tipoDocumento;
-
-        return $this;
-    }
-
-    /**
-     * Get tipoDocumento.
-     *
-     * @return bool
-     */
-    public function getTipoDocumento()
-    {
-        return $this->tipoDocumento;
-    }
-
-    /**
-     * Set numeroDocumento.
-     *
-     * @param int $numeroDocumento
-     *
-     * @return Documento
-     */
-    public function setNumeroDocumento($numeroDocumento)
-    {
-        $this->numeroDocumento = $numeroDocumento;
-
-        return $this;
-    }
+ 
 
     /**
      * Get numeroDocumento.
@@ -302,6 +285,4 @@ class Documento
     {
         return $this->documentName;
     }
-
-  
 }

@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.15.0",
+            "version": "3.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "cf218650881cd79f7bfec669996cd3aff22528d1"
+                "reference": "5e6078913293576de969703481994b77c380ca30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/cf218650881cd79f7bfec669996cd3aff22528d1",
-                "reference": "cf218650881cd79f7bfec669996cd3aff22528d1",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5e6078913293576de969703481994b77c380ca30",
+                "reference": "5e6078913293576de969703481994b77c380ca30",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2016-02-09 21:59:27"
+            "time": "2016-02-11 23:23:31"
         },
         {
             "name": "behat/transliterator",
@@ -2129,17 +2129,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v4.0.4",
+            "version": "v4.0.5",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "cc0c9478da84f051da4465cf3a67f537ae758b13"
+                "reference": "c89375c9d95fc5afaeb99e7a49b428b6e3beb9d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/cc0c9478da84f051da4465cf3a67f537ae758b13",
-                "reference": "cc0c9478da84f051da4465cf3a67f537ae758b13",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/c89375c9d95fc5afaeb99e7a49b428b6e3beb9d3",
+                "reference": "c89375c9d95fc5afaeb99e7a49b428b6e3beb9d3",
                 "shasum": ""
             },
             "require": {
@@ -2185,7 +2185,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-11-26 18:10:31"
+            "time": "2016-02-12 16:21:25"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2881,12 +2881,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
-                "reference": "c936f5d43b1103264f6965c8699d844e008b5e66"
+                "reference": "81cc2fc5bc3772716c93b3d35fcfe4fa8d9acefd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/c936f5d43b1103264f6965c8699d844e008b5e66",
-                "reference": "c936f5d43b1103264f6965c8699d844e008b5e66",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/81cc2fc5bc3772716c93b3d35fcfe4fa8d9acefd",
+                "reference": "81cc2fc5bc3772716c93b3d35fcfe4fa8d9acefd",
                 "shasum": ""
             },
             "require": {
@@ -2944,7 +2944,7 @@
                 "file uploads",
                 "upload"
             ],
-            "time": "2016-02-08 14:04:23"
+            "time": "2016-02-13 19:52:44"
         },
         {
             "name": "zendframework/zend-code",
@@ -3276,16 +3276,16 @@
         },
         {
             "name": "hautelook/alice-bundle",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hautelook/AliceBundle.git",
-                "reference": "c2bb26ebb4e4f6056b38a1494b03cc989dcfe27a"
+                "reference": "39cba589a786dd51f1b34c420cdd9a2d6ecad9cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hautelook/AliceBundle/zipball/c2bb26ebb4e4f6056b38a1494b03cc989dcfe27a",
-                "reference": "c2bb26ebb4e4f6056b38a1494b03cc989dcfe27a",
+                "url": "https://api.github.com/repos/hautelook/AliceBundle/zipball/39cba589a786dd51f1b34c420cdd9a2d6ecad9cc",
+                "reference": "39cba589a786dd51f1b34c420cdd9a2d6ecad9cc",
                 "shasum": ""
             },
             "require": {
@@ -3354,7 +3354,7 @@
                 "orm",
                 "symfony"
             ],
-            "time": "2016-02-07 19:30:47"
+            "time": "2016-02-12 09:40:12"
         },
         {
             "name": "nelmio/alice",

@@ -25,10 +25,9 @@ class Documento
     /**
      * [$tipoDocumento boolean para saber si es parcial o hoja de trabajo].
      *
-     * @var bool
-     *           true = parcial
-     *           false = hoja de trabajo
-     * @ORM\Column(name="tipoDocumento",type="string")
+     * @var ManyToOne
+     *           
+     * @ORM\ManyToOne(targetEntity="DocumentBundle\Entity\TipoDocumento")
      */
     private $tipoDocumento;
 
@@ -199,43 +198,7 @@ class Documento
         return $this->updatedAt;
     }
 
-    /**
-     * Set tipoDocumento.
-     *
-     * @param bool $tipoDocumento
-     *
-     * @return Documento
-     */
-    public function setTipoDocumento($tipoDocumento)
-    {
-        $this->tipoDocumento = $tipoDocumento;
-
-        return $this;
-    }
-
-    /**
-     * Get tipoDocumento.
-     *
-     * @return bool
-     */
-    public function getTipoDocumento()
-    {
-        return $this->tipoDocumento;
-    }
-
-    /**
-     * Set numeroDocumento.
-     *
-     * @param int $numeroDocumento
-     *
-     * @return Documento
-     */
-    public function setNumeroDocumento($numeroDocumento)
-    {
-        $this->numeroDocumento = $numeroDocumento;
-
-        return $this;
-    }
+ 
 
     /**
      * Get numeroDocumento.
@@ -321,5 +284,41 @@ class Documento
     public function __toString()
     {
         return $this->documentName;
+    }
+
+    /**
+     * Set numeroDocumento
+     *
+     * @param integer $numeroDocumento
+     * @return Documento
+     */
+    public function setNumeroDocumento($numeroDocumento)
+    {
+        $this->numeroDocumento = $numeroDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Set tipoDocumento
+     *
+     * @param \DocumentBundle\Entity\TipoDocumento $tipoDocumento
+     * @return Documento
+     */
+    public function setTipoDocumento(\DocumentBundle\Entity\TipoDocumento $tipoDocumento = null)
+    {
+        $this->tipoDocumento = $tipoDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoDocumento
+     *
+     * @return \DocumentBundle\Entity\TipoDocumento 
+     */
+    public function getTipoDocumento()
+    {
+        return $this->tipoDocumento;
     }
 }
