@@ -3,7 +3,7 @@ function ajaxTipoDocumento()
     $('body').on('submit', '.ajaxFormTipoDocumento', function (e) {
 
         e.preventDefault();
-        
+        $('#myModal').modal('hide');
 
         $.ajax({
             type: $(this).attr('method'),
@@ -18,7 +18,7 @@ function ajaxTipoDocumento()
             select = document.getElementById('documentbundle_documento_tipoDocumento');
             // Clear the old options
             select.options.length = 0;
-            $('#myModal').modal('hide');
+          
 
             // Load the new options
             // Or whatever source information you're working with

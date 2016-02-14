@@ -6,6 +6,7 @@
     ajaxTipoDocumento();
 </script>
 
+
 {% endblock javascripts %}
 
 {% block body_content -%}
@@ -23,6 +24,7 @@
          <button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal">
            Crear nuevo tipo de documento
           </button>
+            <div data-alerts="alerts" data-titles="{'warning': '<em>Warning!</em>'}" data-ids="myid" data-fade="3000"></div>
 		    {{ form_row(form.curso) }}
 
         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="El número del documento según el programa del curso"></i>
@@ -84,7 +86,6 @@
 
 
     <div class="modal-footer">
-    <strong><p align="left">Esta plataforma no promueve el plagio.</p></strong>
     <strong><p align="left">Al enviar este archivo acepto todos los Términos y Condiciones.</p></strong>
            {{ form_row(form.submit, {'attr':{'class':'btn btn-block buttonbk '}})}}
            {{ form_end(form) }}
@@ -92,7 +93,11 @@
     </div>
 </div>
 </div>
+
  {% include 'DocumentBundle:Documento:modalTipoDocumento.html.twig' %}
+  <script src="{{ asset('js/jquery.bsAlerts.min.js')}}"></script>
+
+
 <script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
