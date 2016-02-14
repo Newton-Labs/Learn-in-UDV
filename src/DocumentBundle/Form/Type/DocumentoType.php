@@ -26,8 +26,9 @@ class DocumentoType extends AbstractType
     {
         $builder
           //  ->add('documentName',null,['label'=>'Nombre del Documento'])
-            ->add('tipoDocumento', 'choice', [
-                'choices' => [1 => 'Parcial', 0 => 'Hoja de Trabajo'],
+            ->add('tipoDocumento', 'entity', [
+                'class' => 'DocumentBundle:TipoDocumento',
+                'empty_value' => 'Seleccione el tipo de documento',
                 'constraints' => [
                     new NotNull(),
                 ],
@@ -39,13 +40,7 @@ class DocumentoType extends AbstractType
                 'empty_value' => 'Seleccione el curso del documento',
 
             ])
-            ->add('numeroDocumento', 'choice', [
-                'choice_list' => new ChoiceList(
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                    ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-                ),
-                'label' => 'Número del documento',
-            ])
+           
 
            ;
         if ($this->editBoolean === true) {

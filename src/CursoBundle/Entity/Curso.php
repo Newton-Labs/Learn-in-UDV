@@ -75,7 +75,7 @@ class Curso
      * 
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="DocumentBundle\Entity\Documento", mappedBy="curso")
-     * @ORM\OrderBy({"numeroDocumento" = "ASC"})
+     * @ORM\OrderBy({"documentName" = "ASC"})
      */
     private $documentos;
 
@@ -378,11 +378,11 @@ class Curso
         );
     }
 
-
     /**
-     * Set cursoCreadoPor
+     * Set cursoCreadoPor.
      *
      * @param \UserBundle\Entity\Usuario $cursoCreadoPor
+     *
      * @return Curso
      */
     public function setCursoCreadoPor(\UserBundle\Entity\Usuario $cursoCreadoPor = null)
@@ -393,9 +393,9 @@ class Curso
     }
 
     /**
-     * Get cursoCreadoPor
+     * Get cursoCreadoPor.
      *
-     * @return \UserBundle\Entity\Usuario 
+     * @return \UserBundle\Entity\Usuario
      */
     public function getCursoCreadoPor()
     {

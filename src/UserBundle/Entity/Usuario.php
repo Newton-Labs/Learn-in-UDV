@@ -168,5 +168,4 @@ class Usuario extends BaseUser
 
         return false;
     }
-
 }

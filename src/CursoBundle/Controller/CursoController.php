@@ -59,7 +59,7 @@ class CursoController extends Controller
         //este método sirve para asignar al catedrático
         //automáticamente al curso
         $entity->addUsuario($usuario);
-        
+
         //esta relación sirve para saber que usario
         //creo el curso.
         $entity->setCursoCreadoPor($usuario);

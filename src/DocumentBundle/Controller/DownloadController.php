@@ -19,74 +19,34 @@ class DownloadController extends Controller
      * [showCursosParcialesAction Mostrar los cursos para descargar parciales].
      *
      * @return [Array] [cursos asignados]
-     * @Route("/cursos/parciales",name="cursos_parciales")
-     * @Method("GET")
-     * @Template("DocumentBundle:Documento:downloadDocumento.html.twig")
-     */
-    public function showCursosParcialesAction()
-    {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
-        $usuario = $this->getUser();
-
-        $cursos = $usuario->getCursos();
-
-        return [
-
-        'cursos' => $cursos,'documento' => 1,
-
-        ];
-    }
-
-    /**
-     * [showCursosHDTAction Mostrar los cursos para descargar hojas de trabajo].
-     *
-     * @return [Array] [cursos asignados]
-     * @Route("/cursos/hojasdetrabajo",name="cursos_hdt")
-     * @Method("GET")
-     * @Template("DocumentBundle:Documento:downloadDocumento.html.twig")
-     */
-    public function showCursosHDTAction()
-    {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
-
-        $usuario = $this->getUser();
-
-        $cursos = $usuario->getCursos();
-
-        return ['cursos' => $cursos,'documento' => 0];
-    }
-
-    /**
-     * Listar todos los cursos asignados.
-     *
-     * @Route("/hojadetrabajo/", name="hdt_download")
+     * @Route("/cursos/",name="cursos_show")
      * @Method("GET")
      * @Template("DocumentBundle:Documento:downloadDocumento.html.twig")
      */
     public function showCursosAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        $usuario = $this->getUser();
 
-        $entities = $em->getRepository('DocumentBundle:Documento')->findAll();
+        $cursos = $usuario->getCursos();
 
-        return [
-            'entities' => $entities,
-        ];
+        return ['cursos' => $cursos];
+
+    
     }
+
 
     /**
      * Finds and displays a Curso entity.
      *
-     * @Route("/{slug}/{tipo}/", name="show_curso")
+     * @Route("/{slug}", name="show_curso")
      * @Method("GET")
      * @Template("DocumentBundle:Documento:cursoShow.html.twig")
      * @ParamConverter("curso", class="CursoBundle:Curso",options={"slug" = "slug"})
      */
-    public function showAction($curso, $tipo)
+    public function showAction($curso)
     {
         if (!$curso) {
             throw $this->createNotFoundException('Unable to find Curso entity.');
@@ -94,8 +54,6 @@ class DownloadController extends Controller
 
         return [
             'curso' => $curso,
-            'tipo' => $tipo,
-
         ];
     }
 }

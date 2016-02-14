@@ -5,7 +5,7 @@ namespace DocumentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TipoDocumento
+ * TipoDocumento.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TipoDocumento
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,15 +35,14 @@ class TipoDocumento
      */
     private $fechaCreacion;
 
-
     public function __construct()
     {
         $this->fechaCreacion = new \DateTime();
     }
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -51,9 +50,10 @@ class TipoDocumento
     }
 
     /**
-     * Set nombreTipo
+     * Set nombreTipo.
      *
      * @param string $nombreTipo
+     *
      * @return TipoDocumento
      */
     public function setNombreTipo($nombreTipo)
@@ -64,9 +64,9 @@ class TipoDocumento
     }
 
     /**
-     * Get nombreTipo
+     * Get nombreTipo.
      *
-     * @return string 
+     * @return string
      */
     public function getNombreTipo()
     {
@@ -74,9 +74,10 @@ class TipoDocumento
     }
 
     /**
-     * Set fechaCreacion
+     * Set fechaCreacion.
      *
      * @param \DateTime $fechaCreacion
+     *
      * @return TipoDocumento
      */
     public function setFechaCreacion($fechaCreacion)
@@ -87,12 +88,17 @@ class TipoDocumento
     }
 
     /**
-     * Get fechaCreacion
+     * Get fechaCreacion.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaCreacion()
     {
         return $this->fechaCreacion;
+    }
+
+    public function __toString()
+    {
+        return $this->nombreTipo;
     }
 }

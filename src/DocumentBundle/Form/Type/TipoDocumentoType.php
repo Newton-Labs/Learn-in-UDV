@@ -1,6 +1,6 @@
 <?php
 
-namespace DocumentBundle\Form;
+namespace DocumentBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -10,7 +10,7 @@ class TipoDocumentoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,14 +29,14 @@ class TipoDocumentoType extends AbstractType
                 ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DocumentBundle\Entity\TipoDocumento'
+            'data_class' => 'DocumentBundle\Entity\TipoDocumento',
         ));
     }
 

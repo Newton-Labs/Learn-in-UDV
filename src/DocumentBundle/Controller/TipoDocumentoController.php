@@ -17,7 +17,6 @@ use DocumentBundle\Form\Type\TipoDocumentoType;
  */
 class TipoDocumentoController extends Controller
 {
-
     /**
      * Lists all TipoDocumento entities.
      *
@@ -53,12 +52,12 @@ class TipoDocumentoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('tipodocumento_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('tipodocumento_new'));
         }
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -76,7 +75,7 @@ class TipoDocumentoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit_button', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -91,11 +90,11 @@ class TipoDocumentoController extends Controller
     public function newAction()
     {
         $entity = new TipoDocumento();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,7 +118,7 @@ class TipoDocumentoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -145,19 +144,19 @@ class TipoDocumentoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a TipoDocumento entity.
-    *
-    * @param TipoDocumento $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TipoDocumento entity.
+     *
+     * @param TipoDocumento $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TipoDocumento $entity)
     {
         $form = $this->createForm(new TipoDocumentoType(), $entity, array(
@@ -197,8 +196,8 @@ class TipoDocumentoController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

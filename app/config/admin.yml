@@ -21,4 +21,6 @@ easy_admin:
             class: CursoBundle\Entity\Carrera
         Periodo:
             class: CursoBundle\Entity\Periodo
+        TipoDocumento:
+            class: DocumentBundle\Entity\TipoDocumento
 

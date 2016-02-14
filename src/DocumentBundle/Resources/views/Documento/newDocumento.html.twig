@@ -1,5 +1,13 @@
 {% extends '::base_page.html.twig' %}
 
+{% block javascripts %}
+ <script src="{{asset('js/mainAjax.js')}}"></script>
+ <script>
+    ajaxTipoDocumento();
+</script>
+
+{% endblock javascripts %}
+
 {% block body_content -%}
     <h1>Subir Documentos</h1>
 
@@ -12,10 +20,12 @@
 			</div>
 			{% endif %}
 		    {{ form_row(form.tipoDocumento) }}
+         <button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal">
+           Crear nuevo tipo de documento
+          </button>
 		    {{ form_row(form.curso) }}
 
         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="El número del documento según el programa del curso"></i>
-		    {{ form_row(form.numeroDocumento) }}
         {{ form_row(form.documentFile) }}
 		    <br>
         {% if duplicado is not null %}
@@ -81,6 +91,7 @@
         </div>
     </div>
 </div>
+ {% include 'DocumentBundle:Documento:modalTipoDocumento.html.twig' %}
 <script>
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
@@ -93,4 +104,5 @@ $(":file").filestyle({buttonBefore: true,buttonName: "btn-primary",
   placeholder: "Aquí aparecerá el nombre del archivo seleccionado",
   buttonText: "Seleccionar documento"});
  </script>
+
 {% endblock %}
