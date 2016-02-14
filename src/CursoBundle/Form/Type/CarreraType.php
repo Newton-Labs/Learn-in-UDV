@@ -21,6 +21,7 @@ class CarreraType extends AbstractType
                 'class' => 'CursoBundle:Facultad',
                 'property' => 'nombreFacultad',
                 'label' => 'Buscador de Facultad',
+                'required' => true,
                 'attr' => [
                     'class' => 'select2',
                 ],

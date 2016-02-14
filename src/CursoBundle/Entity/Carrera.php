@@ -3,12 +3,14 @@
 namespace CursoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Carrera.
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @UniqueEntity("nombreCarrera")
  */
 class Carrera
 {
