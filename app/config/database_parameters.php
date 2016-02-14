@@ -11,5 +11,4 @@
     $container->setParameter('mailer_transport', getenv('EMAIL_TRANSPORT'));
     $container->setParameter('mailer_host', getenv('EMAIL_HOST'));
     $container->setParameter('mailer_user', getenv('EMAL_USER'));
-    $container->setParameter('mailer_port', getenv('EMAIL_PORT'));
     $container->setParameter('mailer_password', getenv('EMAIL_PASSWORD'));
