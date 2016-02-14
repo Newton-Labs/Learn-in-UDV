@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use DocumentBundle\Entity\TipoDocumento;
 use DocumentBundle\Form\Type\TipoDocumentoType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * TipoDocumento controller.
@@ -47,18 +48,30 @@ class TipoDocumentoController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+       if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+           $em = $this->getDoctrine()->getManager();
 
-            return $this->redirect($this->generateUrl('tipodocumento_new'));
+            $entities = $em->getRepository('DocumentBundle:TipoDocumento')->findAll();
+            foreach ($entities as $entity) {
+                $response1[] = [
+                    'key' => $entity->getNombreTipo(),
+                    // other fields
+                ];
+                $response2[] = [
+                    'value' => $entity->getId(),
+                    // other fields
+                ];
+            }
+
+            return new JsonResponse(([$response1, $response2]));
+        } else {
+
+            //llega aquí cuando no cumple la validación del formulario
+            return new JsonResponse(['error' => $form->getErrorsAsString()], 400);
         }
-
-        return array(
-            'entity' => $entity,
-            'form' => $form->createView(),
-        );
     }
 
     /**
