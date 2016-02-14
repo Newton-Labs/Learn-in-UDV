@@ -19,6 +19,9 @@ class CursoType extends AbstractType
             ->add('sede', 'choice', [
                 'choices' => [
                     'Zona 4' => 'Zona 4',
+                    'Zona 10' => 'Zona 10',
+                    'Huehuetenango' => 'Huehuetenango',
+                    'Quetzaltenango' => 'Quetzaltenango',
                     ],
                 'attr' => [
                     'class' => 'select2',

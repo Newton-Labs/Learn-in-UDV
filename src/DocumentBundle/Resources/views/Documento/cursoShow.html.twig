@@ -3,16 +3,14 @@
 
 {% block body_content -%}
     
-    {% if tipo == 1 %}
-         <h1>Parciales {{curso.nombreCurso}}</h1>
-    {% else %}
-        <h1>Hojas de trabajo {{curso.nombreCurso}} </h1>
-    {% endif %}
+   
+    <h1>Documentos {{curso.nombreCurso}}</h1>
+  
     {% set count = 0 %}
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" >
     {% for doc in curso.documentos %}
 
-        {% if tipo == doc.tipoDocumento %}
+       
 
          <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading{{count}}">
