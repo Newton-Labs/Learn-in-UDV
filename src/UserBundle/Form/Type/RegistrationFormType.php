@@ -37,10 +37,12 @@ class RegistrationFormType extends AbstractType
             ])
 
             ;
+        /*
         $builder->addEventListener(
             FormEvents::POST_SUBMIT,
             [$this, 'onPostData']
         );
+        */
     }
 
     /**
