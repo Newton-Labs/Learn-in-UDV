@@ -303,6 +303,6 @@ class Documento
 
     public function __toString()
     {
-        return $this->documentName;
+        return $this->getDocumentFixedName();
     }
 }
