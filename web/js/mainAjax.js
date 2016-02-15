@@ -3,22 +3,21 @@ function ajaxTipoDocumento()
     $('body').on('submit', '.ajaxFormTipoDocumento', function (e) {
 
         e.preventDefault();
-        $('#myModal').modal('hide');
+       
 
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
             data: $(this).serialize(),
             success: function(data) {
-           
+
             dataOptions = data[0];
             dataIds     = data[1];
             
             // Get the raw DOM object for the select box
             select = document.getElementById('documentbundle_documento_tipoDocumento');
             // Clear the old options
-            select.options.length = 0;
-          
+            select.options.length = 0;   
 
             // Load the new options
             // Or whatever source information you're working with
@@ -32,6 +31,9 @@ function ajaxTipoDocumento()
                 select.options.add(opt1);
             }
             
+           
+
+            $('#myModal').modal('hide');
             
            
 
