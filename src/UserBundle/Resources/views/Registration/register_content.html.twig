@@ -26,7 +26,7 @@
                 {{form_row(form.username,{'attr': {'class': 'form-control','placeholder':'Usuario'}})}}
             </div>
             <br>
-            <h12>¿No sabes tu correo UDV? Click aquí para saber</h12>
+            <h12>¿No sabes tu correo UDV? <a href="#" data-toggle="modal" data-target="#modalRegistro">Click aquí para saber</a></h12>
             <br>
             <h8><strong>Correo Electrónico</strong></h8>
             <div class="input-group">
@@ -110,3 +110,4 @@
         </div>
     </div>
 </div>
+{% include 'modal/modal_registro.html.twig' %}
