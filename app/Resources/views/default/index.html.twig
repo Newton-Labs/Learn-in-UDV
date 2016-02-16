@@ -98,9 +98,17 @@
                                     <i class="fa fa-cloud-upload"></i>
                                     <p>Subir Documentos</p>
                                 </a>
+                            {% else %} 
+                             <a href="#" data-toggle="modal" data-target="#modalPermisoDocumento">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <p>Subir Documentos</p>
+                                </a>
                             {% endif %}
                         </div>
+
+                        {% include 'modal/modal_permisos.html.twig' %}
                         {# termina ruta para subir documentos #}  
+
                         
                         {# ruta para el Cursos #}
                         <div class="menu-item blue">
