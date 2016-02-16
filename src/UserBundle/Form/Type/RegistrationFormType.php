@@ -37,12 +37,12 @@ class RegistrationFormType extends AbstractType
             ])
 
             ;
-        /*
+        
         $builder->addEventListener(
             FormEvents::POST_SUBMIT,
             [$this, 'onPostData']
         );
-        */
+        
     }
 
     /**
@@ -64,10 +64,15 @@ class RegistrationFormType extends AbstractType
         return 'user_registration';
     }
 
+    /**
+     * Forma de validar el correo de un catedrático
+     * @param  FormEvent $event Evento después de mandar la información del formulario
+     * @return void
+     */
     public function onPostData(FormEvent $event)
     {
         $usuario = $event->getData();
-        if (preg_match('/[a-z\'0-9]+([._-][a-z\'0-9]+)*@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail())) {
+        if (preg_match('/(^[0-9]+)@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail()) == 0) {
             $usuario->addRole('ROLE_CATEDRATICO');
         }
     }
