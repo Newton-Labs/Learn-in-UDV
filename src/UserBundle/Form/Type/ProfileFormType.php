@@ -19,7 +19,8 @@ class ProfileFormType extends AbstractType
         }
 
         // agregar campos personalizados
-        $builder->add('nombreCompleto', null, ['label' => false])
+        $builder->add('nombre', null, ['label' => false])
+                ->add('apellidos')
                 ->add('username', null, ['label' => false])
                 ->add('email', 'email', ['label' => false])
                 ->add('current_password', 'password', [

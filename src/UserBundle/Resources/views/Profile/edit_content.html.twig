@@ -34,7 +34,16 @@
            <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
 
-          	{{form_row(form.nombreCompleto,{'attr': {'class': 'form-control','placeholder':'Nombre Completo'}})}}
+          	{{form_row(form.nombre,{'attr': {'class': 'form-control','placeholder':'Nombre/s'}})}}
+
+           </div>
+
+            <br>
+             <h8><strong></strong></h8>
+           <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+
+            {{form_row(form.apellidos,{'attr': {'class': 'form-control','placeholder':'Apellidos'}})}}
 
            </div>
 
