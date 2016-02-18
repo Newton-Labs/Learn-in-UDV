@@ -372,7 +372,7 @@ class Curso
     public function getCodigoNombre()
     {
         return sprintf(
-            '%s-%s',
+            '%s  -  %s',
             $this,
             $this->getCursoCreadoPor()
         );
