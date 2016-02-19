@@ -361,7 +361,7 @@ class Curso
 
     public function __toString()
     {
-        return (string) $this->nombreCurso;
+        return (string) $this->nombreCurso.'  '.$this->carreras;
     }
 
     /**
