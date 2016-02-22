@@ -29,14 +29,15 @@ class ProfileFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => $constraint,
                 ])
-                ->add('plainPassword', 'repeated', [
+
+                /*->add('plainPassword', 'repeated', [
                 'label' => false,
                 'type' => 'password',
                 'options' => ['translation_domain' => 'FOSUserBundle'],
                 'first_options' => ['label' => false],
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
-                ])
+                ])*/
                 ;
     }
 
