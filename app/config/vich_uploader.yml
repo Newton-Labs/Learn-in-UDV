@@ -3,7 +3,7 @@ vich_uploader:
     storage:   gaufrette
     mappings:
         document:
-            uri_prefix:         https://s3.amazonaws.com/plataformavirtual/parcialesyhdt
+            uri_prefix:         https://s3.amazonaws.com/plataformavirtual-udv/cursos
             upload_destination: archivos
             namer:              vich_uploader.namer_origname
             inject_on_load:     false
