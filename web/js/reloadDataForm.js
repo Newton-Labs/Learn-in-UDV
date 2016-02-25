@@ -2,8 +2,17 @@ $('#submitBtn').click(function() {
   
     $('#tipo').html($('#documentbundle_documento_tipoDocumento option:selected').text())
     $('#curso').html($('#documentbundle_documento_curso option:selected').text())
-    $('#numero').html($('#documentbundle_documento_numeroDocumento option:selected').text())
-    $('#nombre').html($('#documentbundle_documento_documentFile_file').val().split('\\').pop())
+    
+    //var file = document.getElementById("documentbundle_documento_documentFile");
+    var inp = document.getElementById('documentbundle_documento_documentFile');
+	var str='';
+	for (var i = 0; i < inp.files.length; ++i) {
+	   str += inp.files.item(i).name;
+	   str += ' , ';
+	  
+	}
+	
+    $('#nombre').html(str)
   
   
 

@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use DocumentBundle\Entity\Documento;
 use DocumentBundle\Form\Type\DocumentoType;
+use DocumentBundle\Form\Type\DocumentoEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\UserBundle\Model\UserInterface;
 use UserBundle\Entity\Usuario;
@@ -53,7 +54,7 @@ class DocumentoController extends Controller
         }
         $entity = new Documento();
         $entity->setUsuario($usuario);
-        $form = $this->createCreateForm($entity, $usuario);
+        $form = $this->createNewForm($entity, $usuario);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
@@ -62,30 +63,45 @@ class DocumentoController extends Controller
         ]);
 
         foreach ($pre_duplicados as $duplicado) {
-            if ($duplicado->getDocumentFixedName() == $form['documentFile']->getData()->getClientOriginalName()) {
-                $this->get('braincrafted_bootstrap.flash')->error(sprintf('El nombre del documento ya existe en el curso'));
+            foreach($form['documentFile'] as $documento){
+                if ($duplicado->getDocumentFixedName() == $documento->getClientOriginalName()) {
+                    $this->get('braincrafted_bootstrap.flash')->error(sprintf('El nombre del documento ya existe en el curso'));
 
-                return [
-                'duplicado' => $duplicado,
-                'form' => $form->createView(),
-
-            ];
+                    return [
+                        'duplicado' => $duplicado,
+                        'form' => $form->createView(),
+                    ];
+                }
             }
         }
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            /*$em = $this->getDoctrine()->getManager();
 
             $helper = $this->get('vich_uploader.templating.helper.uploader_helper');
             $path = $helper->asset($entity, 'documentFile');
 
             $em->persist($entity);
-            $em->flush();
+            $em->flush();*/
+            $cantidadDocs = $this->setMultipleUpload($form->getData());
+            $em = $this->getDoctrine()->getManager();
 
-            return $this->redirect(
-                $this->generateUrl(
-                    'documento_show', ['slug' => $entity->getSlug()]
-                    ));
+            $entities = $em->getRepository('DocumentBundle:Documento')->findAll();
+            $cantidad = count($entities);
+            $entidades = [];
+            $contadorActual = 0;
+            foreach($entities as $entidad){
+                if ($contadorActual>($cantidad-$cantidadDocs)){
+                    $entidades[] = $entidad;
+                }
+                $contadorActual = $contadorActual+1;
+            }   
+
+
+            return $this->render('DocumentBundle:Documento:indexDocumento.html.twig',[
+                    'entities' => $entidades
+                ]);
         }
 
         return [
@@ -93,6 +109,49 @@ class DocumentoController extends Controller
             'form' => $form->createView(),
         ];
     }
+
+    public function setMultipleUpload($data)
+    {
+            $em = $this->getDoctrine()->getManager();
+            $i=1;
+           
+            foreach ($data['documentFile'] as $item) {
+                $document = new Documento();
+                $document->setTipoDocumento($data['tipoDocumento']);
+                $document->setCurso($data['curso']);
+                $document->setUsuario($this->getUser());
+                $document->setDocumentFile($item);
+                $em->persist($document);
+                
+                $i++;
+
+            }
+            $em->flush();
+
+            return $i;
+
+        
+    }
+
+     /**
+     * Creates a form to create a Documento entity.
+     *
+     * @param Documento $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createNewForm(Documento $entity, Usuario $usuario)
+    {
+        $form = $this->createForm(new DocumentoType($usuario), null, [
+            'action' => $this->generateUrl('documento_create'),
+            'method' => 'POST',
+        ]);
+
+        $form->add('submit', 'submit', ['label' => 'Aceptar y Guardar']);
+
+        return $form;
+    }
+
 
     /**
      * Creates a form to create a Documento entity.
@@ -103,7 +162,7 @@ class DocumentoController extends Controller
      */
     private function createCreateForm(Documento $entity, Usuario $usuario)
     {
-        $form = $this->createForm(new DocumentoType($usuario), $entity, [
+        $form = $this->createForm(new DocumentoEditType($usuario), $entity, [
             'action' => $this->generateUrl('documento_create'),
             'method' => 'POST',
         ]);
@@ -196,7 +255,7 @@ class DocumentoController extends Controller
      */
     private function createEditForm(Documento $entity, \UserBundle\Entity\Usuario $usuario)
     {
-        $var = new DocumentoType($usuario);
+        $var = new DocumentoEditType($usuario);
         $var->setEditBoolean(false);
         $form = $this->createForm($var, $entity, [
             'action' => $this->generateUrl('documento_update', ['id' => $entity->getId()]),

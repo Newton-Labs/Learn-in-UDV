@@ -5,13 +5,14 @@
  <script>
     ajaxTipoDocumento();
 </script>
+<script src="{{ asset('js/reloadDataForm.js') }}"></script>
 
 
 {% endblock javascripts %}
 
 {% block body_content -%}
     <h1>Subir Documentos</h1>
-
+    
     	
 
     	{{ form_start(form,{'attr': {'class':'form-group formcolor'}}) }}
@@ -27,7 +28,7 @@
             <div data-alerts="alerts" data-titles="{'warning': '<em>Warning!</em>'}" data-ids="myid" data-fade="3000"></div>
 		    {{ form_row(form.curso) }}
 
-        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="El número del documento según el programa del curso"></i>
+        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Selecciona varios manteniendo la tecla shift presionada">Se pueden subir varios documentos a la vez del mismo curso.</i>
         {{ form_row(form.documentFile) }}
 		    <br>
         {% if duplicado is not null %}
@@ -68,11 +69,6 @@
                         <th>Curso</th>
                         <td id="curso"></td>
 
-                    </tr>
-                    <tr>
-                        <th>Número Documento</th>
-                        <td id="numero"></td>
-                        
                     </tr>
                      <tr>
                         <th>Nombre del Documento</th>

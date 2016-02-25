@@ -27,7 +27,7 @@
    
     "require": {
         "php": ">=5.5.0",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.8.*",
         "ext-mbstring": "*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",

@@ -9,10 +9,11 @@ use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 use UserBundle\Entity\Usuario;
 
-class DocumentoType extends AbstractType
+class DocumentoEditType extends AbstractType
 {
     private $usuario;
     private $editBoolean = true;
+
 
     public function __construct(Usuario  $user)
     {
@@ -57,7 +58,7 @@ class DocumentoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null
+            'data_class' => 'DocumentBundle\Entity\Documento',
         ]);
     }
 
