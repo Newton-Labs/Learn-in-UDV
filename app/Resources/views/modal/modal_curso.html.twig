@@ -8,13 +8,13 @@
       </div>
       <div class="modal-body">
       {% if app.user %}
-         {% if app.user.hasRole('ROLE_CATEDRATICO') %}
+         {% if is_granted('ROLE_CATEDRATICO') %}
              <a href="{{ path('curso_new') }}" class="btn btn-warning">
               <h1 style="color: white ">Crear Nuevo Curso</h1>
             </a>
 
           {% else %}  
-          <a href="{{ path('asignacion') }}" class="btn btn-warning">
+          <a href="{{ path('buscar_cursos') }}" class="btn btn-warning">
               <h1 style="color: white ">Asignar Nuevo Curso</h1>
           </a>
         {% endif %}
@@ -23,9 +23,15 @@
         <br>
         <br>
         {% if app.user %}
-          <a href="{{ path('listar_cursos') }}" class="btn btn-info">
+          {% if is_granted('ROLE_CATEDRATICO') %}
+          <a href="{{ path('listar_cursos_catedratico') }}" class="btn btn-info">
+             <h1 style="color: white "> Ver Cursos Creados</h1>
+          </a>
+          {% else %}
+           <a href="{{ path('listar_cursos') }}" class="btn btn-info">
              <h1 style="color: white "> Ver Cursos Asignados</h1>
           </a>
+        {% endif %}
         {% endif %}
       </div>
     </div>

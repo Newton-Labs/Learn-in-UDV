@@ -1,0 +1,42 @@
+{% extends 'base_page.html.twig' %}
+
+{% block body_content %}
+	{# tabla que muestra todos los cursos #}
+	<h1>Estudiantes del curso {{curso.nombreCurso}}</h1>
+	<h3>{{ curso.carreras }}</h3>
+	<h4>{{ curso.periodo}}</h3>
+	<br>
+	<table class = "table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Estudiante</th>
+				<th>Correo</th>
+				<th>Acción</th>					
+			</tr>
+		</thead>
+		<tbody>
+			{% for estudiante in estudiantes %}
+			<tr>
+			
+				<td> {{ estudiante.nombre }} {{estudiante.apellidos}} </td>
+				<td> {{ estudiante.email }} </td>
+				<td>
+					 <ul>
+                    <li>
+                        <a class="btn btn-danger btn-xs " href="{{ path('remove_curso_estudiante', { 'usuario_id': estudiante.id,'curso_slug':curso.slug }) }}">Quitar del curso</a>
+                    </li>
+                    <li>
+                        <a >Mandar Correo</a>
+                    </li>
+                </ul>
+				</td>
+				
+				
+			</tr>	
+			{% endfor %}
+		</tbody>
+	</table>
+
+	
+
+{% endblock %}

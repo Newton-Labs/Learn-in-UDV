@@ -155,10 +155,7 @@ class Usuario extends BaseUser
     {
         return $this->credentialsExpireAt;
     }
-    public function __toString()
-    {
-        return $this->nombre.' '.$this->apellidos;
-    }
+    
 
     public function hasRole($role)
     {
@@ -167,5 +164,10 @@ class Usuario extends BaseUser
         }
 
         return false;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre.' '.$this->apellidos;
     }
 }

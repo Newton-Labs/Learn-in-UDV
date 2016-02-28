@@ -2,7 +2,7 @@
 
 {% block body_content %}
 	{# tabla que muestra todos los cursos #}
-	<h1>Cursos Asignados</h1>
+	<h1>Cursos Creados</h1>
 	<table class = "table table-striped table-hover">
 		<thead>
 			<tr>
@@ -14,10 +14,10 @@
 			{% for curso in cursosAsignados %}
 			<tr>
 			
-				<td> {{ curso.nombreCurso }} </td>
+				<td> {{ curso.nombreCurso }} - {{curso.carreras}} - {{curso.sede}} </td>
 				<td> 
-					<a class= "btn btn-default btn-xs btn-danger" href="{{ path('remove_curso', { 'curso_id':curso.id}) }}">
-						Quitar Curso
+					<a class= "btn btn-default btn-xs btn-danger" href="{{ path('estudiantes_por_curso', { 'curso_slug':curso.slug}) }}">
+						Ver estudiantes asignados a este curso.
 					</a>
 				</td>
 				
@@ -28,9 +28,6 @@
 
 	<a class= "btn btn-default btn-sm btn-warning" href="{{ path('buscar_cursos') }}">
 		<h4>Asignar nuevo Curso</h4>
-	</a>
-	<a class= "btn btn-default btn-sm btn-warning" href="{{ path('cursos_show') }}">
-		<h4>Empezar a descargar material</h4>
 	</a>
 
 {% endblock %}

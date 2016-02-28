@@ -43,12 +43,20 @@ class Usuario extends BaseUser
     private $cursos;
 
     /**
+     * @ORM\ManyToMany(targetEntity="CursoBundle\Entity\Carrera", inversedBy="usuarios")
+     * @ORM\JoinTable(name="carreras_usuario")
+     * @var [type]
+     */
+    private $carreras;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
         parent::__construct();// construye los metodos y atributos de Base
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->carreras = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id.
@@ -168,5 +176,4 @@ class Usuario extends BaseUser
 
         return false;
     }
-
 }

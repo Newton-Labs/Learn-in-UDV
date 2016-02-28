@@ -90,7 +90,7 @@ class Curso
      * Sirve para generar URL's a base de nombre curos y codigo curso
      * De esta forma no se muestra el id en el URL.
      *
-     * @Gedmo\Slug(fields={"nombreCurso", "id"},updatable=true)
+     * @Gedmo\Slug(fields={"nombreCurso", "year","id"},updatable=true)
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

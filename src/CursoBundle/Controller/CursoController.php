@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use CursoBundle\Entity\Curso;
 use CursoBundle\Form\Type\CursoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
 
@@ -18,6 +19,7 @@ use FOS\UserBundle\Model\UserInterface;
  *
  * @author fcpauldiaz fcpauldiaz@me.com
  * @Route("curso")
+ * @Security("is_granted('ROLE_CATEDRATICO')")
  */
 class CursoController extends Controller
 {
@@ -110,6 +112,7 @@ class CursoController extends Controller
      * @Route("/new", name="curso_new")
      * @Method("GET")
      * @Template("CursoBundle:Curso:newCurso.html.twig")
+     * 
      */
     public function newAction()
     {

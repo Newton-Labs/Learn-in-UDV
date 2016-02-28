@@ -39,11 +39,15 @@ class Carrera
      */
     private $facultad;
 
-    
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Usuario", mappedBy="carreras")
+     * @var [type]
+     */
+    private $usuarios;
 
     public function __construct()
     {
-       
+       $this->usuarios = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
