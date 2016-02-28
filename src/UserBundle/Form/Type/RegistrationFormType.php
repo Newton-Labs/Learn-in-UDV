@@ -35,6 +35,16 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])
+            ->add('tipoUsuario','choice',[
+                'label' => false,
+                'choices' => [
+                    0 => 'Estudiante',
+                    1 => 'Catedrático',
+                ],
+                'required' => true,
+                'mapped' => false,
+
+                ])
 
             ;
         
@@ -72,7 +82,14 @@ class RegistrationFormType extends AbstractType
     public function onPostData(FormEvent $event)
     {
         $usuario = $event->getData();
-        if (preg_match('/(^[0-9]+)@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail()) == 0) {
+        $form = $event->getForm();
+        
+       
+        
+        if (preg_match('/(^[0-9]+)@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail()) == 0
+            &&
+            $form['tipoUsuario']->getData() == 1
+         ) {
             $usuario->addRole('ROLE_CATEDRATICO');
         }
     }
