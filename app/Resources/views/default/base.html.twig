@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{{ asset('css/lobster.css')}}">
         <link rel="stylesheet" href="{{ asset('css/select2.min.css')}}">
         <link rel="stylesheet" href="{{ asset('css/select2-bootstrap.min.css')}}">
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,af-2.1.1,b-1.1.2,b-colvis-1.1.2,b-html5-1.1.2,b-print-1.1.2,cr-1.3.1,fh-3.1.1,kt-2.1.1,r-2.0.2,rr-1.1.1,sc-1.4.1,se-1.1.2/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,af-2.1.1,b-1.1.2,b-colvis-1.1.2,b-html5-1.1.2,b-print-1.1.2,cr-1.3.1,fh-3.1.1,kt-2.1.1,r-2.0.2,rr-1.1.1,sc-1.4.1,se-1.1.2/datatables.min.css"/>
 
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/dropzone.min.css')}}">
@@ -47,10 +47,31 @@
             <script src="{{ asset('js/contact_me.js') }}"></script>
             <script src="{{ asset('js/modernizr.custom.js') }}"></script>
             <script src="{{ asset('js/script.js') }}"></script>
-         <script type="text/javascript" src="https://cdn.datatables.net/t/zf/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,af-2.1.1,b-1.1.2,b-colvis-1.1.2,b-html5-1.1.2,b-print-1.1.2,cr-1.3.1,fh-3.1.1,kt-2.1.1,r-2.0.2,rr-1.1.1,sc-1.4.1,se-1.1.2/datatables.min.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/t/zf/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,af-2.1.1,b-1.1.2,b-colvis-1.1.2,b-html5-1.1.2,b-print-1.1.2,cr-1.3.1,fh-3.1.1,kt-2.1.1,r-2.0.2,rr-1.1.1,sc-1.4.1,se-1.1.2/datatables.min.js"></script>
 
-            <script src="{{ asset('js/dropzone.min.js')}}"></script>
-            <script src="{{ asset('js/dropzone-amd-module.min.js')}}"></script>
+            <script type="text/javascript" src="{{ asset('js/restive.min.js')}}"></script>
+    
+           
+            <script type="text/javascript">
+                  $(document).ready(function () {
+           
+                       $.restive.startMulti();
+    
+                        $('body').restive({
+                              platform: 'ios', 
+                              breakpoints: ['240', '320', '480', '640', '960', '1024'],
+                              classes: ['css-i-240', 'css-i-320', 'css-i-480', 'css-i-640', 'css-i-960', 'css-i-1024']
+                        });
+                            
+                        $('body').restive({
+                              platform: 'android', 
+                              breakpoints: ['240', '320', '480', '640', '960', '1024'],
+                              classes: ['css-a-240', 'css-a-320', 'css-a-480', 'css-a-640', 'css-a-960', 'css-a-1024']
+                        });
+                            
+                        $.restive.endMulti();
+                  });
+            </script>
            
                
             <script src="{{ asset('js/minimalMenu.js')}}"></script> 
