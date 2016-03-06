@@ -26,18 +26,10 @@ class Documento
      * [$tipoDocumento boolean para saber si es parcial o hoja de trabajo].
      *
      * @var ManyToOne
-     *           
+     *                 
      * @ORM\ManyToOne(targetEntity="DocumentBundle\Entity\TipoDocumento")
      */
     private $tipoDocumento;
-
-    /**
-     * [$numeroDocumento numero de documento de acuerdo al programa].
-     *
-     * @var int
-     * @ORM\Column(name="numeroDocumento",type="integer")
-     */
-    private $numeroDocumento;
 
     /**
      * [$curso relacion one to many a curso].
@@ -56,8 +48,23 @@ class Documento
      * 
      * @Assert\File(
      * maxSize="16M",
-     * mimeTypes = {"application/pdf", "application/x-pdf","application/msword",
-     *    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
+     * mimeTypes = {
+     *     "application/pdf", 
+     *     "application/x-pdf",
+     *     "application/msword",
+     *     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     *     "application/vnd.ms-excel",
+     *     "application/vnd.ms-excel.sheet.macroenabled.12",
+     *     "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+     *     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     *     "application/vnd.ms-powerpoint",
+     *     "image/png",
+     *     "image/jpeg",
+     *     "text/plain",
+     *     "application/xml",
+     *     "image/vnd.adobe.photoshop",
+     *     "image/bmp"
+     *    },
      * mimeTypesMessage = "Por favor solo subir archivos PDF o Word ",
      * )
      * 
@@ -80,7 +87,14 @@ class Documento
     private $updatedAt;
 
     /**
-     * @Gedmo\Slug(fields={"numeroDocumento","documentName"},updatable=true)
+     * Mensaje para adjuntar anexo al documento.
+     * @var string
+     * @ORM\Column(name="mensaje", type="string", length=255, nullable=true)
+     */
+    private $mensaje;
+
+    /**
+     * @Gedmo\Slug(fields={"id","documentName"},updatable=true)
      * @ORM\Column(type="string",length=128, unique=true)
      */
     private $slug;
@@ -198,17 +212,6 @@ class Documento
         return $this->updatedAt;
     }
 
- 
-
-    /**
-     * Get numeroDocumento.
-     *
-     * @return int
-     */
-    public function getNumeroDocumento()
-    {
-        return $this->numeroDocumento;
-    }
 
     /* Get numeroDocumento.
      *
@@ -281,8 +284,32 @@ class Documento
         return $this->slug;
     }
 
+    /**
+     * Set tipoDocumento.
+     *
+     * @param \DocumentBundle\Entity\TipoDocumento $tipoDocumento
+     *
+     * @return Documento
+     */
+    public function setTipoDocumento(\DocumentBundle\Entity\TipoDocumento $tipoDocumento = null)
+    {
+        $this->tipoDocumento = $tipoDocumento;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoDocumento.
+     *
+     * @return \DocumentBundle\Entity\TipoDocumento
+     */
+    public function getTipoDocumento()
+    {
+        return $this->tipoDocumento;
+    }
+
     public function __toString()
     {
-        return $this->documentName;
+        return $this->getDocumentFixedName();
     }
 }

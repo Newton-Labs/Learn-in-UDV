@@ -87,6 +87,13 @@ class Documento
     private $updatedAt;
 
     /**
+     * Mensaje para adjuntar anexo al documento.
+     * @var string
+     * @ORM\Column(name="mensaje", type="string", length=255, nullable=true)
+     */
+    private $mensaje;
+
+    /**
      * @Gedmo\Slug(fields={"id","documentName"},updatable=true)
      * @ORM\Column(type="string",length=128, unique=true)
      */
@@ -193,6 +200,29 @@ class Documento
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * Set mensaje
+     *
+     * @param string $mensaje
+     * @return Documento
+     */
+    public function setMensaje($mensaje)
+    {
+        $this->mensaje = $mensaje;
+
+        return $this;
+    }
+
+    /**
+     * Get mensaje
+     *
+     * @return string 
+     */
+    public function getMensaje()
+    {
+        return $this->mensaje;
     }
 
     /**
@@ -305,4 +335,6 @@ class Documento
     {
         return $this->getDocumentFixedName();
     }
+
+    
 }

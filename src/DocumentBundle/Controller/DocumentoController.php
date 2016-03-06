@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use DocumentBundle\Entity\Documento;
 use DocumentBundle\Form\Type\DocumentoType;
-use DocumentBundle\Form\Type\DocumentoEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\UserBundle\Model\UserInterface;
 use UserBundle\Entity\Usuario;
@@ -77,20 +76,18 @@ class DocumentoController extends Controller
 
         if ($form->isValid()) {
 
-            /*$em = $this->getDoctrine()->getManager();
-
-            $helper = $this->get('vich_uploader.templating.helper.uploader_helper');
-            $path = $helper->asset($entity, 'documentFile');
-
-            $em->persist($entity);
-            $em->flush();*/
+            //método que guarda cada archivo con entidad separada
             $cantidadDocs = $this->setMultipleUpload($form->getData());
+
             $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('DocumentBundle:Documento')->findAll();
             $cantidad = count($entities);
             $entidades = [];
             $contadorActual = 0;
+
+            //No me acuerdo para que es este ciclo
+            //pero creo que es para mostrar los últimos documentos creados
             foreach($entities as $entidad){
                 if ($contadorActual>($cantidad-$cantidadDocs)){
                     $entidades[] = $entidad;
@@ -98,6 +95,13 @@ class DocumentoController extends Controller
                 $contadorActual = $contadorActual+1;
             }   
 
+            //ahora, enviar correos
+            $usuarios = $entity->getCurso()->getUsuarios();
+            foreach($usuarios as $user ){
+                //los args son el correo de la persona que subió el archivo
+                //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
+                $this->sendEmail($usuario->getEmail(), $user->getEmail());
+            }
 
             return $this->render('DocumentBundle:Documento:indexDocumento.html.twig',[
                     'entities' => $entidades
@@ -110,7 +114,7 @@ class DocumentoController extends Controller
         ];
     }
 
-    public function setMultipleUpload($data)
+    private function setMultipleUpload($data)
     {
             $em = $this->getDoctrine()->getManager();
             $i=1;
@@ -121,6 +125,7 @@ class DocumentoController extends Controller
                 $document->setCurso($data['curso']);
                 $document->setUsuario($this->getUser());
                 $document->setDocumentFile($item);
+                $document->setMensaje($data['mensaje']);
                 $em->persist($document);
                 
                 $i++;
@@ -162,7 +167,7 @@ class DocumentoController extends Controller
      */
     private function createCreateForm(Documento $entity, Usuario $usuario)
     {
-        $form = $this->createForm(new DocumentoEditType($usuario), $entity, [
+        $form = $this->createForm(new DocumentoType($usuario), $entity, [
             'action' => $this->generateUrl('documento_create'),
             'method' => 'POST',
         ]);
@@ -255,7 +260,7 @@ class DocumentoController extends Controller
      */
     private function createEditForm(Documento $entity, \UserBundle\Entity\Usuario $usuario)
     {
-        $var = new DocumentoEditType($usuario);
+        $var = new DocumentoType($usuario);
         $var->setEditBoolean(false);
         $form = $this->createForm($var, $entity, [
             'action' => $this->generateUrl('documento_update', ['id' => $entity->getId()]),
@@ -357,5 +362,40 @@ class DocumentoController extends Controller
             ->add('submit', 'submit', ['label' => 'Eliminar'])
             ->getForm()
         ;
+    }
+
+    private function sendEmail($replyEmail,$toEmail){
+
+        //new instance
+        $context = [];
+        $fromEmail = 'no-responder@newtonlabs.com.gt';
+
+        $message = \Swift_Message::newInstance();
+        $context = $this->twig->mergeGlobals($context);//merge context
+        //$template = $this->twig->loadTemplate($templateName);
+        //espacio para agregar imágenes
+        $context['image_src'] = $message->embed(\Swift_Image::fromPath('images/email_header.png'));//attach image 1
+        $context['fb_image'] = $message->embed(\Swift_Image::fromPath('images/fb.gif'));//attach image 2
+        $context['tw_image'] = $message->embed(\Swift_Image::fromPath('images/tw.gif'));//attach image 3
+        $context['right_image'] = $message->embed(\Swift_Image::fromPath('images/right.gif'));//attach image 4
+        $context['left_image'] = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
+        
+        $message
+            ->setSubject($subject)
+            ->setFrom($fromEmail)
+            ->setTo($toEmail)
+            ->setReplyTo($replyEmail)
+            //->setReturnPath()
+        ;
+
+        if (!empty($htmlBody)) {
+            $message->setBody($htmlBody, 'text/html')
+                ->addPart($textBody, 'text/plain');
+        } else {
+            $message->setBody($textBody);
+        }
+
+        $this->mailer->send($message);
+    
     }
 }

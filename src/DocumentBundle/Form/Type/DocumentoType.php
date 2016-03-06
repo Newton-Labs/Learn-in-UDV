@@ -34,6 +34,21 @@ class DocumentoType extends AbstractType
                 ],
 
             ])
+            ->add('mensaje', 'textarea',[
+              'label' => 'Mensaje que desea agregar (opcional)',
+              'required' => false,
+            ])
+            ->add('mandarCorreo','choice',[
+              'label' => '¿Desea mandar un correo a los estudiantes de aviso?',
+                'choices'  => array(
+                   0 => 'No',
+                   1 => 'Sí',
+              ),
+              'expanded' => true,
+              'required' => true,
+              'mapped' => false,
+
+            ])
             ->add('curso', 'entity', [
                 'class' => 'CursoBundle:Curso',
                 'choices' => $this->getUsuario()->getCursos(),
@@ -57,7 +72,7 @@ class DocumentoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null
+            'data_class' => 'DocumentBundle\Entity\Documento',
         ]);
     }
 

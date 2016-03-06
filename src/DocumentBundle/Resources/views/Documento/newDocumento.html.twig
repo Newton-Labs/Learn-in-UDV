@@ -31,6 +31,9 @@
         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Selecciona varios manteniendo la tecla shift presionada">Se pueden subir varios documentos a la vez del mismo curso.</i>
         {{ form_row(form.documentFile) }}
 		    <br>
+        {{ form_row(form.mensaje)}}
+        {{ form_row(form.mandarCorreo)}}
+       
         {% if duplicado is not null %}
           <a class="btn btn-danger btn-lg" target="_blank" href="{{ vich_uploader_asset(duplicado, 'documentFile') }}">Ver el documento duplicado</a>
           <br>
@@ -43,7 +46,7 @@
            <br>
         <ul class="record_actions">
     <li>
-        <a href="{{ path('asignacion') }}" class="btn btn-warning">
+        <a href="{{ path('buscar_cursos') }}" class="btn btn-warning">
             ¿No aparece el curso que estabas buscando? 
         </a>
     </li>
