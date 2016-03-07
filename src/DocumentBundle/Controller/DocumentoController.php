@@ -97,12 +97,14 @@ class DocumentoController extends Controller
             }   
 
             //ahora, enviar correos
-            /*$usuarios = $entity->getCursos()->getUsuarios();
-            foreach($usuarios as $user ){
-                //los args son el correo de la persona que subió el archivo
-                //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
-                $this->sendEmail($usuario->getEmail(), $user->getEmail());
-            }*/
+            if ($entity->getMandarCorreo() == 1){
+            $usuarios = $entity->getCursos()->getUsuarios();
+                foreach($usuarios as $user ){
+                    //los args son el correo de la persona que subió el archivo
+                    //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
+                    $this->sendEmail($usuario->getEmail(), $user->getEmail());
+                }
+            }
 
             return $this->render('DocumentBundle:Documento:indexDocumento.html.twig',[
                     'entities' => $entidades
@@ -373,14 +375,17 @@ class DocumentoController extends Controller
 
         $message = \Swift_Message::newInstance();
         $context = $this->twig->mergeGlobals($context);//merge context
-        //$template = $this->twig->loadTemplate($templateName);
+        $template = $this->twig->loadTemplate("UserBundle:Registration:email.html.twig");
         //espacio para agregar imágenes
         $context['image_src'] = $message->embed(\Swift_Image::fromPath('images/email_header.png'));//attach image 1
         $context['fb_image'] = $message->embed(\Swift_Image::fromPath('images/fb.gif'));//attach image 2
         $context['tw_image'] = $message->embed(\Swift_Image::fromPath('images/tw.gif'));//attach image 3
         $context['right_image'] = $message->embed(\Swift_Image::fromPath('images/right.gif'));//attach image 4
         $context['left_image'] = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
-        
+        $subject = "Se ha subido un nuevo documento a Learn-IN UDV";
+        $htmlBody = $template->renderBlock('body_html', $context);
+        $textBody = $template->renderBlock('body_text', $context);
+
         $message
             ->setSubject($subject)
             ->setFrom($fromEmail)
