@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 use UserBundle\Entity\Usuario;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Constraints\Callback;
@@ -37,19 +36,18 @@ class DocumentoType extends AbstractType
                 ],
 
             ])
-            ->add('mensaje', 'textarea',[
+            ->add('mensaje', 'textarea', [
               'label' => 'Mensaje que desea agregar (opcional)',
               'required' => false,
             ])
-            ->add('mandarCorreo','choice',[
+            ->add('mandarCorreo', 'choice', [
               'label' => '¿Desea mandar un correo a los estudiantes de aviso?',
-                'choices'  => array(
+                'choices' => array(
                    0 => 'No',
                    1 => 'Sí',
               ),
               'expanded' => true,
               'required' => true,
-              
 
             ])
             ->add('curso', 'entity', [
@@ -58,7 +56,6 @@ class DocumentoType extends AbstractType
                 'empty_value' => 'Seleccione el curso del documento',
 
             ])
-           
 
            ;
         if ($this->editBoolean === true) {
@@ -76,7 +73,7 @@ class DocumentoType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => null,
-            'constraints' => new Callback([$this, 'validarEnvioMensaje'])
+            'constraints' => new Callback([$this, 'validarEnvioMensaje']),
         ]);
     }
 
@@ -103,24 +100,18 @@ class DocumentoType extends AbstractType
         $this->editBoolean = $param;
     }
 
-
     /**
-     * Validar que la fecha de ingreso sea antes que la fecha de salida
-     * @param  Array                   $data       contiene los datos del formulario
-     * @param  ExecutionContextInterface $context 
-     * @return null                            
+     * Validar que la fecha de ingreso sea antes que la fecha de salida.
+     *
+     * @param Array                     $data    contiene los datos del formulario
+     * @param ExecutionContextInterface $context
      */
     public function validarEnvioMensaje($data, ExecutionContextInterface $context)
     {
-
-        
-        if ($data['mandarCorreo'] == 1 && $data['mensaje'] == null){
-
-           $context->buildViolation('Si desea mandar un correo debe adjuntar un mensaje')
+        if ($data['mandarCorreo'] == 1 && $data['mensaje'] == null) {
+            $context->buildViolation('Si desea mandar un correo debe adjuntar un mensaje')
                 ->atPath('documento_new')
-                ->addViolation();   
+                ->addViolation();
         }
-        
-
     }
 }

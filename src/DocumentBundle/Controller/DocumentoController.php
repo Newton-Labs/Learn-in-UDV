@@ -63,7 +63,7 @@ class DocumentoController extends Controller
         ]);
 
         foreach ($pre_duplicados as $duplicado) {
-            foreach($form['documentFile'] as $documento){
+            foreach ($form['documentFile'] as $documento) {
                 if ($duplicado->getDocumentFixedName() == $documento->getClientOriginalName()) {
                     $this->get('braincrafted_bootstrap.flash')->error(sprintf('El nombre del documento ya existe en el curso'));
 
@@ -89,25 +89,33 @@ class DocumentoController extends Controller
 
             //No me acuerdo para que es este ciclo
             //pero creo que es para mostrar los últimos documentos creados
-            foreach($entities as $entidad){
-                if ($contadorActual>($cantidad-$cantidadDocs)){
+            foreach ($entities as $entidad) {
+                if ($contadorActual > ($cantidad - $cantidadDocs)) {
                     $entidades[] = $entidad;
                 }
-                $contadorActual = $contadorActual+1;
-            }   
-
-            //ahora, enviar correos
-            if ($entity->getMandarCorreo() == 1){
-            $usuarios = $entity->getCursos()->getUsuarios();
-                foreach($usuarios as $user ){
-                    //los args son el correo de la persona que subió el archivo
-                    //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
-                    $this->sendEmail($usuario->getEmail(), $user->getEmail());
-                }
+                $contadorActual = $contadorActual + 1;
             }
 
-            return $this->render('DocumentBundle:Documento:indexDocumento.html.twig',[
-                    'entities' => $entidades
+            //ahora, enviar correos
+
+            if ($form['mandarCorreo']->getData() == 1) {
+                $nombreDeArchivos = [];
+                foreach ($form['documentFile']->getData() as $archivo) {
+                    $nombreDeArchivos[] = $archivo->getClientOriginalName();
+                }
+
+                $usuarios = $form['curso']->getData()->getUsuarios();
+                $cantidadUsuarios = count($usuarios);
+                foreach ($usuarios as $user) {
+                    //los args son el correo de la persona que subió el archivo
+                    //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
+                    $this->sendEmail($usuario->getEmail(), $user->getEmail(), $user, $this->getUser(), $form['mensaje']->getData(), $nombreDeArchivos);
+                }
+                $this->get('braincrafted_bootstrap.flash')->success(sprintf('Se ha enviado exitosamente el correo a %s estudiantes', $cantidadUsuarios));
+            }
+
+            return $this->render('DocumentBundle:Documento:indexDocumento.html.twig', [
+                    'entities' => $entidades,
                 ]);
         }
 
@@ -119,29 +127,26 @@ class DocumentoController extends Controller
 
     private function setMultipleUpload($data)
     {
-            $em = $this->getDoctrine()->getManager();
-            $i=1;
-           
-            foreach ($data['documentFile'] as $item) {
-                $document = new Documento();
-                $document->setTipoDocumento($data['tipoDocumento']);
-                $document->setCurso($data['curso']);
-                $document->setUsuario($this->getUser());
-                $document->setDocumentFile($item);
-                $document->setMensaje($data['mensaje']);
-                $em->persist($document);
-                
-                $i++;
+        $em = $this->getDoctrine()->getManager();
+        $i = 1;
 
-            }
-            $em->flush();
+        foreach ($data['documentFile'] as $item) {
+            $document = new Documento();
+            $document->setTipoDocumento($data['tipoDocumento']);
+            $document->setCurso($data['curso']);
+            $document->setUsuario($this->getUser());
+            $document->setDocumentFile($item);
+            $document->setMensaje($data['mensaje']);
+            $em->persist($document);
 
-            return $i;
+            ++$i;
+        }
+        $em->flush();
 
-        
+        return $i;
     }
 
-     /**
+    /**
      * Creates a form to create a Documento entity.
      *
      * @param Documento $entity The entity
@@ -159,7 +164,6 @@ class DocumentoController extends Controller
 
         return $form;
     }
-
 
     /**
      * Creates a form to create a Documento entity.
@@ -367,41 +371,46 @@ class DocumentoController extends Controller
         ;
     }
 
-    private function sendEmail($replyEmail,$toEmail){
+    private function sendEmail($replyEmail, $toEmail, $enviado_a, $enviado_por, $mensaje, $archivos)
+    {
 
         //new instance
-        $context = [];
+         $context = [
+
+        ];
         $fromEmail = 'no-responder@newtonlabs.com.gt';
 
         $message = \Swift_Message::newInstance();
-        $context = $this->twig->mergeGlobals($context);//merge context
-        $template = $this->twig->loadTemplate("UserBundle:Registration:email.html.twig");
+
         //espacio para agregar imágenes
-        $context['image_src'] = $message->embed(\Swift_Image::fromPath('images/email_header.png'));//attach image 1
-        $context['fb_image'] = $message->embed(\Swift_Image::fromPath('images/fb.gif'));//attach image 2
-        $context['tw_image'] = $message->embed(\Swift_Image::fromPath('images/tw.gif'));//attach image 3
-        $context['right_image'] = $message->embed(\Swift_Image::fromPath('images/right.gif'));//attach image 4
-        $context['left_image'] = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
-        $subject = "Se ha subido un nuevo documento a Learn-IN UDV";
-        $htmlBody = $template->renderBlock('body_html', $context);
-        $textBody = $template->renderBlock('body_text', $context);
+        $img_src = $message->embed(\Swift_Image::fromPath('images/email_header.png'));//attach image 1
+        $fb_image = $message->embed(\Swift_Image::fromPath('images/fb.gif'));//attach image 2
+        $tw_image = $message->embed(\Swift_Image::fromPath('images/tw.gif'));//attach image 3
+        $right_image = $message->embed(\Swift_Image::fromPath('images/right.gif'));//attach image 4
+        $left_image = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
+
+        $subject = 'Se ha subido un nuevo documento a Learn-IN UDV';
 
         $message
             ->setSubject($subject)
-            ->setFrom($fromEmail)
+            ->setFrom([$fromEmail => 'Learn-In'])
             ->setTo($toEmail)
             ->setReplyTo($replyEmail)
-            //->setReturnPath()
+            ->setBody($this->renderView('DocumentBundle:Documento:emailDocumento.html.twig', [
+                'image_src' => $img_src,
+                'fb_image' => $fb_image,
+                'tw_image' => $tw_image,
+                'right_image' => $right_image,
+                'left_image' => $left_image,
+                'enviado_a' => $enviado_a,
+                'enviado_por' => $enviado_por,
+                'mensaje' => $mensaje,
+                'archivos' => $archivos,
+                ]), 'text/html')
+            ->setContentType('text/html')
+
         ;
 
-        if (!empty($htmlBody)) {
-            $message->setBody($htmlBody, 'text/html')
-                ->addPart($textBody, 'text/plain');
-        } else {
-            $message->setBody($textBody);
-        }
-
-        $this->mailer->send($message);
-    
+        $this->get('mailer')->send($message);
     }
 }

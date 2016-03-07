@@ -76,6 +76,7 @@ class Curso
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="DocumentBundle\Entity\Documento", mappedBy="curso")
      * @ORM\OrderBy({"documentName" = "ASC"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $documentos;
 

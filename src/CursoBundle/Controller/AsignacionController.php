@@ -5,7 +5,6 @@ namespace CursoBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use CursoBundle\Entity\Curso;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use CursoBundle\Form\Type\BuscarType;
@@ -19,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  * @author  Pablo Díaz fcpauldiaz@me.com
  */
 class AsignacionController extends Controller
-{ 
+{
     /**
      * Método que verifica que solo los cursos no asignados de un usuario.
      *
@@ -40,19 +39,16 @@ class AsignacionController extends Controller
         return $returnData;
     }
 
-    
-
     /**
      * Método para agregar un curso a un usuario de forma lógica (base de datos).
      *
      * @Route("/agregar/curso/{curso_slug}/", name="add_asignacion")
-     * 
      */
     public function agregarCursoAction($curso_slug)
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $curso = $em->getRepository('CursoBundle:Curso')->findOneBy(['slug'=>$curso_slug]);
+
+        $curso = $em->getRepository('CursoBundle:Curso')->findOneBy(['slug' => $curso_slug]);
         $usuario = $this->get('security.token_storage')->getToken()->getUser();
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
@@ -60,8 +56,9 @@ class AsignacionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $cursosAsignados = $usuario->getCursos();
-        if ($cursosAsignados->contains($curso)){
-           $this->get('braincrafted_bootstrap.flash')->error(sprintf('Error: El curso %s ya está asignado', $curso->getNombreCurso()));
+        if ($cursosAsignados->contains($curso)) {
+            $this->get('braincrafted_bootstrap.flash')->error(sprintf('Error: El curso %s ya está asignado', $curso->getNombreCurso()));
+
             return $this->redirect(
                 $this->generateUrl(
                     'listar_cursos',
@@ -69,7 +66,6 @@ class AsignacionController extends Controller
                 )
             );
         }
-
 
         $usuario->addCurso($curso);
         $em->persist($usuario);
@@ -85,9 +81,7 @@ class AsignacionController extends Controller
         );
     }
 
-   
-
-     /**
+    /**
      * @Route("/asignar/cursos/", name="buscar_cursos")
      */
     public function buscarCursoAction(Request $request)
@@ -96,15 +90,15 @@ class AsignacionController extends Controller
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
-      
+
         $form = $this->createForm(
             new BuscarType());
 
         $form->handleRequest($request);
-        if (!$form->isValid()){
+        if (!$form->isValid()) {
             return $this->render(
                 'CursoBundle:Asignacion:crearAsignacion.html.twig',
-                [   
+                [
                     'cursos' => [],
                     'buscarCurso' => $form->createView(),
                 ]
@@ -119,57 +113,50 @@ class AsignacionController extends Controller
         $repositoryCurso = $this->getDoctrine()->getRepository('CursoBundle:Curso');
         $qb = $repositoryCurso->createQueryBuilder('curso');
 
-           
-        if (isset($carrera)){
+        if (isset($carrera)) {
             $qb
                  ->select('curso')
                 ->orderBy('curso.nombreCurso', 'ASC')
                 ->Where('curso.carreras = :carrera')
                 ->setParameter('carrera', $carrera);
         }
-        if (isset($periodo)){
-            $qb  
+        if (isset($periodo)) {
+            $qb
                 ->andWhere('curso.periodo = :periodo')
                 ->setParameter('periodo', $periodo);
         }
-        if (isset($catedratico)){
+        if (isset($catedratico)) {
             $qb
                 ->andWhere('curso.cursoCreadoPor = :catedratico')
-                 ->setParameter('catedratico',$catedratico);
+                 ->setParameter('catedratico', $catedratico);
         }
-        if (isset($año)){
+        if (isset($año)) {
             $qb
                 ->andWhere('curso.year = :year')
-                ->setParameter('year',$año);
+                ->setParameter('year', $año);
         }
-        if (isset($sede)){
+        if (isset($sede)) {
             $qb
                 ->andWhere('curso.sede = :sede')
-                ->setParameter('sede',$sede);
+                ->setParameter('sede', $sede);
         }
 
-           
-        $cursos = $qb->getQuery()->getResult();   
-           
-            
-            
+        $cursos = $qb->getQuery()->getResult();
+
         if (count($cursos) < 1) {
             $this->get('braincrafted_bootstrap.flash')->alert('No se encontraron cursos con los parámetros ingresados');
-        }  
-           
-        
+        }
+
         return $this->render(
             'CursoBundle:Asignacion:crearAsignacion.html.twig',
-            [   
+            [
                 'cursos' => $cursos,
                 'buscarCurso' => $form->createView(),
             ]
         );
-
     }
 
-
-  /**
+    /**
      * Listar cursos asignados.
      *
      * @Route("/listar/cursos", name="listar_cursos")
@@ -180,13 +167,14 @@ class AsignacionController extends Controller
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
+
         return $this->render(
             'CursoBundle:Asignacion:listarAsignacion.html.twig',
             ['cursosAsignados' => $usuario->getCursos()]
         );
     }
 
-     /**
+    /**
      * Listar cursos asignados.
      *
      * @Route("/listar/cursos/catedratico", name="listar_cursos_catedratico")
@@ -204,10 +192,9 @@ class AsignacionController extends Controller
             ->select('curso')
             ->orderBy('curso.nombreCurso', 'ASC')
             ->Where('curso.cursoCreadoPor = :catedratico')
-            ->setParameter('catedratico',$usuario)
+            ->setParameter('catedratico', $usuario)
             ->getQuery()
             ->getResult();
-
 
         return $this->render(
             'CursoBundle:Asignacion:listarCursosAsignacion.html.twig',
@@ -222,24 +209,21 @@ class AsignacionController extends Controller
     public function listarEstudiantesPorCurso($curso_slug)
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $curso = $em->getRepository('CursoBundle:Curso')->findOneBy(['slug'=>$curso_slug]);
-        
+
+        $curso = $em->getRepository('CursoBundle:Curso')->findOneBy(['slug' => $curso_slug]);
+
         $usuarios = $curso->getUsuarios();
         $estudiantes = [];
-        foreach($usuarios as $usuario){
-            if ($usuario->hasRole('ROLE_CATEDRATICO') === false){
+        foreach ($usuarios as $usuario) {
+            if ($usuario->hasRole('ROLE_CATEDRATICO') === false) {
                 $estudiantes[] = $usuario;
             }
         }
 
-         return $this->render(
+        return $this->render(
             'CursoBundle:Asignacion:listarEstudiantes.html.twig',
-            ['estudiantes' => $estudiantes,'curso' => $curso]
+            ['estudiantes' => $estudiantes, 'curso' => $curso]
         );
-
-
-
     }
 
     /**
@@ -269,7 +253,7 @@ class AsignacionController extends Controller
         );
     }
 
-     /**
+    /**
      * [Método para desasignar cursos a un estudiante por parte de un catedrático]
      * Método para remover curso asignado al usuario.
      *
@@ -279,16 +263,15 @@ class AsignacionController extends Controller
      *      */
     public function removeCursoEstudianteAction($usuario, $curso_slug)
     {
-        
         $em = $this->getDoctrine()->getManager();
 
-        $curso = $em->getRepository('CursoBundle:Curso')->findOneBy(['slug'=>$curso_slug]);
+        $curso = $em->getRepository('CursoBundle:Curso')->findOneBy(['slug' => $curso_slug]);
         $usuario->removeCurso($curso);
         $em->persist($usuario);
         $em->flush();
 
-        $this->get('braincrafted_bootstrap.flash')->alert(sprintf('Estudiante s% removido',$usuario->__toString()));
-       
+        $this->get('braincrafted_bootstrap.flash')->alert(sprintf('Estudiante s% removido', $usuario->__toString()));
+
         return $this->redirect(
             $this->generateUrl(
                 'estudiantes_por_curso',

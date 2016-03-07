@@ -48,11 +48,11 @@ class TipoDocumentoController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-       if ($form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-           $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('DocumentBundle:TipoDocumento')->findAll();
             foreach ($entities as $entity) {

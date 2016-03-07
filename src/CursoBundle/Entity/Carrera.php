@@ -39,11 +39,8 @@ class Carrera
      */
     private $facultad;
 
-    
-
     public function __construct()
     {
-       
     }
 
     /**

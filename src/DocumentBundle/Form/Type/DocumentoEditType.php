@@ -6,14 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 use UserBundle\Entity\Usuario;
 
 class DocumentoEditType extends AbstractType
 {
     private $usuario;
     private $editBoolean = true;
-
 
     public function __construct(Usuario  $user)
     {
@@ -41,19 +39,18 @@ class DocumentoEditType extends AbstractType
                 'empty_value' => 'Seleccione el curso del documento',
 
             ])
-           ->add('mensaje', 'textarea',[
+           ->add('mensaje', 'textarea', [
               'label' => 'Mensaje que desea agregar (opcional)',
               'required' => false,
             ])
-            ->add('mandarCorreo','choice',[
+            ->add('mandarCorreo', 'choice', [
               'label' => '¿Desea mandar un correo a los estudiantes de aviso?',
-                'choices'  => array(
+                'choices' => array(
                    0 => 'No',
                    1 => 'Sí',
               ),
               'expanded' => true,
               'required' => true,
-              
 
             ])
 

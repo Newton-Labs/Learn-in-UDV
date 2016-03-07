@@ -1,7 +1,7 @@
 {% extends '::base_page.html.twig' %}
 
 {% block body_content -%}
-    <h1>Documento</h1>
+    <h1>Documentos subidos</h1>
 
     <table class="table table-striped table-hover">
         <thead>
@@ -21,6 +21,7 @@
                         {{ document.updatedAt|date('d-m-Y H:i:s') }}
                     {% endif %}
                 </td>
+
                 <td>
                     <a class="btn btn-sm btn-default" href="{{ vich_uploader_asset(document, 'documentFile') }}">Descargar</a>
                 </td>
@@ -43,8 +44,8 @@
 
         <ul>
         <li>
-            <a href="{{ path('documento_new') }}">
-                Create a new entry
+            <a class = "btn btn-default btn-block " href="{{ path('documento_new') }}">
+               Subir otro documento
             </a>
         </li>
     </ul>

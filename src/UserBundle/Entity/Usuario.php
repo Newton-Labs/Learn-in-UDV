@@ -44,11 +44,11 @@ class Usuario extends BaseUser
     private $cursos;
 
     /**
-     * 
      * @Assert\Regex("/[0-9]+/",
      *    message="Este campo tiene que ser solo un número"
      * )
      * @ORM\Column(name="carnet", type="string", nullable=true)
+     *
      * @var string
      */
     private $carnet;
@@ -168,11 +168,12 @@ class Usuario extends BaseUser
     {
         return $this->credentialsExpireAt;
     }
-    
-     /**
-     * Set carnet
+
+    /**
+     * Set carnet.
      *
      * @param string $carnet
+     *
      * @return Usuario
      */
     public function setCarnet($carnet)
@@ -183,9 +184,9 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get carnet
+     * Get carnet.
      *
-     * @return string 
+     * @return string
      */
     public function getCarnet()
     {
@@ -223,6 +224,4 @@ class Usuario extends BaseUser
     {
         return $this->nombre.' '.$this->apellidos;
     }
-
-   
 }

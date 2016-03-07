@@ -43,24 +43,22 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'required' => false,
             ])
-            ->add('tipoUsuario','choice',[
+            ->add('tipoUsuario', 'choice', [
                 'label' => false,
                 'choices' => [
                     0 => 'Estudiante',
                     1 => 'Catedrático',
                 ],
                 'required' => true,
-                
 
                 ])
 
             ;
-        
+
         $builder->addEventListener(
             FormEvents::POST_SUBMIT,
             [$this, 'onPostData']
         );
-        
     }
 
     /**
@@ -70,7 +68,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'validation' => ['registration'],
-            'constraints' => new Callback([$this, 'validarTipoUsuario'])
+            'constraints' => new Callback([$this, 'validarTipoUsuario']),
         ]);
     }
     public function getParent()
@@ -84,17 +82,15 @@ class RegistrationFormType extends AbstractType
     }
 
     /**
-     * Forma de validar el correo de un catedrático
-     * @param  FormEvent $event Evento después de mandar la información del formulario
-     * @return void
+     * Forma de validar el correo de un catedrático.
+     *
+     * @param FormEvent $event Evento después de mandar la información del formulario
      */
     public function onPostData(FormEvent $event)
     {
         $usuario = $event->getData();
         $form = $event->getForm();
-        
-       
-        
+
         if (preg_match('/(^[0-9]+)@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail()) == 0
             &&
             $form['tipoUsuario']->getData() == 1
@@ -104,22 +100,17 @@ class RegistrationFormType extends AbstractType
     }
 
     /**
-     * Validar que la fecha de ingreso sea antes que la fecha de salida
-     * @param  Array                   $data       contiene los datos del formulario
-     * @param  ExecutionContextInterface $context 
-     * @return null                            
+     * Validar que la fecha de ingreso sea antes que la fecha de salida.
+     *
+     * @param Array                     $data    contiene los datos del formulario
+     * @param ExecutionContextInterface $context
      */
     public function validarTipoUsuario($data, ExecutionContextInterface $context)
     {
-
-        
-        if ($data->getTipoUsuario() == 0 && $data->getCarnet() == null){
-
-           $context->buildViolation('Si eres estudiante es necesario un número de carnet o un número de identificación')
+        if ($data->getTipoUsuario() == 0 && $data->getCarnet() == null) {
+            $context->buildViolation('Si eres estudiante es necesario un número de carnet o un número de identificación')
                 ->atPath('fos_user_registration_register')
-                ->addViolation();   
+                ->addViolation();
         }
-        
-
     }
 }

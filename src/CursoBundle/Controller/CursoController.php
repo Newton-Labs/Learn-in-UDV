@@ -112,7 +112,6 @@ class CursoController extends Controller
      * @Route("/new", name="curso_new")
      * @Method("GET")
      * @Template("CursoBundle:Curso:newCurso.html.twig")
-     * 
      */
     public function newAction()
     {

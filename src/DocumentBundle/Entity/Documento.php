@@ -36,7 +36,7 @@ class Documento
      *
      * @var ArrayCollection
      * @ORM\ManyToOne(targetEntity="CursoBundle\Entity\Curso",inversedBy="documentos")
-     * @ORM\JoinColumn(name="curso_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="curso_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $curso;
 
@@ -88,6 +88,7 @@ class Documento
 
     /**
      * Mensaje para adjuntar anexo al documento.
+     *
      * @var string
      * @ORM\Column(name="mensaje", type="string", length=255, nullable=true)
      */
@@ -205,9 +206,10 @@ class Documento
     }
 
     /**
-     * Set mensaje
+     * Set mensaje.
      *
      * @param string $mensaje
+     *
      * @return Documento
      */
     public function setMensaje($mensaje)
@@ -218,9 +220,9 @@ class Documento
     }
 
     /**
-     * Get mensaje
+     * Get mensaje.
      *
-     * @return string 
+     * @return string
      */
     public function getMensaje()
     {
@@ -236,7 +238,6 @@ class Documento
     {
         return $this->updatedAt;
     }
-
 
     /* Get numeroDocumento.
      *
@@ -349,6 +350,4 @@ class Documento
     {
         return $this->getDocumentFixedName();
     }
-
-    
 }

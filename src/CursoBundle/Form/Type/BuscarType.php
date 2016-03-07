@@ -4,13 +4,10 @@ namespace CursoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
 class BuscarType extends AbstractType
 {
-    
-
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -18,14 +15,14 @@ class BuscarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('curso','entity',[
-                    'empty_value'=> 'Seleccione el curso',
+            ->add('curso', 'entity', [
+                    'empty_value' => 'Seleccione el curso',
                     'class' => 'CursoBundle:Curso',
                     'label' => 'Buscar por Nombre',
                     'choice_label' => 'nombreCurso',
                     'attr' => [
-                        'class' => 'select2'
-                    ], 
+                        'class' => 'select2',
+                    ],
                     'required' => false,
                 ])
             ->add('carreras', 'entity', [
@@ -52,6 +49,7 @@ class BuscarType extends AbstractType
                 'class' => 'UserBundle:Usuario',
                 'query_builder' => function (EntityRepository $er) {
                     $role = 'ROLE_CATEDRATICO';
+
                     return $er->createQueryBuilder('usuario')
                         ->select('usuario')
                         ->where('usuario.roles LIKE :roles')
@@ -72,7 +70,7 @@ class BuscarType extends AbstractType
                     2018 => 2018,
                     2019 => 2019,
                     2020 => 2020,
-                    2021 =>2021
+                    2021 => 2021,
                 ],
                 'label' => 'Buscador de Año',
                 'attr' => [
@@ -94,7 +92,7 @@ class BuscarType extends AbstractType
                  'required' => false,
 
             ])
-           ->add('submit','submit',['label' => 'Buscar','attr' => ['class' => 'btn btn-block']])
+           ->add('submit', 'submit', ['label' => 'Buscar', 'attr' => ['class' => 'btn btn-block']])
         ;
     }
 

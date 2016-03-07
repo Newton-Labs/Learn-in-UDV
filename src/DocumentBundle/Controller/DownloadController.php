@@ -33,10 +33,7 @@ class DownloadController extends Controller
         $cursos = $usuario->getCursos();
 
         return ['cursos' => $cursos];
-
-    
     }
-
 
     /**
      * Finds and displays a Curso entity.
