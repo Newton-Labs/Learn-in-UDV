@@ -41,7 +41,21 @@ class DocumentoEditType extends AbstractType
                 'empty_value' => 'Seleccione el curso del documento',
 
             ])
-           
+           ->add('mensaje', 'textarea',[
+              'label' => 'Mensaje que desea agregar (opcional)',
+              'required' => false,
+            ])
+            ->add('mandarCorreo','choice',[
+              'label' => '¿Desea mandar un correo a los estudiantes de aviso?',
+                'choices'  => array(
+                   0 => 'No',
+                   1 => 'Sí',
+              ),
+              'expanded' => true,
+              'required' => true,
+              
+
+            ])
 
            ;
         if ($this->editBoolean === true) {

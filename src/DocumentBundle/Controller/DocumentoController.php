@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use DocumentBundle\Entity\Documento;
 use DocumentBundle\Form\Type\DocumentoType;
+use DocumentBundle\Form\Type\DocumentoEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\UserBundle\Model\UserInterface;
 use UserBundle\Entity\Usuario;
@@ -167,7 +168,7 @@ class DocumentoController extends Controller
      */
     private function createCreateForm(Documento $entity, Usuario $usuario)
     {
-        $form = $this->createForm(new DocumentoType($usuario), $entity, [
+        $form = $this->createForm(new DocumentoEditType($usuario), $entity, [
             'action' => $this->generateUrl('documento_create'),
             'method' => 'POST',
         ]);
