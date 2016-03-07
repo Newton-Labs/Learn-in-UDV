@@ -47,13 +47,21 @@
 
            </div>
 
-          
+            <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+
+            {{form_row(form.carnet,{'attr': {'class': 'form-control','placeholder':'Carnet'}})}}
+
+           </div>
+
+
            <br>
              <h8><strong>Contraseña Actual</strong></h8>
            <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 
           	{{form_row(form.current_password,{'attr': {'class': 'form-control','placeholder':'Contraseña Actual'}})}}
+          </div>
             {#
            </div>
            <h8><strong>Contraseña Nueva</strong></h8>
