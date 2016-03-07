@@ -18,7 +18,7 @@ security:
                 provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager
             remember_me:
-                secret:   "%secret%"
+                secret:   df4319cd8407c1f9760306eae3f7c7e206a2af31
                 lifetime: 604800 # 1 week in seconds
                 path:     /
             logout:       true
