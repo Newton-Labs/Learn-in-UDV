@@ -47,7 +47,7 @@ class Documento
      * nullable=true)
      * 
      * @Assert\File(
-     * maxSize="16M",
+     * maxSize="32M",
      * mimeTypes = {
      *     "application/pdf", 
      *     "application/x-pdf",
@@ -104,6 +104,8 @@ class Documento
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     private $usuario;
+
+    private $mandarCorreo;
 
     public function __construct()
     {
@@ -329,6 +331,18 @@ class Documento
     public function getTipoDocumento()
     {
         return $this->tipoDocumento;
+    }
+
+    public function getMandarCorreo()
+    {
+        return $this->mandarCorreo;
+    }
+
+    public function setMandarCorreo($correo)
+    {
+        $this->mandarCorreo = $correo;
+
+        return $this;
     }
 
     public function __toString()

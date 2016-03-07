@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 use UserBundle\Entity\Usuario;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Constraints;
 
 class DocumentoType extends AbstractType
 {
@@ -46,7 +49,7 @@ class DocumentoType extends AbstractType
               ),
               'expanded' => true,
               'required' => true,
-              'mapped' => false,
+              
 
             ])
             ->add('curso', 'entity', [
@@ -72,7 +75,8 @@ class DocumentoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'DocumentBundle\Entity\Documento',
+            
+            'constraints' => new Callback([$this, 'validarEnvioMensaje'])
         ]);
     }
 
@@ -90,11 +94,33 @@ class DocumentoType extends AbstractType
     {
         return $this->usuario;
     }
+
     /**
      * @param bool
      */
     public function setEditBoolean($param)
     {
         $this->editBoolean = $param;
+    }
+
+
+    /**
+     * Validar que la fecha de ingreso sea antes que la fecha de salida
+     * @param  Array                   $data       contiene los datos del formulario
+     * @param  ExecutionContextInterface $context 
+     * @return null                            
+     */
+    public function validarEnvioMensaje($data, ExecutionContextInterface $context)
+    {
+
+        
+        if ($data['mandarCorreo'] == 1 && $data['mensaje'] == null){
+
+           $context->buildViolation('Si desea mandar un correo debe adjuntar un mensaje')
+                ->atPath('documento_new')
+                ->addViolation();   
+        }
+        
+
     }
 }

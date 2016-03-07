@@ -37,6 +37,10 @@
                         <td>{{ doc.updatedAt |date('d-m-Y H:i:s')}}</td>
                     </tr>
                     <tr>
+                        <th>Mensaje</th>
+                        <td>{{ doc.mensaje}}</td>
+                    </tr>
+                    <tr>
                         <th>Link</th>
                         <td><a  class="btn btn-sm btn-default" target="_blank" href="{{ vich_uploader_asset(doc, 'documentFile') }}">Descargar</a></td>
                     </tr>

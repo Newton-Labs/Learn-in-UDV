@@ -5,6 +5,7 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 //sirve para extender de friendofsymfony
 use FOS\UserBundle\Entity\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 //sirve para validar los campos del formulario
 
@@ -41,6 +42,18 @@ class Usuario extends BaseUser
      * @ORM\JoinTable(name="cursos_usuario")
      **/
     private $cursos;
+
+    /**
+     * 
+     * @Assert\Regex("/[0-9]+/",
+     *    message="Este campo tiene que ser solo un número"
+     * )
+     * @ORM\Column(name="carnet", type="string", nullable=true)
+     * @var string
+     */
+    private $carnet;
+
+    private $tipoUsuario;
 
     /**
      * Constructor.
@@ -156,6 +169,46 @@ class Usuario extends BaseUser
         return $this->credentialsExpireAt;
     }
     
+     /**
+     * Set carnet
+     *
+     * @param string $carnet
+     * @return Usuario
+     */
+    public function setCarnet($carnet)
+    {
+        $this->carnet = $carnet;
+
+        return $this;
+    }
+
+    /**
+     * Get carnet
+     *
+     * @return string 
+     */
+    public function getCarnet()
+    {
+        return $this->carnet;
+    }
+
+    /* Get tipousuario
+     *
+     * @return string 
+     */
+    public function getTipoUsuario()
+    {
+        return $this->tipoUsuario;
+    }
+
+     /* Get tipousuario
+     *
+     * @return string 
+     */
+    public function setTipoUsuario($tipo)
+    {
+        return $this->tipoUsuario = $tipo;
+    }
 
     public function hasRole($role)
     {
@@ -170,4 +223,6 @@ class Usuario extends BaseUser
     {
         return $this->nombre.' '.$this->apellidos;
     }
+
+   
 }

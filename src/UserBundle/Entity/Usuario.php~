@@ -43,11 +43,10 @@ class Usuario extends BaseUser
     private $cursos;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CursoBundle\Entity\Carrera", inversedBy="usuarios")
-     * @ORM\JoinTable(name="carreras_usuario")
-     * @var [type]
+     * @ORM\Column(name="carnet", type="string", nullable=true)
+     * @var string
      */
-    private $carreras;
+    private $carnet;
 
     /**
      * Constructor.
@@ -56,7 +55,6 @@ class Usuario extends BaseUser
     {
         parent::__construct();// construye los metodos y atributos de Base
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->carreras = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id.
@@ -163,10 +161,7 @@ class Usuario extends BaseUser
     {
         return $this->credentialsExpireAt;
     }
-    public function __toString()
-    {
-        return $this->nombre.' '.$this->apellidos;
-    }
+    
 
     public function hasRole($role)
     {
@@ -175,5 +170,10 @@ class Usuario extends BaseUser
         }
 
         return false;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre.' '.$this->apellidos;
     }
 }

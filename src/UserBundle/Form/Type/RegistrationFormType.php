@@ -7,11 +7,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Constraints;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $data = $builder->getData();
         // agregar campos personalizados
         $builder
             ->add('nombre', null, ['label' => false,
@@ -35,6 +39,10 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])
+            ->add('carnet', null, [
+                'label' => false,
+                'required' => false,
+            ])
             ->add('tipoUsuario','choice',[
                 'label' => false,
                 'choices' => [
@@ -42,7 +50,7 @@ class RegistrationFormType extends AbstractType
                     1 => 'Catedrático',
                 ],
                 'required' => true,
-                'mapped' => false,
+                
 
                 ])
 
@@ -62,6 +70,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'validation' => ['registration'],
+            'constraints' => new Callback([$this, 'validarTipoUsuario'])
         ]);
     }
     public function getParent()
@@ -92,5 +101,25 @@ class RegistrationFormType extends AbstractType
          ) {
             $usuario->addRole('ROLE_CATEDRATICO');
         }
+    }
+
+    /**
+     * Validar que la fecha de ingreso sea antes que la fecha de salida
+     * @param  Array                   $data       contiene los datos del formulario
+     * @param  ExecutionContextInterface $context 
+     * @return null                            
+     */
+    public function validarTipoUsuario($data, ExecutionContextInterface $context)
+    {
+
+        
+        if ($data->getTipoUsuario() == 0 && $data->getCarnet() == null){
+
+           $context->buildViolation('Si eres estudiante es necesario un número de carnet o un número de identificación')
+                ->atPath('fos_user_registration_register')
+                ->addViolation();   
+        }
+        
+
     }
 }
