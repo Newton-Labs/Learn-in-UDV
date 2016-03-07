@@ -23,11 +23,15 @@ class ProfileFormType extends AbstractType
                 ->add('apellidos')
                 ->add('username', null, ['label' => false])
                 ->add('email', 'email', ['label' => false])
-                ->add('current_password', 'password', [
-                'label' => false,
-                'translation_domain' => 'FOSUserBundle',
-                'mapped' => false,
-                'constraints' => $constraint,
+                    ->add('current_password', 'password', [
+                    'label' => false,
+                    'translation_domain' => 'FOSUserBundle',
+                    'mapped' => false,
+                    'constraints' => $constraint,
+                ])
+                     ->add('carnet', null, [
+                    'label' => false,
+                    'required' => false,
                 ])
 
                 /*->add('plainPassword', 'repeated', [
