@@ -1,3 +1,5 @@
+imports:
+    - { resource: database_parameters.php}
 security:
     providers:
         fos_userbundle:
@@ -5,7 +7,6 @@ security:
 
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
-
 
     firewalls:
         dev:
