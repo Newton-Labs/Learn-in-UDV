@@ -123,9 +123,9 @@ knp_gaufrette:
         foo:
             aws_s3:
                 service_id: 'acme.aws_s3.client'
-                bucket_name: 'plataformavirtual'
+                bucket_name: 'plataformavirtual-udv'
                 options:
-                    directory: 'parcialesyhdt'
+                    directory: 'cursos'
 
     filesystems:
         archivos:
