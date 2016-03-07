@@ -1,5 +1,3 @@
-imports:
-    - { resource: database_parameters.php}
 security:
     providers:
         fos_userbundle:
