@@ -97,12 +97,12 @@ class DocumentoController extends Controller
             }   
 
             //ahora, enviar correos
-            $usuarios = $entity->getCurso()->getUsuarios();
+            /*$usuarios = $entity->getCursos()->getUsuarios();
             foreach($usuarios as $user ){
                 //los args son el correo de la persona que subió el archivo
                 //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
                 $this->sendEmail($usuario->getEmail(), $user->getEmail());
-            }
+            }*/
 
             return $this->render('DocumentBundle:Documento:indexDocumento.html.twig',[
                     'entities' => $entidades
