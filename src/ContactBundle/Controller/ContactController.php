@@ -19,6 +19,14 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ContactController extends Controller
 {
     /**
+     * @Route("/access/exception", name="403_exception")
+     */
+    public function exceptionAction(Request $request)
+    {
+      return $this->render('default/error403.html.twig');
+    }
+
+    /**
      * @Route("/send",name ="send_email")
      * @Template("ContactBundle:Contact:showContact.html.twig")
      */

@@ -249,7 +249,7 @@ class CursoController extends Controller
         }
 
         return $this->redirect(
-            $this->generateUrl('curso')
+            $this->generateUrl('listar_cursos_catedratico')
         );
     }
 

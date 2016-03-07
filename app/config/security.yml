@@ -16,12 +16,13 @@ security:
                 provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager
             remember_me:
-                secret:   df4319cd8407c1f9760306eae3f7c7e206a2af31
+                secret:   "%secret%"
                 lifetime: 604800 # 1 week in seconds
                 path:     /
+                always_remember_me: true
             logout:       true
             anonymous:    true
-            access_denied_url: /
+            access_denied_url: /contact/access/exception
             #access_denied_handler: kernel.listener.accessDenied
             #entry_point: kernel.listener.accessDenied
     access_control:

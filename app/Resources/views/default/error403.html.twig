@@ -1,13 +1,12 @@
 
 {% extends 'base_page.html.twig' %}    
-    {% block title  %}Error: 403{{ status_text }}{% endblock %}
+    {% block title  %}Error: 403{% endblock %}
     {% block body_content %}
 
 
         <div style="text-align:center">
             <h1>Acceso No Autorizado</h1>
             <img src="http://pdias.net/drp/error_403.jpg" />
-            Acceso denegado.  
         </div>
 
         <a class= "btn btn-default btn-lg btn-warning"  href="{{ path('homepage') }}">
