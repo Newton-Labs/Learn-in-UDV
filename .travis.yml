@@ -8,7 +8,7 @@ env:
   - SYMFONY_VERSION=2.7.6
   - SYMFONY_VERSION=2.7.8
   - SYMFONY_VERSION=2.7.9
-  - SYMFONY_VERSION=dev-master
+  - SYMFONY_VERSION=2.8.3
 
 services:
   - mysql
@@ -16,5 +16,4 @@ script:
   - phpunit app --coverage-text
 matrix:
   allow_failures:
-    - env: SYMFONY_VERSION=dev-master
     - script: phpunit --version
