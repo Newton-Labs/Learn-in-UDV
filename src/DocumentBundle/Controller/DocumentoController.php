@@ -109,7 +109,12 @@ class DocumentoController extends Controller
                 foreach ($usuarios as $user) {
                     //los args son el correo de la persona que subió el archivo
                     //los correos de los usuarios asignados al curso, incluyendo al creador del curso.
-                    $this->sendEmail($usuario->getEmail(), $user->getEmail(), $user, $this->getUser(), $form['mensaje']->getData(), $nombreDeArchivos);
+                    $this->sendEmail(
+                        $usuario,
+                        $user,
+                        $form['mensaje']->getData(),
+                        $nombreDeArchivos
+                    );
                 }
                 $this->get('braincrafted_bootstrap.flash')->success(sprintf('Se ha enviado exitosamente el correo a %s estudiantes', $cantidadUsuarios));
             }
@@ -370,8 +375,15 @@ class DocumentoController extends Controller
             ->getForm()
         ;
     }
-
-    private function sendEmail($replyEmail, $toEmail, $enviado_a, $enviado_por, $mensaje, $archivos)
+    /**
+     * Función para enviar un correo.
+     *
+     * @param Usuario $enviado_a   Nombre de la persona a la que se le envía el correo
+     * @param Usuario $enviado_por Nombre de la persona que es enviado por
+     * @param string  $mensaje     Mensaje
+     * @param Array   $archivos    Array de string con el nombre de los documentos subidos
+     */
+    private function sendEmail($enviado_a, $enviado_por, $mensaje, $archivos)
     {
 
         //new instance
@@ -393,8 +405,8 @@ class DocumentoController extends Controller
 
         $message
             ->setSubject($subject)
-            ->setFrom([$fromEmail => 'Learn-In'])
-            ->setTo($toEmail)
+            ->setFrom([$enviadopor->getEmail() => 'Learn-In'])
+            ->setTo($enviado_a->getEmail())
             ->setReplyTo($replyEmail)
             ->setBody($this->renderView('DocumentBundle:Documento:emailDocumento.html.twig', [
                 'image_src' => $img_src,

@@ -23,7 +23,7 @@ class ContactController extends Controller
      */
     public function exceptionAction(Request $request)
     {
-      return $this->render('default/error403.html.twig');
+        return $this->render('default/error403.html.twig');
     }
 
     /**

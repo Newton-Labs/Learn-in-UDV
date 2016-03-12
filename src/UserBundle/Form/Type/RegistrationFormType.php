@@ -29,7 +29,12 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Apellidos',
                     ],
                 ])
-            ->add('username', null, ['label' => false, 'translation_domain' => 'FOSUserBundle'])
+            ->add('username', null, [
+                'label' => false, 'translation_domain' => 'FOSUserBundle',
+                'constraints' => [
+                    new Callback([$this, 'validarNombreUsuario']),
+                ],
+            ])
             ->add('email', 'email', ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('plainPassword', 'repeated', [
                 'label' => false,
@@ -109,6 +114,21 @@ class RegistrationFormType extends AbstractType
     {
         if ($data->getTipoUsuario() == 0 && $data->getCarnet() == null) {
             $context->buildViolation('Si eres estudiante es necesario un número de carnet o un número de identificación')
+                ->atPath('fos_user_registration_register')
+                ->addViolation();
+        }
+    }
+
+    /**
+     * Validar que el nombre de usuario no tenga espacios en blanco.
+     *
+     * @param Array                     $data    contiene los datos del formulario
+     * @param ExecutionContextInterface $context
+     */
+    public function validarNombreUsuario($username, ExecutionContextInterface $context)
+    {
+        if (preg_match('/\s/', $username)) {
+            $context->buildViolation('El nombre de usuario no puede tener espacios en blanco')
                 ->atPath('fos_user_registration_register')
                 ->addViolation();
         }

@@ -105,6 +105,7 @@ class AsignacionController extends Controller
             );
         }
         $data = $form->getData();
+        $curso = $data['curso'];
         $carrera = $data['carreras'];
         $periodo = $data['periodo'];
         $catedratico = $data['catedratico'];
@@ -113,6 +114,13 @@ class AsignacionController extends Controller
         $repositoryCurso = $this->getDoctrine()->getRepository('CursoBundle:Curso');
         $qb = $repositoryCurso->createQueryBuilder('curso');
 
+        if (isset($curso)) {
+            $qb
+                 ->select('curso')
+                ->orderBy('curso.nombreCurso', 'ASC')
+                ->Where('curso.nombreCurso LIKE :nombre')
+                ->setParameter('nombre', $curso.'%');
+        }
         if (isset($carrera)) {
             $qb
                  ->select('curso')
@@ -145,6 +153,8 @@ class AsignacionController extends Controller
 
         if (count($cursos) < 1) {
             $this->get('braincrafted_bootstrap.flash')->alert('No se encontraron cursos con los parámetros ingresados');
+        } else {
+            $this->get('braincrafted_bootstrap.flash')->success(sprintf('Se encontraron %s cursos con los parámetros ingresados', count($cursos)));
         }
 
         return $this->render(

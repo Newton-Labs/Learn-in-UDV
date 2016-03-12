@@ -15,13 +15,11 @@ class BuscarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('curso', 'entity', [
-                    'empty_value' => 'Seleccione el curso',
-                    'class' => 'CursoBundle:Curso',
-                    'label' => 'Buscar por Nombre',
-                    'choice_label' => 'nombreCurso',
+            ->add('curso', 'text', [
+                    'label' => 'Buscar Curso por Nombre',
                     'attr' => [
                         'class' => 'select2',
+                        'placeholder' => 'Ingrese el nombre del curso',
                     ],
                     'required' => false,
                 ])
@@ -29,16 +27,16 @@ class BuscarType extends AbstractType
                 'empty_value' => 'Seleccionar Carrera',
                 'class' => 'CursoBundle:Carrera',
                 'property' => 'toStringCarreraYFacultad',
-                'label' => 'Buscador de Carrera',
+                'label' => 'Buscador curso por carrera',
                 'attr' => [
                     'class' => 'select2',
                 ],
                 'required' => false,
             ])
             ->add('periodo', 'entity', [
-                'empty_value' => 'Seleccionar curso',
+                'empty_value' => 'Seleccionar Período',
                 'class' => 'CursoBundle:Periodo',
-                'label' => 'Buscador de Período',
+                'label' => 'Buscador curso por período',
                 'attr' => [
                     'class' => 'select2',
                 ],
@@ -55,7 +53,7 @@ class BuscarType extends AbstractType
                         ->where('usuario.roles LIKE :roles')
                         ->setParameter('roles', '%"'.$role.'"%');
                 },
-                'label' => 'Buscador de Catedráticos',
+                'label' => 'Buscador curso por Catedráticos',
                 'attr' => [
                     'class' => 'select2',
                 ],
@@ -72,7 +70,7 @@ class BuscarType extends AbstractType
                     2020 => 2020,
                     2021 => 2021,
                 ],
-                'label' => 'Buscador de Año',
+                'label' => 'Buscador curso por Año',
                 'attr' => [
                     'class' => 'select2',
                 ],
@@ -88,7 +86,7 @@ class BuscarType extends AbstractType
                 'attr' => [
                     'class' => 'select2',
                     ],
-                'placeholder' => 'Seleccionar Sede',
+                'placeholder' => 'Seleccionar curso por Sede',
                  'required' => false,
 
             ])
