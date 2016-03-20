@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),//soft delete bundle
             //new Mremi\ContactBundle\MremiContactBundle(),//contact bundle
              new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+             new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
             new CursoBundle\CursoBundle(),
             new UserBundle\UserBundle(),
             new DocumentBundle\DocumentBundle(),

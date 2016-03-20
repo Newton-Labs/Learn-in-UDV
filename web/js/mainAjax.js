@@ -29,6 +29,11 @@ function ajaxTipoDocumento()
                
                 
                 select.options.add(opt1);
+                
+                if (index == dataOptions.length-1){
+                    $(select).val(dataIds[index]['value']).trigger("change"); 
+                  
+                }
             }
             
            
