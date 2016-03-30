@@ -113,19 +113,20 @@ class AsignacionController extends Controller
         $sede = $data['sede'];
         $repositoryCurso = $this->getDoctrine()->getRepository('CursoBundle:Curso');
         $qb = $repositoryCurso->createQueryBuilder('curso');
+        if (isset($curso) || isset($carrera)) {
+            $qb
+            ->select('curso')
+            ->orderBy('curso.nombreCurso', 'ASC');
+        }
 
         if (isset($curso)) {
             $qb
-                 ->select('curso')
-                ->orderBy('curso.nombreCurso', 'ASC')
                 ->Where('curso.nombreCurso LIKE :nombre')
                 ->setParameter('nombre', $curso.'%');
         }
         if (isset($carrera)) {
             $qb
-                 ->select('curso')
-                ->orderBy('curso.nombreCurso', 'ASC')
-                ->Where('curso.carreras = :carrera')
+                ->andWhere('curso.carreras = :carrera')
                 ->setParameter('carrera', $carrera);
         }
         if (isset($periodo)) {
