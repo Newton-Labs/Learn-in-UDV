@@ -45,7 +45,7 @@ class Actividad
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaExpiracion", type="datetimetz")
+     * @ORM\Column(name="fechaExpiracion", type="datetime")
      */
     private $fechaExpiracion;
 
