@@ -115,8 +115,8 @@ class AsignacionController extends Controller
         $qb = $repositoryCurso->createQueryBuilder('curso');
         if (isset($curso) || isset($carrera)) {
             $qb
-            ->select('curso')
-            ->orderBy('curso.nombreCurso', 'ASC');
+                ->select('curso')
+                ->orderBy('curso.nombreCurso', 'ASC');
         }
 
         if (isset($curso)) {

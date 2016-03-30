@@ -1,0 +1,30 @@
+{% extends '::base_page.html.twig' %}
+{% block js %}
+
+<script src="{{ asset('js/bc-bootstrap-collection.js')
+ }}"></script>
+
+<script src="{{ asset('js/jquery.initialize.js')
+ }}"></script>
+
+{% endblock %}
+
+{% block body_content -%}
+    <h1>Subir nuevo documento</h1>
+
+    {{ form(form) }}
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+<script src="{{ asset('js/reloadDataForm.js') }}"></script>
+ <script src="{{ asset('js/upload.js') }}"></script>
+ <script>
+$(":file").filestyle({buttonBefore: true,buttonName: "btn-primary",
+  placeholder: "Aquí aparecerá el nombre del archivo seleccionado",
+  buttonText: "Seleccionar documento"});
+ </script>
+   
+{% endblock %}

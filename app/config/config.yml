@@ -114,6 +114,8 @@ stof_doctrine_extensions:
         default:
             sluggable: true
             loggable: true
+sc_datetimepicker:
+    picker: ~
 knp_gaufrette:
     stream_wrapper: ~
 

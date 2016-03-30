@@ -16,10 +16,6 @@ class DocumentoType extends AbstractType
     private $usuario;
     private $editBoolean = true;
 
-    public function __construct(Usuario  $user)
-    {
-        $this->usuario = $user;
-    }
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -48,12 +44,6 @@ class DocumentoType extends AbstractType
               ),
               'expanded' => true,
               'required' => true,
-
-            ])
-            ->add('curso', 'entity', [
-                'class' => 'CursoBundle:Curso',
-                'choices' => $this->getUsuario()->getCursos(),
-                'empty_value' => 'Seleccione el curso del documento',
 
             ])
 

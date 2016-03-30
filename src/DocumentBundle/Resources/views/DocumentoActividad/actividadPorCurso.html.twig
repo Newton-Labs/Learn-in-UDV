@@ -1,0 +1,41 @@
+{% extends 'base_page.html.twig' %}
+
+{% block body_content %}
+    <h1>Actividades del curso {{curso}}</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre actividad</th>
+                <th>Fecha publicación</th>
+                <th>Fecha expiración</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actividad in actividades %}
+            <tr>
+                <td>{{ actividad.nombreActividad }}</td>
+                <td>{% if actividad.fechaPublicacion %}{{ actividad.fechaPublicacion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{% if actividad.fechaExpiracion %}{{ actividad.fechaExpiracion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class = "btn btn-xs btn-info" href="{{ path('actividad_show', { 'id': actividad.id }) }}">mostrar</a>
+                        </li>
+                        <li>
+                            <a class = "btn btn-xs btn-warning" href="{{ path('actividad_edit', { 'id': actividad.id }) }}">editar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('actividad_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

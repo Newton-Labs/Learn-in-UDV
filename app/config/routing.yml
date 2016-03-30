@@ -1,3 +1,11 @@
+document_actividad:
+    resource: "@DocumentBundle/Controller/ActividadController.php"
+    type:     annotation
+
+document_actividad:
+    resource: "@DocumentBundle/Controller/ActividadController.php"
+    type:     annotation
+
 report:
     resource: "@ReportBundle/Resources/config/routing.php"
     prefix:   /
