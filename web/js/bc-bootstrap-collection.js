@@ -18,13 +18,7 @@
         removeField = '[data-removefield="collection"]',
         CollectionAdd = function (el) {
             $(el).on('click', addField, this.addField);
-            $(el).on('click',addField, function(){
-                $(":file").filestyle({buttonBefore: true,buttonName: "btn-primary",
-  placeholder: "Aquí aparecerá el nombre del archivo seleccionado",
-  buttonText: "Seleccionar documento"});
-            }
-
-                );
+          
         },
         CollectionRemove = function (el) {
             $(el).on('click', removeField, this.removeField);
@@ -61,7 +55,7 @@
         var newLi = $('<li></li>').html(newWidget);
         var breakSpace = $('<br>').html(newWidget);
         newLi.appendTo(list);
-        breakSpace.appendTo(list);
+       
         $this.trigger('bc-collection-field-added');
           $(":file").filestyle({buttonBefore: true,buttonName: "btn-primary",
   placeholder: "Aquí aparecerá el nombre del archivo seleccionado",

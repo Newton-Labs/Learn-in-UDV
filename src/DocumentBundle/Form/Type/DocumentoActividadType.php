@@ -5,8 +5,20 @@ namespace DocumentBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class DocumentoActividadType extends AbstractType
 {
+    private $actividad = null;
+
+    public function __construct($actividad)
+    {
+        if (is_null($actividad)) {
+            //do nothing
+        } else {
+            $this->actividad = $actividad;
+        }
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -30,16 +42,23 @@ class DocumentoActividadType extends AbstractType
                         ],
                     'options' => [
                         'attr' => ['class' => 'filestyle', 'data-buttonBefore' => true],
-                         'multiple' => true,
+                        'multiple' => true,
                     ],
 
                 ])
             ->add('mensajeEnvio', 'textarea', [
                 'label' => 'Comentarios Adicionales',
-                
+                'required' => false,
 
             ])
-       
+            ->add('actividad', 'entity', [
+                'class' => 'DocumentBundle:Actividad',
+                'data' => $this->actividad,
+                'read_only' => true,
+                'disabled' => true,
+
+            ])
+
         ;
     }
 

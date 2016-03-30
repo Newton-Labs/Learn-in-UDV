@@ -65,7 +65,7 @@ class DocumentoActividad
      */
     private $documentFile;
 
-     /**
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
@@ -299,11 +299,11 @@ class DocumentoActividad
         return $this->subidoPor;
     }
 
-   
     /**
-     * Set mensajeEnvío
+     * Set mensajeEnvío.
      *
      * @param string $mensajeEnvío
+     *
      * @return DocumentoActividad
      */
     public function setMensajeEnvio($mensajeEnvio)
@@ -314,18 +314,17 @@ class DocumentoActividad
     }
 
     /**
-     * Get mensajeEnvío
+     * Get mensajeEnvío.
      *
-     * @return string 
+     * @return string
      */
     public function getMensajeEnvio()
     {
         return $this->mensajeEnvio;
     }
 
-     public function __toString()
+    public function __toString()
     {
         return $this->getDocumentFixedName();
     }
-
 }

@@ -49,41 +49,44 @@ class ActividadDocumentoController extends Controller
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
-        $entity = new DocumentoActividad();
-        $entity->setSubidoPor($usuario);
-        $form = $this->createCreateForm($entity);
+
+        $form = $this->createCreateForm(null);
         $form->handleRequest($request);
-        $em = $this->getDoctrine()->getManager();
+
         if ($form->isValid()) {
-            dump($form['documentFile']);
-            foreach ($form['documentFile'] as $innerArray) {
-                $this->setMultipleUpload($innerArray->getData());
-            }
-            $em->persist($entity);
-            $em->flush();
+            $this->setMultipleUpload($form->getData());
         }
 
         return $this->render('default/index.html.twig');
     }
 
     /**
-     * @Route("/nuevo"	, name="upload_documento_view")
+     *  @Route("/nuevo/{actividad_id}"	, name="upload_documento_view")
+     *  @ParamConverter("actividad", class="DocumentBundle:Actividad",options={"id" = "actividad_id"})
      *
      * @return [type] [description]
      */
-    public function newDocumentoActividadAction()
+    public function newDocumentoActividadAction(Request $request, $actividad)
     {
         $usuario = $this->get('security.token_storage')->getToken()->getUser();
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
-        $entity = new DocumentoActividad();
-        $form = $this->createCreateForm($entity);
 
-        return $this->render('DocumentBundle:DocumentoActividad:newDocumentoActividad.html.twig', [
-            'entity' => $entity,
-            'form' => $form->createView(),
-        ]);
+        $form = $this->createCreateForm($actividad);
+        $form->handleRequest($request);
+        if (!$form->isValid()) {
+            return $this->render('DocumentBundle:DocumentoActividad:newDocumentoActividad.html.twig', [
+                'form' => $form->createView(),
+
+            ]);
+        }
+
+        if ($form->isValid()) {
+            $this->setMultipleUpload($form->getData(), $actividad);
+        }
+
+        return $this->redirect($this->generateUrl('homepage'));
     }
 
     /**
@@ -93,10 +96,10 @@ class ActividadDocumentoController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(DocumentoActividad $entity)
+    private function createCreateForm($actividad)
     {
-        $form = $this->createForm(new DocumentoActividadType(), null, [
-            'action' => $this->generateUrl('documento_upload'),
+        $form = $this->createForm(new DocumentoActividadType($actividad), null, [
+            'action' => $this->generateUrl('upload_documento_view', ['actividad_id' => $actividad->getId()]),
             'method' => 'POST',
         ]);
 
@@ -105,20 +108,23 @@ class ActividadDocumentoController extends Controller
         return $form;
     }
 
-    private function setMultipleUpload($array)
+    private function setMultipleUpload($data, $actividad)
     {
         $em = $this->getDoctrine()->getManager();
         $i = 1;
 
-        foreach ($array as $archivo) {
-            $document = new DocumentoActividad();
+        foreach ($data['documentFile'] as  $arrayFile) {
+            foreach ($arrayFile as $file) {
+                $document = new DocumentoActividad();
 
-            $document->setSubidoPor($this->getUser());
-            $document->setDocumentFile($archivo);
+                $document->setSubidoPor($this->getUser());
+                $document->setActividad($actividad);
+                $document->setDocumentFile($file);
+                $document->setMensajeEnvio($data['mensajeEnvio']);
+                $em->persist($document);
 
-            $em->persist($document);
-
-            ++$i;
+                ++$i;
+            }
         }
         $em->flush();
 
