@@ -19,8 +19,8 @@ class DocumentoActividadType extends AbstractType
                     'label' => 'Archivos',
                     'allow_add' => true,
                     'allow_delete' => true,
-                    'add_button_text' => 'Agregar Registro',
-                    'delete_button_text' => 'Eliminar Registro',
+                    'add_button_text' => 'Agregar Archivos',
+                    'delete_button_text' => 'Eliminar Archivos',
                     'sub_widget_col' => 6,
                     'button_col' => 3,
                     'by_reference' => false, //esta linea también es importante para que se guarde la ref
@@ -34,11 +34,12 @@ class DocumentoActividadType extends AbstractType
                     ],
 
                 ])
-          /* ->add('documentFile', 'file', ['label' => false,
-                'attr' => ['class' => 'filestyle', 'data-buttonBefore' => true],
-                'multiple' => true,
-                ]);*/
+            ->add('mensajeEnvio', 'textarea', [
+                'label' => 'Comentarios Adicionales',
+                
 
+            ])
+       
         ;
     }
 

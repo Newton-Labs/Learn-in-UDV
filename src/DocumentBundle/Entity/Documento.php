@@ -60,6 +60,7 @@ class Documento
      *     "application/vnd.ms-powerpoint",
      *     "image/png",
      *     "image/jpeg",
+     *     "text/*",
      *     "text/plain",
      *     "application/xml",
      *     "image/vnd.adobe.photoshop",

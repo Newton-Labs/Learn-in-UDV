@@ -52,6 +52,7 @@ class DocumentoActividad
      *     "application/vnd.ms-powerpoint",
      *     "image/png",
      *     "image/jpeg",
+     *     "text/*",
      *     "text/plain",
      *     "application/xml",
      *     "image/vnd.adobe.photoshop",
@@ -63,6 +64,13 @@ class DocumentoActividad
      * @var File
      */
     private $documentFile;
+
+     /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $mensajeEnvio;
 
     /**
      * @ORM\ManyToOne(targetEntity="Actividad")
@@ -291,8 +299,33 @@ class DocumentoActividad
         return $this->subidoPor;
     }
 
-    public function __toString()
+   
+    /**
+     * Set mensajeEnvío
+     *
+     * @param string $mensajeEnvío
+     * @return DocumentoActividad
+     */
+    public function setMensajeEnvio($mensajeEnvio)
+    {
+        $this->mensajeEnvio = $mensajeEnvio;
+
+        return $this;
+    }
+
+    /**
+     * Get mensajeEnvío
+     *
+     * @return string 
+     */
+    public function getMensajeEnvio()
+    {
+        return $this->mensajeEnvio;
+    }
+
+     public function __toString()
     {
         return $this->getDocumentFixedName();
     }
+
 }
