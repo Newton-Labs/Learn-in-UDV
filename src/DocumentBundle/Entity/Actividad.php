@@ -194,11 +194,11 @@ class Actividad
         return $this->descripcionActividad;
     }
 
-
     /**
-     * Set usuario
+     * Set usuario.
      *
      * @param \UserBundle\Entity\Usuario $usuario
+     *
      * @return Actividad
      */
     public function setUsuario(\UserBundle\Entity\Usuario $usuario = null)
@@ -209,9 +209,9 @@ class Actividad
     }
 
     /**
-     * Get usuario
+     * Get usuario.
      *
-     * @return \UserBundle\Entity\Usuario 
+     * @return \UserBundle\Entity\Usuario
      */
     public function getUsuario()
     {

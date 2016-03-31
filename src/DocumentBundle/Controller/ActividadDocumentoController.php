@@ -11,6 +11,7 @@ use DocumentBundle\Form\Type\DocumentoActividadType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Actividad controller.
@@ -19,18 +20,16 @@ use FOS\UserBundle\Model\UserInterface;
  */
 class ActividadDocumentoController extends Controller
 {
-
-     /**
-     * Mostrar cursos para subir tareas
+    /**
+     * Mostrar cursos para subir tareas.
      *
      * @Route("/cursos/",name="tareas_cursos_show")
      * @Method("GET")
-     * 
      */
     public function showCursosAction()
     {
         $usuario = $this->getUser();
-         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
 
@@ -38,7 +37,7 @@ class ActividadDocumentoController extends Controller
 
         return $this->render('DocumentBundle:DocumentoActividad:tareasCursos.html.twig',
             [
-                'cursos' => $cursos
+                'cursos' => $cursos,
             ]
         );
     }
@@ -156,12 +155,12 @@ class ActividadDocumentoController extends Controller
     /**
      * @Route("/cursos/catedratico",name="cursos_catedratico")
      * @Method("GET")
-     *
+     * @Security("is_granted('ROLE_CATEDRATICO')")
      */
     public function showCursosCatedraticoAction()
-    {   
+    {
         $usuario = $this->getUser();
-         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
             throw new AccessDeniedException('El usuario no tiene acceso.');
         }
 
@@ -169,7 +168,7 @@ class ActividadDocumentoController extends Controller
 
         return $this->render('DocumentBundle:DocumentoActividad:tareasCursosCatedratico.html.twig',
             [
-                'cursos' => $cursos
+                'cursos' => $cursos,
             ]
         );
     }
@@ -180,10 +179,11 @@ class ActividadDocumentoController extends Controller
      * @Route("/curso/catedratico/{slug}", name="actividad_por_curso_catedratico")
      * @ParamConverter("curso", class="CursoBundle:Curso",options={"slug" = "curso_slug"})
      * @Method("GET")
+     * @Security("is_granted('ROLE_CATEDRATICO')")
      */
     public function actividadPorCursoCatedraticoAction($curso)
     {
-         $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
         $actividadesPorCurso = $em->getRepository('DocumentBundle:Actividad')->findBy(
             [
@@ -201,6 +201,7 @@ class ActividadDocumentoController extends Controller
      * @Route("/listar/documentos/catedratico/{actividad_id}", name="listar_documentos_catedratico")
      * @Method("GET")
      * @ParamConverter("actividad", class="DocumentBundle:Actividad",options={"id" = "actividad_id"})
+     * @Security("is_granted('ROLE_CATEDRATICO')")
      */
     public function listarDocumentosAction($actividad)
     {
@@ -211,10 +212,9 @@ class ActividadDocumentoController extends Controller
                 'actividad' => $actividad,
             ]
         );
-        return $this->render('DocumentBundle:DocumentoActividad:mostrarDocumentos.html.twig',[
+
+        return $this->render('DocumentBundle:DocumentoActividad:mostrarDocumentos.html.twig', [
             'documentos' => $documentosActividad,
         ]);
     }
-
-
 }

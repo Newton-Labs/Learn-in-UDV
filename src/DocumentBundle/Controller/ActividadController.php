@@ -10,8 +10,10 @@ use DocumentBundle\Entity\Actividad;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 /**
  * Actividad controller.
+ *
  * @Security("is_granted('ROLE_CATEDRATICO')")
  * @Route("/actividad")
  */

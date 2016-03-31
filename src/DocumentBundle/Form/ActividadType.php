@@ -21,7 +21,7 @@ class ActividadType extends AbstractType
                 'attr' => [
                     'rows' => '3',
                     'maxlength' => '255',
-                ]
+                ],
             ])
             ->add('fechaExpiracion', 'collot_datetime', ['pickerOptions' => [
                     'format' => 'mm/dd/yyyy HH:ii',
@@ -45,8 +45,8 @@ class ActividadType extends AbstractType
                 'label' => 'fecha de expiración',
                 'attr' => [
                     'placeholder' => 'Hacer clíck aquí para mostrar calendario',
-                    'help_text' => 'Los estudiantes no podrán subir documentos después de esta fecha'
-                ]
+                    'help_text' => 'Los estudiantes no podrán subir documentos después de esta fecha',
+                ],
 
             ])
 
@@ -58,8 +58,8 @@ class ActividadType extends AbstractType
             ->add('submit', 'submit', [
                     'label' => 'Guardar',
                     'attr' => [
-                        'class' => 'btn btn-block'
-                    ]
+                        'class' => 'btn btn-block',
+                    ],
 
                 ])
         ;
