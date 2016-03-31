@@ -9,6 +9,21 @@
                 <th>Nombre Actividad</th>
                 <td>{{ actividad.nombreActividad }}</td>
             </tr>
+             <tr>
+                <th>Descripción</th>
+
+                <td>
+                    <textarea readonly rows="4" cols="70">{{actividad.descripcionActividad}}
+                    </textarea>
+                </td>
+            </tr>
+             <tr>
+                <th>Curso</th>
+
+                <td>
+                    {{actividad.curso}}
+                </td>
+            </tr>
             <tr>
                 <th>Fecha publicación</th>
                 <td>{% if actividad.fechaPublicacion %}{{ actividad.fechaPublicacion|date('d-m-Y H:i:s') }}{% endif %}</td>
@@ -17,19 +32,25 @@
                 <th>Fecha expiración</th>
                 <td>{% if actividad.fechaExpiracion %}{{ actividad.fechaExpiracion|date('d-m-Y H:i:s') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Creado por</th>
+                <td>
+                    {{actividad.usuario}}
+                </td>
+            </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('actividad_index') }}">Back to the list</a>
+            <a class="btn btn-default" href="{{ path('actividad_index') }}">Mostrar mis actividades creadas</a>
         </li>
         <li>
-            <a href="{{ path('actividad_edit', { 'id': actividad.id }) }}">Edit</a>
+            <a class="btn btn-warning" href="{{ path('actividad_edit', { 'id': actividad.id }) }}">Editar</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Eliminar">
             {{ form_end(delete_form) }}
         </li>
     </ul>

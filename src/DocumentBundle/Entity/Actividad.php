@@ -54,6 +54,11 @@ class Actividad
      */
     private $curso;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Usuario")
+     */
+    private $usuario;
+
     public function __construct()
     {
         $this->fechaPublicacion = new \DateTime();
@@ -187,6 +192,30 @@ class Actividad
     public function getDescripcionActividad()
     {
         return $this->descripcionActividad;
+    }
+
+
+    /**
+     * Set usuario
+     *
+     * @param \UserBundle\Entity\Usuario $usuario
+     * @return Actividad
+     */
+    public function setUsuario(\UserBundle\Entity\Usuario $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \UserBundle\Entity\Usuario 
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 
     public function __toString()

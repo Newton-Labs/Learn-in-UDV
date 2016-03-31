@@ -15,15 +15,38 @@ use FOS\UserBundle\Model\UserInterface;
 /**
  * Actividad controller.
  *
- * @Route("/actividad/documento")
+ * @Route("/tareas")
  */
 class ActividadDocumentoController extends Controller
 {
+
+     /**
+     * Mostrar cursos para subir tareas
+     *
+     * @Route("/cursos/",name="tareas_cursos_show")
+     * @Method("GET")
+     * 
+     */
+    public function showCursosAction()
+    {
+        $usuario = $this->getUser();
+         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
+        $cursos = $usuario->getCursos();
+
+        return $this->render('DocumentBundle:DocumentoActividad:tareasCursos.html.twig',
+            [
+                'cursos' => $cursos
+            ]
+        );
+    }
     /**
      * Lists todas las actividades por curso.
      *
-     * @Route("/curso/{curso_id}", name="actividad_por_curso")
-     * @ParamConverter("curso", class="CursoBundle:Curso",options={"id" = "curso_id"})
+     * @Route("/curso/{slug}", name="actividad_por_curso")
+     * @ParamConverter("curso", class="CursoBundle:Curso",options={"slug" = "curso_slug"})
      * @Method("GET")
      */
     public function actividadPorCursoAction($curso)
@@ -130,4 +153,68 @@ class ActividadDocumentoController extends Controller
 
         return $i;
     }
+    /**
+     * @Route("/cursos/catedratico",name="cursos_catedratico")
+     * @Method("GET")
+     *
+     */
+    public function showCursosCatedraticoAction()
+    {   
+        $usuario = $this->getUser();
+         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
+        $cursos = $usuario->getCursos();
+
+        return $this->render('DocumentBundle:DocumentoActividad:tareasCursosCatedratico.html.twig',
+            [
+                'cursos' => $cursos
+            ]
+        );
+    }
+
+    /**
+     * Lists todas las actividades por curso.
+     *
+     * @Route("/curso/catedratico/{slug}", name="actividad_por_curso_catedratico")
+     * @ParamConverter("curso", class="CursoBundle:Curso",options={"slug" = "curso_slug"})
+     * @Method("GET")
+     */
+    public function actividadPorCursoCatedraticoAction($curso)
+    {
+         $em = $this->getDoctrine()->getManager();
+
+        $actividadesPorCurso = $em->getRepository('DocumentBundle:Actividad')->findBy(
+            [
+                'curso' => $curso,
+                'usuario' => $this->getUser(),
+            ]
+        );
+
+        return $this->render('DocumentBundle:DocumentoActividad:actividadPorCursoCatedratico.html.twig', [
+            'actividades' => $actividadesPorCurso,
+            'curso' => $curso,
+        ]);
+    }
+    /**
+     * @Route("/listar/documentos/catedratico/{actividad_id}", name="listar_documentos_catedratico")
+     * @Method("GET")
+     * @ParamConverter("actividad", class="DocumentBundle:Actividad",options={"id" = "actividad_id"})
+     */
+    public function listarDocumentosAction($actividad)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $documentosActividad = $em->getRepository('DocumentBundle:DocumentoActividad')->findBy(
+            [
+                'actividad' => $actividad,
+            ]
+        );
+        return $this->render('DocumentBundle:DocumentoActividad:mostrarDocumentos.html.twig',[
+            'documentos' => $documentosActividad,
+        ]);
+    }
+
+
 }

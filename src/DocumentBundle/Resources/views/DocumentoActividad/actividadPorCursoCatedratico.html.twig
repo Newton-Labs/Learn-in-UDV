@@ -21,11 +21,9 @@
                 <td>
                     <ul>
                         <li>
-                            {% if date() < actividad.fechaExpiracion %}
-                            <a class = "btn btn-info" href="{{ path('actividad_show', { 'id': actividad.id }) }}">Subir Documentos</a>
-                            {% else %}
-                            <button class = "btn btn-danger">Actividad Expirada</button>
-                            {% endif %}
+                           
+                            <a class = "btn btn-info" href="{{ path('listar_documentos_catedratico', { 'actividad_id': actividad.id }) }}">Ver documentos subidos</a>
+                           
                         </li>
                       
                     </ul>

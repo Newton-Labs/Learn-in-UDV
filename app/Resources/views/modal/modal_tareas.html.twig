@@ -1,0 +1,29 @@
+ <!-- Modal para Tareas -->
+<div class="modal fade" id="modalTarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Creación de Tareas</h4>
+      </div>
+      <div class="modal-body">
+      
+        <a href="{{ path('actividad_new')}}" class="btn btn-warning">
+            <h2 style="color: white ">Crear nueva actividad para subir tareas</h2>
+        </a>
+        <br>
+        <br>
+        <br>
+        <a href="{{ path('cursos_catedratico') }}" class="btn btn-info">
+           <h2 style="color: white ">Ver tareas subidas</h2>
+        </a>
+        <br>
+        <br>
+        <br>
+        <a href="{{ path('actividad_index') }}" class="btn btn-warning">
+           <h2 style="color: white ">Ver todas mis actividades creadas</h2>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

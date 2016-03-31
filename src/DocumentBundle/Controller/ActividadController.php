@@ -7,27 +7,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use DocumentBundle\Entity\Actividad;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * Actividad controller.
- *
+ * @Security("is_granted('ROLE_CATEDRATICO')")
  * @Route("/actividad")
  */
 class ActividadController extends Controller
 {
     /**
-     * Lists all Actividad entities.
+     * Lists all Actividad entities. Muestra las actividades por el usuario actual.
      *
      * @Route("/", name="actividad_index")
      * @Method("GET")
      */
     public function indexAction()
     {
+        $usuario = $this->getUser();
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
         $em = $this->getDoctrine()->getManager();
 
-        $actividads = $em->getRepository('DocumentBundle:Actividad')->findAll();
+        $actividades = $em->getRepository('DocumentBundle:Actividad')->findAll(['usuario' => $usuario]);
 
-        return $this->render('actividad/index.html.twig', array(
+        return $this->render('DocumentBundle:Actividad:indexActividad.html.twig', array(
             'actividades' => $actividades,
         ));
     }
@@ -40,19 +47,25 @@ class ActividadController extends Controller
      */
     public function newAction(Request $request)
     {
+        $usuario = $this->getUser();
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
         $actividad = new Actividad();
         $form = $this->createForm('DocumentBundle\Form\ActividadType', $actividad);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $actividad->setUsuario($usuario);
             $em->persist($actividad);
             $em->flush();
 
             return $this->redirectToRoute('actividad_show', array('id' => $actividad->getId()));
         }
 
-        return $this->render('actividad/new.html.twig', array(
+        return $this->render('DocumentBundle:Actividad:newActividad.html.twig', array(
             'actividad' => $actividad,
             'form' => $form->createView(),
         ));
@@ -68,7 +81,7 @@ class ActividadController extends Controller
     {
         $deleteForm = $this->createDeleteForm($actividad);
 
-        return $this->render('actividad/show.html.twig', array(
+        return $this->render('DocumentBundle:Actividad:showActividad.html.twig', array(
             'actividad' => $actividad,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -94,7 +107,7 @@ class ActividadController extends Controller
             return $this->redirectToRoute('actividad_edit', array('id' => $actividad->getId()));
         }
 
-        return $this->render('actividad/edit.html.twig', array(
+        return $this->render('DocumentBundle:Actividad:editActividad.html.twig', array(
             'actividad' => $actividad,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -1,0 +1,32 @@
+{% extends '::base_page.html.twig' %}
+
+{% block body_content -%}
+    
+    <h1> Cursos actuales</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre Curso</th>
+                <th>Carrera</th>
+                <th>Catedrático</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+            <tr>
+                
+                <td>  <a href="{{ path('actividad_por_curso_catedratico',{'slug':curso.slug})}}"> {{ curso.nombreCurso }} </a> </td> 
+                <td><a href="{{ path('actividad_por_curso_catedratico',{'slug':curso.slug})}}"> {{ curso.carreras }} </a> </td> 
+                <td><a href="{{ path('actividad_por_curso_catedratico',{'slug':curso.slug})}}"> {{ curso.cursoCreadoPor }} </a> </td> 
+               
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h4>¿No aparece el curso que buscabas?</h4>
+    <a class= "btn btn-default btn-sm btn-warning" href="{{ path('buscar_cursos') }}">
+        <h4> Asígnate el curso aquí</h4>
+    </a>
+    {% endblock %}

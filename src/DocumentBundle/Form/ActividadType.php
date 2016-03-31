@@ -18,6 +18,10 @@ class ActividadType extends AbstractType
             ->add('nombreActividad')
             ->add('descripcionActividad', 'textarea', [
                 'label' => 'Descripción de la actividad',
+                'attr' => [
+                    'rows' => '3',
+                    'maxlength' => '255',
+                ]
             ])
             ->add('fechaExpiracion', 'collot_datetime', ['pickerOptions' => [
                     'format' => 'mm/dd/yyyy HH:ii',
@@ -33,16 +37,31 @@ class ActividadType extends AbstractType
                     'forceParse' => false,
                     'minuteStep' => 5,
                     'pickerReferer ' => 'default', //deprecated
-                    'pickerPosition' => 'bottom-o',
+                    'pickerPosition' => 'top-left',
                     'viewSelect' => 'month',
                     'showMeridian' => false,
                 ],
                 'read_only' => true,
                 'label' => 'fecha de expiración',
+                'attr' => [
+                    'placeholder' => 'Hacer clíck aquí para mostrar calendario',
+                    'help_text' => 'Los estudiantes no podrán subir documentos después de esta fecha'
+                ]
 
             ])
 
-            ->add('curso')
+            ->add('curso', 'entity', [
+                'class' => 'CursoBundle:Curso',
+                'empty_value' => 'Seleccione el curso al que pertenece esta actividad',
+
+                ])
+            ->add('submit', 'submit', [
+                    'label' => 'Guardar',
+                    'attr' => [
+                        'class' => 'btn btn-block'
+                    ]
+
+                ])
         ;
     }
 
