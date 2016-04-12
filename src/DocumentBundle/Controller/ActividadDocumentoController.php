@@ -215,6 +215,6 @@ class ActividadDocumentoController extends Controller
 
         return $this->render('DocumentBundle:DocumentoActividad:mostrarDocumentos.html.twig', [
             'documentos' => $documentosActividad,
-        ]);
+        ]); 
     }
 }
