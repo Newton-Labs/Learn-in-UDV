@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Pablo diaz pablodiaz@newtonlabs.com.gt
  */
-class ContactType extends AbstractType
+class MessageType extends AbstractType
 {
     /**
      * {@inheritdoc}

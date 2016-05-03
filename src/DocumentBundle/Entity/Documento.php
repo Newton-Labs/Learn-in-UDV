@@ -63,10 +63,9 @@ class Documento
      *     "text/*",
      *     "text/plain",
      *     "application/xml",
-     *     "image/vnd.adobe.photoshop",
-     *     "image/bmp"
+     *     "image/*",
      *    },
-     * mimeTypesMessage = "Por favor solo subir archivos PDF o Word ",
+     * mimeTypesMessage = "Por favor solo subir archivos PDF,  Word, txt o  imágenes",
      * )
      * 
      * @var File

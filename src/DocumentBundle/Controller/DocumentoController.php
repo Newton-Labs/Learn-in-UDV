@@ -402,7 +402,7 @@ class DocumentoController extends Controller
         $left_image = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
 
         $subject = 'Se ha subido un nuevo documento a Learn-IN UDV';
-
+        $replyEmail = $enviadopor->getEmail();
         $message
             ->setSubject($subject)
             ->setFrom([$enviadopor->getEmail() => 'Learn-In'])

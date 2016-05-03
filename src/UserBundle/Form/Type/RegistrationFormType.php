@@ -96,7 +96,7 @@ class RegistrationFormType extends AbstractType
         $usuario = $event->getData();
         $form = $event->getForm();
 
-        if (preg_match('/(^[0-9]+)@([udv]+[.]+[edu]+[.]+[gt]+)/', $usuario->getEmail()) == 0
+        if ($form['carnet']->getData() == null
             &&
             $form['tipoUsuario']->getData() == 1
          ) {
@@ -113,7 +113,7 @@ class RegistrationFormType extends AbstractType
     public function validarTipoUsuario($data, ExecutionContextInterface $context)
     {
         if ($data->getTipoUsuario() == 0 && $data->getCarnet() == null) {
-            $context->buildViolation('Si eres estudiante es necesario un número de carnet o un número de identificación')
+            $context->buildViolation('Es necesario un número de carnet o un número de identificación')
                 ->atPath('fos_user_registration_register')
                 ->addViolation();
         }
