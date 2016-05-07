@@ -32,6 +32,11 @@ class DocumentoType extends AbstractType
                 ],
 
             ])
+            ->add('curso', 'entity', [
+                'class' => 'CursoBundle:Curso',
+                'empty_value' => 'Seleccione el curso del documento',
+
+            ])
             ->add('mensaje', 'textarea', [
               'label' => 'Mensaje que desea agregar (opcional)',
               'required' => false,
