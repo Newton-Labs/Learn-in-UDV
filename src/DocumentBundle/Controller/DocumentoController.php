@@ -272,7 +272,7 @@ class DocumentoController extends Controller
      */
     private function createEditForm(Documento $entity, \UserBundle\Entity\Usuario $usuario)
     {
-        $var = new DocumentoType($usuario);
+        $var = new DocumentoEditType($usuario);
         $var->setEditBoolean(false);
         $form = $this->createForm($var, $entity, [
             'action' => $this->generateUrl('documento_update', ['id' => $entity->getId()]),
@@ -402,7 +402,7 @@ class DocumentoController extends Controller
         $left_image = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
 
         $subject = 'Se ha subido un nuevo documento a Learn-IN UDV';
-        $replyEmail = $enviadopor->getEmail();
+        $replyEmail = $enviado_por->getEmail();
         $message
             ->setSubject($subject)
             ->setFrom([$enviadopor->getEmail() => 'Learn-In'])
