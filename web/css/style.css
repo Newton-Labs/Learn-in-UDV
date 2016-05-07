@@ -10,7 +10,13 @@ body {
     font-family: 'Open Sans', sans-serif;
    
 }
-
+#footer {
+   position:relative;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+}
 a,
 a:hover,
 a:focus,
