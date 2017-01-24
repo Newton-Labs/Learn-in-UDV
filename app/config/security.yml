@@ -30,6 +30,8 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/curso, roles: ROLE_CATEDRATICO }
+        - { path: ^/carrera, roles: ROLE_ADMIN }
+        - { path: ^/facultad, roles: ROLE_ADMIN }
         - { path: ^/adminEntity, role: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }
 
