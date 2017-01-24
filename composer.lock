@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "292d3dc762526626dbbfc638189a27a4",
-    "content-hash": "b20a9d5190db5efcea57ca4397ac73e1",
+    "hash": "23fdfb3effd7207961a035499ffd59db",
+    "content-hash": "3df40ca7ee09dcfded73e9fa33907f7f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -239,16 +239,16 @@
         },
         {
             "name": "cspoo/swiftmailer-mailgun-bundle",
-            "version": "dev-master",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tehplague/swiftmailer-mailgun-bundle.git",
-                "reference": "cb2966a8a4ad57a50e5d901af684732fde612fc4"
+                "reference": "76ade75f3199aabf372fedfcfc1c455c76d38313"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tehplague/swiftmailer-mailgun-bundle/zipball/cb2966a8a4ad57a50e5d901af684732fde612fc4",
-                "reference": "cb2966a8a4ad57a50e5d901af684732fde612fc4",
+                "url": "https://api.github.com/repos/tehplague/swiftmailer-mailgun-bundle/zipball/76ade75f3199aabf372fedfcfc1c455c76d38313",
+                "reference": "76ade75f3199aabf372fedfcfc1c455c76d38313",
                 "shasum": ""
             },
             "require": {
@@ -290,7 +290,7 @@
                 "mailgun",
                 "swiftmailer"
             ],
-            "time": "2016-08-17 08:30:03"
+            "time": "2016-07-12 10:28:31"
         },
         {
             "name": "doctrine/annotations",
@@ -5871,7 +5871,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "vich/uploader-bundle": 20,
-        "cspoo/swiftmailer-mailgun-bundle": 20,
         "stephanecollot/datetimepicker-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 0,
         "hautelook/alice-bundle": 0

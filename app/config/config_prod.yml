@@ -34,7 +34,7 @@ monolog:
             type:       swift_mailer
             from_email: 'soporte@newtonlabs.com.gt'
             to_email:   'soporte@newtonlabs.com.gt'
-            subject:    An Error Occurred On DRA!
+            subject:    An Error Occurred On Learn In UDV!
             level:      debug
 
 
