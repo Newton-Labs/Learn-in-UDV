@@ -54,7 +54,8 @@ class Usuario extends BaseUser
     private $carnet;
 
     /**
-     * Token security
+     * Token security.
+     *
      * @var string
      * @ORM\Column(name="api_token", type="string", nullable=true)
      */
@@ -67,7 +68,7 @@ class Usuario extends BaseUser
      */
     public function __construct()
     {
-        parent::__construct();// construye los metodos y atributos de Base
+        parent::__construct(); // construye los metodos y atributos de Base
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
@@ -202,7 +203,7 @@ class Usuario extends BaseUser
 
     /* Get tipousuario
      *
-     * @return string 
+     * @return string
      */
     public function getTipoUsuario()
     {
@@ -211,7 +212,7 @@ class Usuario extends BaseUser
 
      /* Get tipousuario
      *
-     * @return string 
+     * @return string
      */
     public function setTipoUsuario($tipo)
     {
@@ -233,9 +234,10 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set apiToken
+     * Set apiToken.
      *
      * @param string $apiToken
+     *
      * @return Usuario
      */
     public function setApiToken($apiToken)
@@ -246,9 +248,9 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get apiToken
+     * Get apiToken.
      *
-     * @return string 
+     * @return string
      */
     public function getApiToken()
     {

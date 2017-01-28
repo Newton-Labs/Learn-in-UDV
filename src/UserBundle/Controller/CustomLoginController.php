@@ -1,5 +1,7 @@
 <?php
+
 namespace UserBundle\Controller;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -9,6 +11,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpFoundation\Cookie;
+
 class CustomLoginController extends Controller
 {
     const COOKIE_DELIMITER = ':';
@@ -18,8 +21,8 @@ class CustomLoginController extends Controller
     public function customLoginAction(Request $request)
     {
         $apitk = $request->get('sessiontk');
-        $list = explode(":", base64_decode($apitk));
-        $username= $list[0];
+        $list = explode(':', base64_decode($apitk));
+        $username = $list[0];
         $token = $list[1];
         $em = $this->getDoctrine()->getEntityManager();
         $user = $em->getRepository('UserBundle:Usuario')->findOneBy(array('username' => $username));
@@ -65,8 +68,10 @@ class CustomLoginController extends Controller
             $response = new JsonResponse();
             $response->headers->setCookie($cookie);
             $response->setData(['valid' => true, 'message' => true]);
+
             return $response;
         }
+
         return new JsonResponse(['valid' => false, 'message' => 'Wrong key']);
     }
     /**
@@ -120,6 +125,7 @@ class CustomLoginController extends Controller
                 throw new \InvalidArgumentException(sprintf('$cookieParts should not contain the cookie delimiter "%s"', self::COOKIE_DELIMITER));
             }
         }
+
         return base64_encode(implode(self::COOKIE_DELIMITER, $cookieParts));
     }
     /**

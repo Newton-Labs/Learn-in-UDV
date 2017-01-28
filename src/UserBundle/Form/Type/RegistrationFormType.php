@@ -107,7 +107,7 @@ class RegistrationFormType extends AbstractType
     /**
      * Validar que la fecha de ingreso sea antes que la fecha de salida.
      *
-     * @param Array                     $data    contiene los datos del formulario
+     * @param array                     $data    contiene los datos del formulario
      * @param ExecutionContextInterface $context
      */
     public function validarTipoUsuario($data, ExecutionContextInterface $context)
@@ -122,7 +122,7 @@ class RegistrationFormType extends AbstractType
     /**
      * Validar que el nombre de usuario no tenga espacios en blanco.
      *
-     * @param Array                     $data    contiene los datos del formulario
+     * @param array                     $data    contiene los datos del formulario
      * @param ExecutionContextInterface $context
      */
     public function validarNombreUsuario($username, ExecutionContextInterface $context)

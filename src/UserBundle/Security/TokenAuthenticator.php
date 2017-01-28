@@ -1,5 +1,7 @@
 <?php
+
 namespace UserBundle\Security;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -32,6 +34,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             $decoded = base64_decode($auth);
             $token = substr($decoded, 0, strpos($decoded, ':'));
             $password = substr($decoded, strpos($decoded, ':') + 1, strlen($decoded));
+
             return ['token' => $token, 'password' => $password];
         }
         if (!$token = $request->headers->get('X-AUTH-TOKEN')) {
@@ -66,6 +69,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         // no credential check is needed in this case
         if ($user->getPassword() === $encodedPassword) {
             $this->user = $user;
+
             return true;
         }
         // return true to cause authentication success
@@ -83,6 +87,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         );
+
         return new JsonResponse($data, 403);
     }
     /**
@@ -94,6 +99,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             // you might translate this message
             'message' => 'Authentication Required',
         );
+
         return new JsonResponse($data, 401);
     }
     public function supportsRememberMe()

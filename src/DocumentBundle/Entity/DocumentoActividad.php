@@ -34,14 +34,14 @@ class DocumentoActividad
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
+     *
      * @Vich\UploadableField(mapping="document", fileNameProperty="documentName",
      * nullable=true)
-     * 
+     *
      * @Assert\File(
      * maxSize="32M",
      * mimeTypes = {
-     *     "application/pdf", 
+     *     "application/pdf",
      *     "application/x-pdf",
      *     "application/msword",
      *     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -60,7 +60,7 @@ class DocumentoActividad
      *    },
      * mimeTypesMessage = "Por favor solo subir archivos PDF o Word ",
      * )
-     * 
+     *
      * @var File
      */
     private $documentFile;

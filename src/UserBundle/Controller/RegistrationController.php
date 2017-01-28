@@ -5,11 +5,9 @@ namespace UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
-use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends BaseController
 {
-
     public function registerAction()
     {
         $form = $this->container->get('fos_user.registration.form');
@@ -47,7 +45,7 @@ class RegistrationController extends BaseController
         ));
     }
     /**
-     * Receive the confirmation token from user email provider, login the user
+     * Receive the confirmation token from user email provider, login the user.
      */
     public function confirmAction($token)
     {

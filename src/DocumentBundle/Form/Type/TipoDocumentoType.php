@@ -30,7 +30,7 @@ class TipoDocumentoType extends AbstractType
         ;
     }
 
-   /**
+    /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)

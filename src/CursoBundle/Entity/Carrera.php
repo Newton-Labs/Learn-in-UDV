@@ -32,7 +32,7 @@ class Carrera
 
     /**
      * Bi-direccional de asociación. Cada carrera pertenece a una.
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Facultad", inversedBy="arrayCarreras")
      *
      * @var Weak-Side of entity relationship

@@ -26,7 +26,7 @@ class Documento
      * [$tipoDocumento boolean para saber si es parcial o hoja de trabajo].
      *
      * @var ManyToOne
-     *                 
+     *
      * @ORM\ManyToOne(targetEntity="DocumentBundle\Entity\TipoDocumento")
      */
     private $tipoDocumento;
@@ -42,14 +42,14 @@ class Documento
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
+     *
      * @Vich\UploadableField(mapping="document", fileNameProperty="documentName",
      * nullable=true)
-     * 
+     *
      * @Assert\File(
      * maxSize="32M",
      * mimeTypes = {
-     *     "application/pdf", 
+     *     "application/pdf",
      *     "application/x-pdf",
      *     "application/msword",
      *     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -67,7 +67,7 @@ class Documento
      *    },
      * mimeTypesMessage = "Por favor solo subir archivos PDF,  Word, txt o  imágenes",
      * )
-     * 
+     *
      * @var File
      */
     private $documentFile;

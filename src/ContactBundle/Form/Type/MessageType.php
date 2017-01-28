@@ -27,9 +27,9 @@ class MessageType extends AbstractType
            ->add('asunto', 'text', [
                 'label' => 'Asunto del mensaje',
             ])
-           ->add('mensaje' , 'textarea', [
-                'attr' =>[
-                    'placeholder' => 'Mensaje a enviar'
+           ->add('mensaje', 'textarea', [
+                'attr' => [
+                    'placeholder' => 'Mensaje a enviar',
                 ],
             ])
 

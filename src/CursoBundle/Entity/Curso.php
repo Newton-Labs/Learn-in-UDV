@@ -72,7 +72,7 @@ class Curso
 
     /**
      * [$documento cada curso tiene los documentos asociados].
-     * 
+     *
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="DocumentBundle\Entity\Documento", mappedBy="curso")
      * @ORM\OrderBy({"documentName" = "ASC"})
@@ -232,7 +232,7 @@ class Curso
 
     /**
      * Get deletedAt.
-     * 
+     *
      * @return \DateTime
      */
     public function getDeletedAt()
@@ -368,7 +368,7 @@ class Curso
     /**
      * El método es llamado para mostrar los dos atributos en el select2.
      *
-     * @return string obtener el nombre y el codigo en un solo método .
+     * @return string obtener el nombre y el codigo en un solo método
      */
     public function getCodigoNombre()
     {

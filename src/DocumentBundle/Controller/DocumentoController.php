@@ -381,7 +381,7 @@ class DocumentoController extends Controller
      * @param Usuario $enviado_a   Nombre de la persona a la que se le envía el correo
      * @param Usuario $enviado_por Nombre de la persona que es enviado por
      * @param string  $mensaje     Mensaje
-     * @param Array   $archivos    Array de string con el nombre de los documentos subidos
+     * @param array   $archivos    Array de string con el nombre de los documentos subidos
      */
     private function sendEmail($enviado_a, $enviado_por, $mensaje, $archivos)
     {
@@ -395,11 +395,11 @@ class DocumentoController extends Controller
         $message = \Swift_Message::newInstance();
 
         //espacio para agregar imágenes
-        $img_src = $message->embed(\Swift_Image::fromPath('images/email_header.png'));//attach image 1
-        $fb_image = $message->embed(\Swift_Image::fromPath('images/fb.gif'));//attach image 2
-        $tw_image = $message->embed(\Swift_Image::fromPath('images/tw.gif'));//attach image 3
-        $right_image = $message->embed(\Swift_Image::fromPath('images/right.gif'));//attach image 4
-        $left_image = $message->embed(\Swift_Image::fromPath('images/left.gif'));//attach image 5
+        $img_src = $message->embed(\Swift_Image::fromPath('images/email_header.png')); //attach image 1
+        $fb_image = $message->embed(\Swift_Image::fromPath('images/fb.gif')); //attach image 2
+        $tw_image = $message->embed(\Swift_Image::fromPath('images/tw.gif')); //attach image 3
+        $right_image = $message->embed(\Swift_Image::fromPath('images/right.gif')); //attach image 4
+        $left_image = $message->embed(\Swift_Image::fromPath('images/left.gif')); //attach image 5
 
         $subject = 'Se ha subido un nuevo documento a Learn-IN UDV';
         $replyEmail = $enviado_por->getEmail();

@@ -98,7 +98,7 @@ class DocumentoType extends AbstractType
     /**
      * Validar que la fecha de ingreso sea antes que la fecha de salida.
      *
-     * @param Array                     $data    contiene los datos del formulario
+     * @param array                     $data    contiene los datos del formulario
      * @param ExecutionContextInterface $context
      */
     public function validarEnvioMensaje($data, ExecutionContextInterface $context)
