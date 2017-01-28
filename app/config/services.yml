@@ -7,6 +7,9 @@ imports:
     - { resource: amazon.php }
 
 services:
+    app.token_authenticator:
+        class: UserBundle\Security\TokenAuthenticator
+        arguments: ['@doctrine.orm.entity_manager','@service_container']
     kernel.listener.accessDenied:
         class:  UserBundle\Listener\AccessDeniedListener
         arguments: ["@session","@router", "@request_stack"]

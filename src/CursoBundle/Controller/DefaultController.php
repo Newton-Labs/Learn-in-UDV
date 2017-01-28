@@ -14,6 +14,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+         $usuario = $this->getUser();
+        return $this->render('default/index.html.twig', [
+          'token' => $usuario->getApiToken()
+        ]);
     }
 }

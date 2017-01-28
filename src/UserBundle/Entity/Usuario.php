@@ -53,6 +53,13 @@ class Usuario extends BaseUser
      */
     private $carnet;
 
+    /**
+     * Token security
+     * @var string
+     * @ORM\Column(name="api_token", type="string", nullable=true)
+     */
+    private $apiToken;
+
     private $tipoUsuario;
 
     /**
@@ -223,5 +230,28 @@ class Usuario extends BaseUser
     public function __toString()
     {
         return $this->nombre.' '.$this->apellidos;
+    }
+
+    /**
+     * Set apiToken
+     *
+     * @param string $apiToken
+     * @return Usuario
+     */
+    public function setApiToken($apiToken)
+    {
+        $this->apiToken = $apiToken;
+
+        return $this;
+    }
+
+    /**
+     * Get apiToken
+     *
+     * @return string 
+     */
+    public function getApiToken()
+    {
+        return $this->apiToken;
     }
 }

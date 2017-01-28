@@ -20,7 +20,10 @@ security:
                 lifetime: 604800 # 1 week in seconds
                 path:     /
                 always_remember_me: true
-            logout:       true
+            logout:
+                path: /logout
+                target: /api/logout
+                invalidate_session: true
             anonymous:    true
             access_denied_url: /contact/access/exception
             #access_denied_handler: kernel.listener.accessDenied
@@ -28,6 +31,7 @@ security:
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/curso, roles: ROLE_CATEDRATICO }
         - { path: ^/carrera, roles: ROLE_ADMIN }

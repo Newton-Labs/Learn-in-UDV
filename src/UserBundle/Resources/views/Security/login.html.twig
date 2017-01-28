@@ -6,7 +6,7 @@
 {% endif %}
 
     
-            <h4 style="border-bottom: 1px solid #c5c5c5; color: #ffffff "><i class="glyphicon glyphicon-user"></i>Autenticación</h4>
+            <h4 style="border-bottom: 1px solid #c5c5c5; color: #ffffff "><i class="glyphicon glyphicon-user"></i>Facultad de Auditoría y Finanzas</h4>
             <div style="padding: 45px;" id="form-olvidado">
                 <form accept-charset="UTF-8" role="form" id="login" name="form" method="POST" action="{{ path("fos_user_security_check") }}" >
                   <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -29,7 +29,7 @@
                 </div>
                 <div>
                   <p class="help-block">
-                    <a style="color:white" href="{{ path('fos_user_resetting_request') }}" name="_forgot_password"><small>Olvidaste tu contraseña?</small></a>
+                    <a style="color:white" href="{{ path('fos_user_resetting_request') }}" name="_forgot_password"><small>¿Olvidaste tu contraseña?</small></a>
                   </p>
                 </div>
                  <div class="col-sm-12">
@@ -40,5 +40,7 @@
     
     <!-- End Login Section -->
 {% endblock fos_user_content %}
-
+{% block js %}
+  <script src="{{asset('js/secure.min.js')}}"></script>
+{% endblock %}
                   

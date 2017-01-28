@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RegistrationController extends BaseController
 {
 
-        public function registerAction()
+    public function registerAction()
     {
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');
@@ -26,6 +26,8 @@ class RegistrationController extends BaseController
                 $route = 'fos_user_registration_check_email';
             } else {
                 $authUser = true;
+                $user->setApiToken(base64_encode($user->getUsername().':'.$user->getPassword()));
+                $this->container->get('fos_user.user_manager')->updateUser($user);
                 $route = 'homepage';
             }
 
