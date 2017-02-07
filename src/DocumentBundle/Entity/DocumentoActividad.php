@@ -28,7 +28,7 @@ class DocumentoActividad
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaSubido", type="datetime")
+     * @ORM\Column(name="fecha_subido", type="datetime")
      */
     private $fechaSubido;
 

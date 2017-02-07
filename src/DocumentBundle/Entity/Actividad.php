@@ -24,28 +24,28 @@ class Actividad
     /**
      * @var string
      *
-     * @ORM\Column(name="nombreActividad", type="string", length=255)
+     * @ORM\Column(name="nombre_actividad", type="string", length=255)
      */
     private $nombreActividad;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcionActividad", type="string", length=255)
+     * @ORM\Column(name="descripcion_actividad", type="string", length=255)
      */
     private $descripcionActividad;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaPublicacion", type="datetime")
+     * @ORM\Column(name="fecha_publicacion", type="datetime")
      */
     private $fechaPublicacion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaExpiracion", type="datetime")
+     * @ORM\Column(name="fecha_expiracion", type="datetime")
      */
     private $fechaExpiracion;
 

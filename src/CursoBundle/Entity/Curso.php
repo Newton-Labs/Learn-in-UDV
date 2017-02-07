@@ -28,7 +28,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="nombreCurso", type="string", length=255)
+     * @ORM\Column(name="nombre_curso", type="string", length=255)
      * @ORM\OrderBy({"nombreCurso" = "ASC"})
      */
     private $nombreCurso;
@@ -49,6 +49,21 @@ class Curso
      */
     private $periodo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Seccion")
+     */
+    private $seccion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Clase")
+     */
+    private $clase;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Horario")
+     */
+    private $horario;
+    
     /**
      * @var string
      *
@@ -401,5 +416,74 @@ class Curso
     public function getCursoCreadoPor()
     {
         return $this->cursoCreadoPor;
+    }
+
+    /**
+     * Set seccion
+     *
+     * @param \CursoBundle\Entity\Seccion $seccion
+     * @return Curso
+     */
+    public function setSeccion(\CursoBundle\Entity\Seccion $seccion = null)
+    {
+        $this->seccion = $seccion;
+
+        return $this;
+    }
+
+    /**
+     * Get seccion
+     *
+     * @return \CursoBundle\Entity\Seccion 
+     */
+    public function getSeccion()
+    {
+        return $this->seccion;
+    }
+
+    /**
+     * Set clase
+     *
+     * @param \CursoBundle\Entity\Clase $clase
+     * @return Curso
+     */
+    public function setClase(\CursoBundle\Entity\Clase $clase = null)
+    {
+        $this->clase = $clase;
+
+        return $this;
+    }
+
+    /**
+     * Get clase
+     *
+     * @return \CursoBundle\Entity\Clase 
+     */
+    public function getClase()
+    {
+        return $this->clase;
+    }
+
+    /**
+     * Set horario
+     *
+     * @param \CursoBundle\Entity\Horario $horario
+     * @return Curso
+     */
+    public function setHorario(\CursoBundle\Entity\Horario $horario = null)
+    {
+        $this->horario = $horario;
+
+        return $this;
+    }
+
+    /**
+     * Get horario
+     *
+     * @return \CursoBundle\Entity\Horario 
+     */
+    public function getHorario()
+    {
+        return $this->horario;
     }
 }

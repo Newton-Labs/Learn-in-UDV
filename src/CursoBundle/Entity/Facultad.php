@@ -26,7 +26,7 @@ class Facultad
     /**
      * @var string
      *
-     * @ORM\Column(name="nombreFacultad", type="string", length=255)
+     * @ORM\Column(name="nombre_facultad", type="string", length=255)
      */
     private $nombreFacultad;
 
