@@ -33,6 +33,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/logout, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/contact/access/exception, role: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/curso, roles: ROLE_CATEDRATICO }
         - { path: ^/carrera, roles: ROLE_ADMIN }
