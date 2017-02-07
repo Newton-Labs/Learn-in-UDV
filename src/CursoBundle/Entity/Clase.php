@@ -5,7 +5,7 @@ namespace CursoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Clase
+ * Clase.
  *
  * @ORM\Table(name="clase")
  * @ORM\Entity(repositoryClass="CursoBundle\Repository\ClaseRepository")
@@ -28,11 +28,10 @@ class Clase
      */
     private $area;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -40,9 +39,10 @@ class Clase
     }
 
     /**
-     * Set area
+     * Set area.
      *
      * @param string $area
+     *
      * @return Salon
      */
     public function setArea($area)
@@ -53,9 +53,9 @@ class Clase
     }
 
     /**
-     * Get area
+     * Get area.
      *
-     * @return string 
+     * @return string
      */
     public function getArea()
     {

@@ -42,6 +42,7 @@ class Carrera
 
     /**
      * @ORM\OneToMany(targetEntity="Seccion", mappedBy="carrera")
+     *
      * @var [type]
      */
     private $seccion;
@@ -124,9 +125,10 @@ class Carrera
     }
 
     /**
-     * Add seccion
+     * Add seccion.
      *
      * @param \CursoBundle\Entity\Seccion $seccion
+     *
      * @return Carrera
      */
     public function addSeccion(\CursoBundle\Entity\Seccion $seccion)
@@ -137,7 +139,7 @@ class Carrera
     }
 
     /**
-     * Remove seccion
+     * Remove seccion.
      *
      * @param \CursoBundle\Entity\Seccion $seccion
      */
@@ -147,9 +149,9 @@ class Carrera
     }
 
     /**
-     * Get seccion
+     * Get seccion.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSeccion()
     {

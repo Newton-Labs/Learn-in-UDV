@@ -5,7 +5,7 @@ namespace CursoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Seccion
+ * Seccion.
  *
  * @ORM\Table(name="seccion")
  * @ORM\Entity(repositoryClass="CursoBundle\Repository\SeccionRepository")
@@ -28,11 +28,10 @@ class Seccion
      */
     private $nombreSeccion;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -41,8 +40,10 @@ class Seccion
 
     /**
      * Set nombreSeccion
-     *n
+     *n.
+     *
      * @param string $nombreSeccion
+     *
      * @return Seccion
      */
     public function setNombreSeccion($nombreSeccion)
@@ -53,16 +54,16 @@ class Seccion
     }
 
     /**
-     * Get nombreSeccion
+     * Get nombreSeccion.
      *
-     * @return string 
+     * @return string
      */
     public function getNombreSeccion()
     {
         return $this->nombreSeccion;
     }
 
-    public function __toString() 
+    public function __toString()
     {
         return $this->nombreSeccion;
     }

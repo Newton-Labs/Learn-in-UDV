@@ -5,7 +5,7 @@ namespace CursoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Horario
+ * Horario.
  *
  * @ORM\Table(name="horario")
  * @ORM\Entity(repositoryClass="CursoBundle\Repository\HorarioRepository")
@@ -42,11 +42,10 @@ class Horario
      */
     private $horaFinal;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -54,9 +53,10 @@ class Horario
     }
 
     /**
-     * Set dia
+     * Set dia.
      *
      * @param string $dia
+     *
      * @return Horario
      */
     public function setDia($dia)
@@ -67,9 +67,9 @@ class Horario
     }
 
     /**
-     * Get dia
+     * Get dia.
      *
-     * @return string 
+     * @return string
      */
     public function getDia()
     {
@@ -77,9 +77,10 @@ class Horario
     }
 
     /**
-     * Set horaInicio
+     * Set horaInicio.
      *
      * @param \DateTime $horaInicio
+     *
      * @return Horario
      */
     public function setHoraInicio($horaInicio)
@@ -90,9 +91,9 @@ class Horario
     }
 
     /**
-     * Get horaInicio
+     * Get horaInicio.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHoraInicio()
     {
@@ -100,9 +101,10 @@ class Horario
     }
 
     /**
-     * Set horaFinal
+     * Set horaFinal.
      *
      * @param \DateTime $horaFinal
+     *
      * @return Horario
      */
     public function setHoraFinal($horaFinal)
@@ -113,9 +115,9 @@ class Horario
     }
 
     /**
-     * Get horaFinal
+     * Get horaFinal.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHoraFinal()
     {

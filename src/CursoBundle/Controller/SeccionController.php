@@ -10,7 +10,6 @@ use CursoBundle\Entity\Seccion;
 use CursoBundle\Form\Type\SeccionType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-
 /**
  * Seccion controller.
  *
@@ -68,10 +67,9 @@ class SeccionController extends Controller
                     // other fields
                 ];
             }
-            return new JsonResponse(([$response1, $response2]));
-        } 
 
-       
+            return new JsonResponse(([$response1, $response2]));
+        }
 
         return $this->render('CursoBundle:Seccion:ajaxSeccion.html.twig', array(
             'seccion' => $seccion,

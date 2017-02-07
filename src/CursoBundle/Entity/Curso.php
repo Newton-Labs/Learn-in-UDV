@@ -63,7 +63,7 @@ class Curso
      * @ORM\ManyToOne(targetEntity="Horario")
      */
     private $horario;
-    
+
     /**
      * @var string
      *
@@ -419,9 +419,10 @@ class Curso
     }
 
     /**
-     * Set seccion
+     * Set seccion.
      *
      * @param \CursoBundle\Entity\Seccion $seccion
+     *
      * @return Curso
      */
     public function setSeccion(\CursoBundle\Entity\Seccion $seccion = null)
@@ -432,9 +433,9 @@ class Curso
     }
 
     /**
-     * Get seccion
+     * Get seccion.
      *
-     * @return \CursoBundle\Entity\Seccion 
+     * @return \CursoBundle\Entity\Seccion
      */
     public function getSeccion()
     {
@@ -442,9 +443,10 @@ class Curso
     }
 
     /**
-     * Set clase
+     * Set clase.
      *
      * @param \CursoBundle\Entity\Clase $clase
+     *
      * @return Curso
      */
     public function setClase(\CursoBundle\Entity\Clase $clase = null)
@@ -455,9 +457,9 @@ class Curso
     }
 
     /**
-     * Get clase
+     * Get clase.
      *
-     * @return \CursoBundle\Entity\Clase 
+     * @return \CursoBundle\Entity\Clase
      */
     public function getClase()
     {
@@ -465,9 +467,10 @@ class Curso
     }
 
     /**
-     * Set horario
+     * Set horario.
      *
      * @param \CursoBundle\Entity\Horario $horario
+     *
      * @return Curso
      */
     public function setHorario(\CursoBundle\Entity\Horario $horario = null)
@@ -478,9 +481,9 @@ class Curso
     }
 
     /**
-     * Get horario
+     * Get horario.
      *
-     * @return \CursoBundle\Entity\Horario 
+     * @return \CursoBundle\Entity\Horario
      */
     public function getHorario()
     {

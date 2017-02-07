@@ -25,7 +25,7 @@ class SeccionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'CursoBundle\Entity\Seccion'
+            'data_class' => 'CursoBundle\Entity\Seccion',
         ]);
     }
 

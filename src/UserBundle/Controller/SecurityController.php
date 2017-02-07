@@ -6,7 +6,6 @@ use FOS\UserBundle\Controller\SecurityController as BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContext;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 
 class SecurityController extends BaseController
@@ -18,9 +17,9 @@ class SecurityController extends BaseController
      */
     public function loginAction()
     {
-        /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
+        /* @var $session \Symfony\Component\HttpFoundation\Session\Session */
         $request = $this->container->get('request');
-         $session = $request->getSession();
+        $session = $request->getSession();
         $authErrorKey = Security::AUTHENTICATION_ERROR;
         $lastUsernameKey = Security::LAST_USERNAME;
 
@@ -40,9 +39,7 @@ class SecurityController extends BaseController
         // last username entered by the user
         $lastUsername = (null === $session) ? '' : $session->get(SecurityContext::LAST_USERNAME);
 
-
         $csrfToken = $this->container->has('form.csrf_provider') ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate') : null;
-
 
         return $this->renderLogin(array(
             'last_username' => $lastUsername,
