@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body_content %}
+    <h1>Horario</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Día</th>
+                <td>{{ horario.dia }}</td>
+            </tr>
+            <tr>
+                <th>Hora Inicio</th>
+                <td>{% if horario.horaInicio %}{{ horario.horaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Hora Final</th>
+                <td>{% if horario.horaFinal %}{{ horario.horaFinal|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('horario_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a class="btn btn-primary" href="{{ path('horario_edit', { 'id': horario.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

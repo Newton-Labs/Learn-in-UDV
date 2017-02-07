@@ -1,10 +1,24 @@
 {% extends 'base_page.html.twig' %}
 
+{% block javascripts %}
+   <script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
+   <script src="{{asset('js/ajax/ajaxSeccion.js')}}"></script>
+   <script>
+    ajaxSeccion();
+   </script>
+{% endblock %}
+
 {% block body_title %} <h1>Crear Nuevo Curso</h1> {% endblock %}
 {% block body_content -%}
 
     {{ form_start(form)}}
 	{{ form_row(form.nombreCurso)}}
+    {{ form_row(form.seccion) }}
+    <button type="button" class="btn btn-xs btn-primary " data-toggle="modal" data-target="#modalSeccion">
+    Crear nueva sección
+    </button>
+    {{ form_row(form.clase) }}
+    {{ form_row(form.horario)}}
 	{{ form_row(form.sede)}}
 	{{ form_row(form.carreras)}}
 	{{ form_row(form.periodo)}}
@@ -34,4 +48,5 @@
         </a>
     </li>
 </ul>
+{% include 'CursoBundle:Seccion:modalSeccion.html.twig' %}
 {% endblock body_content %}

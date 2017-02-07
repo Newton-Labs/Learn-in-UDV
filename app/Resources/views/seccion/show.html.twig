@@ -1,0 +1,28 @@
+{% extends 'base_page.html.twig' %}
+
+{% block body_content %}
+    <h1>Sección</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nombre Sección</th>
+                <td>{{ seccion.nombreSeccion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('seccion_index') }}">Regresar al listado</a>
+        </li>
+        <li>
+            <a class="btn btn-primary" href="{{ path('seccion_edit', { 'id': seccion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

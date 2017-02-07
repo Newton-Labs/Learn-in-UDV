@@ -1,0 +1,16 @@
+{% extends 'base_page.html.twig' %}
+
+{% block body_content %}
+    <h1>Crear horario</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-primary" type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('horario_index') }}">Regresar al listado</a>
+        </li>
+    </ul>
+{% endblock %}
