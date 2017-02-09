@@ -1,3 +1,7 @@
+curso_clase:
+    resource: "@CursoBundle/Controller/ClaseController.php"
+    type:     annotation
+
 curso_horario:
     resource: "@CursoBundle/Controller/HorarioController.php"
     type:     annotation

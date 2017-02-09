@@ -4,8 +4,27 @@
     <h1>Crear horario</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input class="btn btn-primary" type="submit" value="Create" />
+       {{ form_row(form.dia) }}
+      
+        {% form_theme form _self %}
+
+        {% block _appbundle_horario_inicio %}
+            <div class="form-inline">
+                
+                 {{ form_row(form.horaInicio) }}
+             </div>
+           
+        {% endblock %}
+
+        {% block _appbundle_horario_final %}
+            <div class="form-inline">
+                
+                {{ form_row(form.horaFinal) }}
+             </div>
+           
+        {% endblock %}
+      
+        <input class="btn btn-primary btn-block" type="submit" value="Guardar" />
     {{ form_end(form) }}
 
     <ul>

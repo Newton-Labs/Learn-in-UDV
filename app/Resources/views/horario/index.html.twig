@@ -1,12 +1,12 @@
 {% extends 'base_page.html.twig' %}
 
-{% block body %}
+{% block body_content %}
     <h1>Listado de horarios</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Dia</th>
+                <th>Día</th>
                 <th>Hora Inicio</th>
                 <th>Hora Final</th>
                 <th>Acciones</th>
@@ -16,8 +16,8 @@
         {% for horario in horarios %}
             <tr>
                 <td>{{ horario.dia }}</td>
-                <td>{% if horario.horaInicio %}{{ horario.horaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if horario.horaFinal %}{{ horario.horaFinal|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if horario.horaInicio %}{{ horario.horaInicio|date('H:i:s') }}{% endif %}</td>
+                <td>{% if horario.horaFinal %}{{ horario.horaFinal|date(' H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
