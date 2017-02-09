@@ -28,12 +28,6 @@ class Seccion
      */
     private $nombreSeccion;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="Carrera", inversedBy="seccion")
-     *
-     * @var [type]
-     */
-    private $carrera;
 
     /**
      * Get id.

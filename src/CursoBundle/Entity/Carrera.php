@@ -40,12 +40,6 @@ class Carrera
      */
     private $facultad;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Seccion", mappedBy="carrera")
-     *
-     * @var [type]
-     */
-    private $seccion;
 
     public function __construct()
     {
@@ -122,39 +116,5 @@ class Carrera
     public function __toString()
     {
         return $this->getNombreCarrera();
-    }
-
-    /**
-     * Add seccion.
-     *
-     * @param \CursoBundle\Entity\Seccion $seccion
-     *
-     * @return Carrera
-     */
-    public function addSeccion(\CursoBundle\Entity\Seccion $seccion)
-    {
-        $this->seccion[] = $seccion;
-
-        return $this;
-    }
-
-    /**
-     * Remove seccion.
-     *
-     * @param \CursoBundle\Entity\Seccion $seccion
-     */
-    public function removeSeccion(\CursoBundle\Entity\Seccion $seccion)
-    {
-        $this->seccion->removeElement($seccion);
-    }
-
-    /**
-     * Get seccion.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSeccion()
-    {
-        return $this->seccion;
     }
 }
