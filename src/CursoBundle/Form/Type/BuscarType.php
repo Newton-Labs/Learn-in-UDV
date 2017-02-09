@@ -78,7 +78,8 @@ class BuscarType extends AbstractType
             ])
            ->add('sede', 'choice', [
                 'choices' => [
-                    'Zona 4' => 'Zona 4',
+                    'Zona 4 Edificio Mini' => 'Zona 4 Edificio Mini',
+                    'Zona 4 Central' => 'Zona 4 Central',
                     'Zona 10' => 'Zona 10',
                     'Huehuetenango' => 'Huehuetenango',
                     'Quetzaltenango' => 'Quetzaltenango',

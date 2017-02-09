@@ -49,7 +49,7 @@ class HorarioController extends Controller
             $em->persist($horario);
             $em->flush();
 
-            return $this->redirectToRoute('horario_show', array('id' => $horario->getId()));
+            return $this->redirectToRoute('horario_new');
         }
 
         return $this->render('horario/new.html.twig', array(

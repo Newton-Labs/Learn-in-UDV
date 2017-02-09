@@ -5,6 +5,8 @@ namespace CursoBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use CursoBundle\Entity\Horario;
+
 
 class HorarioType extends AbstractType
 {
@@ -15,9 +17,17 @@ class HorarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dia')
-            ->add('horaInicio', 'datetime')
-            ->add('horaFinal', 'datetime')
+            ->add('dia', 'choice', [
+            'choices'  => Horario::horario,
+            // *this line is important*
+            'choices_as_values' => true,
+            ])
+            ->add('horaInicio', 'time', [
+                
+            ])
+            ->add('horaFinal', 'time', [
+                
+            ])
         ;
     }
 

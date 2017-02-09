@@ -3,15 +3,27 @@
 namespace CursoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Horario.
  *
  * @ORM\Table(name="horario")
  * @ORM\Entity(repositoryClass="CursoBundle\Repository\HorarioRepository")
+ * @UniqueEntity(
+ *     fields={"dia", "horaInicio", "horaFinal"})
  */
 class Horario
 {
+    const horario = [
+        'Lunes' => 1, 
+        'Martes' => 2, 
+        'Miércoles' => 3, 
+        'Jueves' => 4,
+        'Viernes' => 5, 
+        'Sábado' => 6
+    ];
+
     /**
      * @var int
      *
@@ -24,7 +36,7 @@ class Horario
     /**
      * @var string
      *
-     * @ORM\Column(name="dia", type="string", length=255, unique=true)
+     * @ORM\Column(name="dia", type="string", length=255)
      */
     private $dia;
 
@@ -122,5 +134,10 @@ class Horario
     public function getHoraFinal()
     {
         return $this->horaFinal;
+    }
+
+    public function __toString() 
+    {
+        return array_search($this->dia, Horario::horario).' de '.$this->horaInicio->format('H:i').' a '.$this->horaFinal->format('H:i');
     }
 }

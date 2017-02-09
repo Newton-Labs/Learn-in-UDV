@@ -24,7 +24,7 @@ class Periodo
     /**
      * @var string
      *
-     * @ORM\Column(name="nombrePeriodo", type="string", length=100)
+     * @ORM\Column(name="nombrePeriodo", type="string", unique=true, length=100)
      */
     private $nombrePeriodo;
 

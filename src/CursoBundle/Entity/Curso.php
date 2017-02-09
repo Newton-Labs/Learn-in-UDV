@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="curso")
  * @ORM\Entity()
- * @UniqueEntity(fields={"nombreCurso","sede","periodo","carreras","year"},
+ * @UniqueEntity(fields={"nombreCurso","sede","periodo","carreras","year", "seccion", "horario"},
  *     message="El curso que está tratando de crear ya ha sido utilizado, cambie de período, nombre o carrera"
  * )
  */
