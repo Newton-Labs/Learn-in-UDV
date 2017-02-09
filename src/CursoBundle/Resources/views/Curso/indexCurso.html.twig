@@ -9,7 +9,9 @@
         <thead>
             <tr>
                 <th>Nombre Curso</th>
-                <th>Código Curso</th>
+                <th>Horario</th>
+                <th>Salón</th>
+                <th>Sección</th>
                 <th>Estado</th>
                 <th>Acciones</th>
 
@@ -18,12 +20,10 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href = "{{ path('curso_show', { 'slug': entity.slug }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.nombreCurso }}</td>
-                {% for carrera in entity.carreras %}
-                    <td> {{carrera}} </td>
-                    
-                {% endfor %}
+                <td>{{ entity.horario}}</td>
+                <td>{{ entity.clase }}</td>
+                <td>{{ entity.seccion }}</td>
 
                 {% if entity.deletedAt != null %}
                     <td>Eliminado {{entity.deletedAt | date('d-m-Y H:i:s') }}</td>
