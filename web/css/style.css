@@ -1012,3 +1012,7 @@ and (max-width : 991px) {
 .h4 {
     color:#ffffff;
 }
+
+.form-inline .select2-container {
+  width: 80px !important;
+}
