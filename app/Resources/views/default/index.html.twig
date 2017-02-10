@@ -1,173 +1,136 @@
 {% extends 'default/base.html.twig' %}
-       
-    {% block javascripts %}
-        <script>
-          localStorage.setItem('sessiontk', {{token|json_encode|raw}});
-        </script>
-    {% endblock %}
-
-    {% block body %}
-        
-        <!-- Start Logo Section -->
-        <section id="logo-section" class="text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="logo text-center">
-                            <h1>Learn-in-UDV</h1>
-                            <span>Universidad Da Vinci de Guatemala</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Logo Section -->
-        
-        
-        <!-- Start Main Body Section -->
-        <div class="mainbody-section text-center">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col-md-3">
-                        {# ruta para descargar parciales #}
-                        <div class="menu-item blue">
-                            <a href="{{path('cursos_show')}}">
-                                <i class="fa fa-cloud-download "></i>
-                                <p>Descargar Documentos</p>
-                            </a>
-                        </div>
-                        
-                        {# termina ruta para descargar parciales #}
-
-                        
-                        {# espacio para tareas #}
-                        <div class="menu-item light-red">      {% if is_granted('ROLE_CATEDRATICO') %}
-                                <a href="#" data-toggle="modal" data-target="#modalTarea">
-                               
-                                <i class="fa fa-tasks"></i>
-                                <p>Tareas</p>
-                            </a> 
-                            {% else %}
-                                <a href="{{path('tareas_cursos_show')}}">
-                            <i class="fa fa-tasks"></i>
-                                <p>Tareas</p>
-                            </a> 
-
-                           {% endif %}
-                             
-                        </div>
-                         {% include 'modal/modal_tareas.html.twig' %}
-                       
-                        {# termina ruta tareas #}
-
-                         <div class="menu-item green">
-                            <a href="{{path('contact')}}" data-toggle="modal">
-                               <i class="fa fa-building-o"></i>
-                                <p>Contacto</p>
-                            </a>
-                        </div>
-
-                         
-                        
-                    </div>
-                    
-                    <div class="col-md-6">
-                        
-                        <!-- Start Carousel Section -->
-                        <div class="home-slider">
-                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="10000" style="padding-bottom: 60px;">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                </ol>
-
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img id="example" title="My tooltip content" src="{{ asset('images/index/principal-udv.png') }}" width="304" height="236" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="{{ asset('images/index/learn-in-udv.png')}}" class="img-responsive" alt="">
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Start Carousel Section -->
-                        
-                        
-                        
-                    </div>
-                    
-                    <div class="col-md-3">
-                        
-                       
-                        {# ruta para subir documentos #}
-                        <div class="menu-item color">
-                            {% if app.user and is_granted('ROLE_CATEDRATICO') %}
-                                <a href="{{ path('documento_new')}}" data-toggle="modal">
-                                    <i class="fa fa-cloud-upload"></i>
-                                    <p>Subir Documentos</p>
-                                </a>
-                            {% else %} 
-                             <a href="#" data-toggle="modal" data-target="#modalPermisoDocumento">
-                                    <i class="fa fa-cloud-upload"></i>
-                                    <p>Subir Documentos</p>
-                                </a>
-                            {% endif %}
-                        </div>
-
-                        {% include 'modal/modal_permisos.html.twig' %}
-                        {# termina ruta para subir documentos #}  
-
-                        
-                        {# ruta para el Cursos #}
-                        <div class="menu-item blue">
-                            <a href="#" data-toggle="modal" data-target="#modalCursos">
-                                <i class="fa fa-mortar-board"></i>
-                                <p>Cursos</p>
-                            </a>
-                        </div>
-
-                        {% include 'modal/modal_curso.html.twig' %}
-                        {# termina ruta de Cursos #}
-                        
-                        <div class="menu-item light-red">
-                             <a href="#" data-toggle="modal" data-target="#modalPerfil">
-                                <i class="fa fa-user"></i>
-                                <p>Perfil</p>
-                            </a>
-                        </div>
-                         {% include 'modal/modal_perfil.html.twig' %}
-                        
-                        
-                    </div>
-                </div>
-            </div>
+{% block javascripts %}
+<script>
+  localStorage.setItem('sessiontk', {{token|json_encode|raw}});
+</script>
+{% endblock %}
+{% block body %}
+<!-- Start Logo Section -->
+<section id="logo-section" class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="logo text-center">
+          <h1>Learn-in-UDV</h1>
+          <span>Universidad Da Vinci de Guatemala</span>
         </div>
-        <!-- End Main Body Section -->
-        <footer>
-            <!-- Start Copyright Section -->
-            <div class="copyright text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p><a href="http://facebook.com/newtonlabsgt" target="_blank">Desarrollado por Newton Labs.</a></p></div>
-                           <p>Soporte: udv@newtonlabs.com.gt</p>
-                           <p>Edificio Mini 6a av 1-27 zona 4 (el 
-    mismo   edificio    de Cemaco Z.4)</p>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Logo Section -->
+<!-- Start Main Body Section -->
+<div class="mainbody-section text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        {# ruta para descargar parciales #}
+        <div class="menu-item blue">
+          <a href="{{path('cursos_show')}}">
+            <i class="fa fa-cloud-download "></i>
+            <p>Descargar Documentos</p>
+          </a>
+        </div>
+        {# termina ruta para descargar parciales #}
+        {# espacio para tareas #}
+        <div class="menu-item light-red">
+          {% if is_granted('ROLE_CATEDRATICO') %}
+          <a href="#" data-toggle="modal" data-target="#modalTarea">
+            <i class="fa fa-tasks"></i>
+            <p>Tareas</p>
+          </a>
+          {% else %}
+          <a href="{{path('tareas_cursos_show')}}">
+            <i class="fa fa-tasks"></i>
+            <p>Tareas</p>
+          </a>
+          {% endif %}
+        </div>
+        {% include 'modal/modal_tareas.html.twig' %}
+        {# termina ruta tareas #}
+        <div class="menu-item green">
+          <a href="{{path('contact')}}" data-toggle="modal">
+            <i class="fa fa-building-o"></i>
+            <p>Contacto</p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <!-- Start Carousel Section -->
+        <div class="home-slider">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="10000" style="padding-bottom: 60px;">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <img id="example" title="My tooltip content" src="{{ asset('images/index/principal-udv.png') }}" width="304" height="236" class="img-responsive" alt="">
+              </div>
+              <div class="item">
+                <img src="{{ asset('images/index/learn-in-udv.png')}}" class="img-responsive" alt="">
+              </div>
             </div>
-            <!-- End Copyright Section -->
-        </footer>
-        
-        
-       
-        
-        
-   {% endblock body %}
+          </div>
+        </div>
+        <!-- Start Carousel Section -->
+      </div>
+      <div class="col-md-3">
+        {# ruta para subir documentos #}
+        <div class="menu-item color">
+          {% if app.user and is_granted('ROLE_CATEDRATICO') %}
+          <a href="{{ path('documento_new')}}" data-toggle="modal">
+            <i class="fa fa-cloud-upload"></i>
+            <p>Subir Documentos</p>
+          </a>
+          {% else %} 
+          <a href="#" data-toggle="modal" data-target="#modalPermisoDocumento">
+            <i class="fa fa-cloud-upload"></i>
+            <p>Subir Documentos</p>
+          </a>
+          {% endif %}
+        </div>
+        {% include 'modal/modal_permisos.html.twig' %}
+        {# termina ruta para subir documentos #}  
+        {# ruta para el Cursos #}
+        <div class="menu-item blue">
+          <a href="#" data-toggle="modal" data-target="#modalCursos">
+            <i class="fa fa-mortar-board"></i>
+            <p>Cursos</p>
+          </a>
+        </div>
+        {% include 'modal/modal_curso.html.twig' %}
+        {# termina ruta de Cursos #}
+        <div class="menu-item light-red">
+          <a href="#" data-toggle="modal" data-target="#modalPerfil">
+            <i class="fa fa-user"></i>
+            <p>Perfil</p>
+          </a>
+        </div>
+        {% include 'modal/modal_perfil.html.twig' %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Main Body Section -->
+<footer>
+  <!-- Start Copyright Section -->
+  <div class="copyright text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p><a href="http://facebook.com/newtonlabsgt" target="_blank">Desarrollado por Newton Labs.</a></p>
+        </div>
+        <p>Soporte: udv@newtonlabs.com.gt</p>
+        <p>Edificio Mini 6a av 1-27 zona 4 (el 
+          mismo   edificio    de Cemaco Z.4)
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- End Copyright Section -->
+</footer>
+{% endblock body %}
