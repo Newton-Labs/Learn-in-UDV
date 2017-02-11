@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * AsignacionController.
  *
- * @author  Pablo Díaz fcpauldiaz@me.com
+ * @author  Pablo Díaz pablodiaz@newtonlabs.com.gt
  */
 class AsignacionController extends Controller
 {
@@ -68,7 +68,12 @@ class AsignacionController extends Controller
         }
 
         $usuario->addCurso($curso);
+        if ($this->isGranted('ROLE_CATEDRATICO')) {
+            $curso->setCreadoPor($usuario);
+            $em->persist($curso);
+        }
         $em->persist($usuario);
+
         $em->flush();
 
         $this->get('braincrafted_bootstrap.flash')->success(sprintf('Curso %s asignado correctamente', $curso->getNombreCurso()));
