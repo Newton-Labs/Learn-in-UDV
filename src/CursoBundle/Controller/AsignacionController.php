@@ -122,7 +122,7 @@ class AsignacionController extends Controller
         if (isset($curso)) {
             $qb
                 ->Where('curso.nombreCurso LIKE :nombre')
-                ->setParameter('nombre', $curso.'%');
+                ->setParameter('nombre', '%'.$curso.'%');
         }
         if (isset($carrera)) {
             $qb
