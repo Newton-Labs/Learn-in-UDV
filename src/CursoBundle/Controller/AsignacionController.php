@@ -69,7 +69,7 @@ class AsignacionController extends Controller
 
         $usuario->addCurso($curso);
         if ($this->isGranted('ROLE_CATEDRATICO')) {
-            $curso->setCreadoPor($usuario);
+            $curso->setCursoCreadoPor($usuario);
             $em->persist($curso);
         }
         $em->persist($usuario);
