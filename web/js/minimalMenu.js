@@ -1,1 +1,1 @@
-$(function(){$(".navbar-toggler").on("click",function(n){n.preventDefault(),$(this).closest(".navbar-minimal").toggleClass("open")})});
+var remove=!1;$("#admin").on("click",function(a){a.preventDefault(),remove=!remove,$(this).toggleClass("open",remove)});
