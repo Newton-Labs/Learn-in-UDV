@@ -16,9 +16,7 @@ class ReportController extends Controller
     {
         $totalParciales = $this->getTotalParciales();
         $totalHDT = $this->getTotalHojasTrabajo();
-        $totalTutorias = $this->getTotalTutorias();
         $cursoTopDocs = $this->getCursoMasDocs();
-        $cursoTopTutorias = $this->getCursoMasTutorias();
         $usuario = $this->getUsuarioMasDocs();
         $cantidadCursos = $this->getCursosTotal();
         $cantidadUsuarios = $this->getUsuariosTotal();
@@ -28,9 +26,7 @@ class ReportController extends Controller
             [
                 't_parciales' => $totalParciales,
                 't_hojasTrabajo' => $totalHDT,
-                't_tutorias' => $totalTutorias,
                 'cursot_docs' => $cursoTopDocs,
-                'cursot_tutorias' => $cursoTopTutorias,
                 'usuario' => $usuario,
                 't_cursos' => $cantidadCursos,
                 't_usuarios' => $cantidadUsuarios,
@@ -65,14 +61,6 @@ class ReportController extends Controller
         return (int) $hdt;
     }
 
-    private function getTotalTutorias()
-    {
-        $repository = $this->getDoctrine()->getRepository('TutoriaBundle:Tutoria');
-        $tutorias = $repository->findAll();
-
-        return (int) count($tutorias);
-    }
-
     private function getCursoMasDocs()
     {
         $cursoRepository = $this->getDoctrine()->getRepository('CursoBundle:Curso');
@@ -92,28 +80,6 @@ class ReportController extends Controller
         return [
             'curso' => $cursoConMasDocs,
             'cantidadDocs' => $cantidadDocs,
-        ];
-    }
-
-    private function getCursoMasTutorias()
-    {
-        $cursoRepository = $this->getDoctrine()->getRepository('CursoBundle:Curso');
-
-        $cursos = $cursoRepository->findAll();
-        $cursoConMasTutorias = null;
-        $cantidadDocs = 0;
-
-        foreach ($cursos as $curso) {
-            $cantidadTutorias = $this->getCantidadTutoriasByCurso($curso);
-            if ($cantidadTutorias > $cantidadDocs) {
-                $cursoConMasTutorias = $curso;
-                $cantidadDocs = $cantidadTutorias;
-            }
-        }
-
-        return [
-            'curso' => $cursoConMasTutorias,
-            'cantidadTutorias' => $cantidadDocs,
         ];
     }
 
@@ -148,20 +114,6 @@ class ReportController extends Controller
             ->getSingleScalarResult();
 
         return (int) $cantDocumentos;
-    }
-
-    private function getCantidadTutoriasByCurso($curso)
-    {
-        $repository = $this->getDoctrine()->getRepository('TutoriaBundle:Tutoria');
-        $cantTutorias = $repository
-            ->createQueryBuilder('t')
-            ->select('COUNT(t)')
-            ->where('t.curso = :curso')
-            ->setParameter('curso', $curso)
-            ->getQuery()
-            ->getSingleScalarResult();
-
-        return (int) $cantTutorias;
     }
 
     private function getCantidadDocsByUsuario($usuario)
