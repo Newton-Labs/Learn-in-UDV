@@ -114,6 +114,7 @@ class AsignacionController extends Controller
         $carrera = $data['carreras'];
         $periodo = $data['periodo'];
         $catedratico = $data['catedratico'];
+        $horario = $data['horario'];
         $año = $data['year'];
         $sede = $data['sede'];
         $repositoryCurso = $this->getDoctrine()->getRepository('CursoBundle:Curso');
@@ -153,6 +154,11 @@ class AsignacionController extends Controller
             $qb
                 ->andWhere('curso.sede = :sede')
                 ->setParameter('sede', $sede);
+        }
+        if (isset($horario)) {
+            $qb
+                ->andWhere('curso.horario = :horario')
+                ->setParameter('horario', $horario);
         }
 
         $cursos = $qb->getQuery()->getResult();

@@ -76,6 +76,15 @@ class BuscarType extends AbstractType
                 ],
                  'required' => false,
             ])
+            ->add('horario', 'entity' [
+                'class' => 'CursoBundle:Horario',
+                'empty_value' => 'Seleccionar Horario',
+                'label' => 'Buscador curso por Horario',
+                'attr' => [
+                    'class' => 'select2',
+                ],
+                 'required' => false,
+            ])
            ->add('sede', 'choice', [
                 'choices' => [
                     'Zona 4 Edificio Mini' => 'Zona 4 Edificio Mini',
