@@ -5,6 +5,7 @@ namespace CursoBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
+use CursoBundle\Entity\Horario;
 
 class BuscarType extends AbstractType
 {
@@ -76,10 +77,10 @@ class BuscarType extends AbstractType
                 ],
                  'required' => false,
             ])
-            ->add('horario', 'entity' [
-                'class' => 'CursoBundle:Horario',
-                'empty_value' => 'Seleccionar Horario',
-                'label' => 'Buscador curso por Horario',
+            ->add('dia', 'choice', [
+                'empty_value' => 'Seleccionar Día',
+                'choices' => Horario::horarioInv,
+                'label' => 'Buscador curso por Día',
                 'attr' => [
                     'class' => 'select2',
                 ],

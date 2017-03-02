@@ -114,7 +114,7 @@ class AsignacionController extends Controller
         $carrera = $data['carreras'];
         $periodo = $data['periodo'];
         $catedratico = $data['catedratico'];
-        $horario = $data['horario'];
+        $dia = $data['dia'];
         $año = $data['year'];
         $sede = $data['sede'];
         $repositoryCurso = $this->getDoctrine()->getRepository('CursoBundle:Curso');
@@ -155,10 +155,11 @@ class AsignacionController extends Controller
                 ->andWhere('curso.sede = :sede')
                 ->setParameter('sede', $sede);
         }
-        if (isset($horario)) {
+        if (isset($dia)) {
             $qb
-                ->andWhere('curso.horario = :horario')
-                ->setParameter('horario', $horario);
+                ->innerJoin('CursoBundle:Horario', 'horario', 'with', 'curso.horario = horario.id')
+                ->andWhere('horario.dia = :dia')
+                ->setParameter('dia', $dia);
         }
 
         $cursos = $qb->getQuery()->getResult();
